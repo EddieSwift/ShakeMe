@@ -3,27 +3,31 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D022FD94490029E28C /* AppDelegate.swift */; };
-		2C4384D322FD94490029E28C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D222FD94490029E28C /* ViewController.swift */; };
 		2C4384D622FD94490029E28C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384D422FD94490029E28C /* Main.storyboard */; };
 		2C4384D922FD94490029E28C /* ShakeMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D722FD94490029E28C /* ShakeMe.xcdatamodeld */; };
 		2C4384DB22FD944A0029E28C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384DA22FD944A0029E28C /* Assets.xcassets */; };
-		2C4384DE22FD944A0029E28C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384DC22FD944A0029E28C /* LaunchScreen.storyboard */; };
+		2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384E522FD94EF0029E28C /* MainViewController.swift */; };
+		2C4384ED22FD95520029E28C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384EC22FD95520029E28C /* LaunchScreen.storyboard */; };
+		5A68583780A54D85FF9410ED /* Pods_ShakeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C4384CD22FD94490029E28C /* ShakeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4384D022FD94490029E28C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C4384D222FD94490029E28C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2C4384D522FD94490029E28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C4384D822FD94490029E28C /* ShakeMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShakeMe.xcdatamodel; sourceTree = "<group>"; };
 		2C4384DA22FD944A0029E28C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2C4384DD22FD944A0029E28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C4384DF22FD944A0029E28C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C4384E522FD94EF0029E28C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2C4384EC22FD95520029E28C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C422BC732261D680C918570B /* Pods-ShakeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.release.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.release.xcconfig"; sourceTree = "<group>"; };
+		CCCF5D2350BC7739E8B50C44 /* Pods-ShakeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.debug.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.debug.xcconfig"; sourceTree = "<group>"; };
+		FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShakeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A68583780A54D85FF9410ED /* Pods_ShakeMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		099A8C4A89B89E1119D26509 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CCCF5D2350BC7739E8B50C44 /* Pods-ShakeMe.debug.xcconfig */,
+				C422BC732261D680C918570B /* Pods-ShakeMe.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2C4384C422FD94490029E28C = {
 			isa = PBXGroup;
 			children = (
 				2C4384CF22FD94490029E28C /* ShakeMe */,
 				2C4384CE22FD94490029E28C /* Products */,
+				099A8C4A89B89E1119D26509 /* Pods */,
+				515252C4B49509A73642D500 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +73,70 @@
 			isa = PBXGroup;
 			children = (
 				2C4384D022FD94490029E28C /* AppDelegate.swift */,
-				2C4384D222FD94490029E28C /* ViewController.swift */,
-				2C4384D422FD94490029E28C /* Main.storyboard */,
-				2C4384DA22FD944A0029E28C /* Assets.xcassets */,
-				2C4384DC22FD944A0029E28C /* LaunchScreen.storyboard */,
+				2C4384E722FD94FD0029E28C /* Controllers */,
+				2C4384E922FD95140029E28C /* Views */,
+				2C4384F022FDBB390029E28C /* Networking */,
+				2C4384E822FD95090029E28C /* Models */,
+				2C4384EE22FDBA3D0029E28C /* Resources */,
+				2C4384EF22FDBA7E0029E28C /* Supporting files */,
 				2C4384DF22FD944A0029E28C /* Info.plist */,
-				2C4384D722FD94490029E28C /* ShakeMe.xcdatamodeld */,
 			);
 			path = ShakeMe;
+			sourceTree = "<group>";
+		};
+		2C4384E722FD94FD0029E28C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2C4384E522FD94EF0029E28C /* MainViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2C4384E822FD95090029E28C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2C4384D722FD94490029E28C /* ShakeMe.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2C4384E922FD95140029E28C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2C4384EE22FDBA3D0029E28C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C4384D422FD94490029E28C /* Main.storyboard */,
+				2C4384EC22FD95520029E28C /* LaunchScreen.storyboard */,
+				2C4384DA22FD944A0029E28C /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2C4384EF22FDBA7E0029E28C /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		2C4384F022FDBB390029E28C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		515252C4B49509A73642D500 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C4384E222FD944A0029E28C /* Build configuration list for PBXNativeTarget "ShakeMe" */;
 			buildPhases = (
+				487D2A6EE62E1FAA8E318CB9 /* [CP] Check Pods Manifest.lock */,
 				2C4384C922FD94490029E28C /* Sources */,
 				2C4384CA22FD94490029E28C /* Frameworks */,
 				2C4384CB22FD94490029E28C /* Resources */,
+				62A08DAC77C26CDD497CDFE0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,7 +199,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C4384DE22FD944A0029E28C /* LaunchScreen.storyboard in Resources */,
+				2C4384ED22FD95520029E28C /* LaunchScreen.storyboard in Resources */,
 				2C4384DB22FD944A0029E28C /* Assets.xcassets in Resources */,
 				2C4384D622FD94490029E28C /* Main.storyboard in Resources */,
 			);
@@ -133,14 +207,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		487D2A6EE62E1FAA8E318CB9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShakeMe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62A08DAC77C26CDD497CDFE0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShakeMe/Pods-ShakeMe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShakeMe/Pods-ShakeMe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShakeMe/Pods-ShakeMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2C4384C922FD94490029E28C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C4384D322FD94490029E28C /* ViewController.swift in Sources */,
 				2C4384D922FD94490029E28C /* ShakeMe.xcdatamodeld in Sources */,
 				2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */,
+				2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,14 +269,6 @@
 				2C4384D522FD94490029E28C /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2C4384DC22FD944A0029E28C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C4384DD22FD944A0029E28C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -284,11 +392,13 @@
 		};
 		2C4384E322FD944A0029E28C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCCF5D2350BC7739E8B50C44 /* Pods-ShakeMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8345E68DL;
 				INFOPLIST_FILE = ShakeMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,11 +412,13 @@
 		};
 		2C4384E422FD944A0029E28C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C422BC732261D680C918570B /* Pods-ShakeMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8345E68DL;
 				INFOPLIST_FILE = ShakeMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
