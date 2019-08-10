@@ -25,6 +25,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bRU-i5-VA1">
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your question...?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbY-gX-js6">
                                 <rect key="frame" x="20" y="142" width="374" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -39,6 +43,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lgb-Ga-peG" secondAttribute="trailing" constant="20" id="H8Z-fg-nDy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Lgb-Ga-peG" secondAttribute="bottom" constant="348" id="Vbx-fl-4Xk"/>
                             <constraint firstItem="Lgb-Ga-peG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="284" id="aNE-QZ-XIs"/>
+                            <constraint firstItem="bRU-i5-VA1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tEU-Vq-zLr"/>
+                            <constraint firstItem="bRU-i5-VA1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zb6-OS-ytk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <variation key="default">
@@ -49,6 +55,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Shake Me" id="hwB-yq-gpy"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="bRU-i5-VA1" id="TxS-rq-XPk"/>
                         <outlet property="answerLabel" destination="Lgb-Ga-peG" id="kcD-LY-3Qj"/>
                         <outlet property="questionTextField" destination="fbY-gX-js6" id="ccM-Lv-xp1"/>
                     </connections>

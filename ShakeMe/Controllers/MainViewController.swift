@@ -22,28 +22,28 @@ class MainViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.answerLabel.text = "Why are you shakin me?"
+        self.activityIndicator.hidesWhenStopped = true
         self.becomeFirstResponder() // To get shake gesture
     }
     
     // MARK: - Motions
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        
         if motion == .motionShake {
-            print("***")
             print("motionBegan: Shake Began!")
-        }
-        
+        } 
     }
     
     // Enable detection of shake motion
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            getJSON(questionApiURL)
+            startAnimating()
+            getAnswer(questionApiURL)
         }
-        self.answerLabel.textColor = randomColor()
     }
     
     override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -63,42 +63,55 @@ class MainViewController: UIViewController {
         let red:CGFloat = CGFloat(drand48())
         let green:CGFloat = CGFloat(drand48())
         let blue:CGFloat = CGFloat(drand48())
-
-        return UIColor(red:red, green: green, blue: blue, alpha: 1.0)
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
     
     // MARK: - Network Methods
-    func getJSON(_ apiUrl: String) {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
+    func getAnswer(_ apiUrl: String) {
         Alamofire.request(apiUrl).responseJSON { response in
-            
             if response.result.value != nil {
+                
                 let json = JSON(response.result.value!)
-                let result = json["magic"]["answer"].stringValue
+                let answer = json["magic"]["answer"].stringValue
                 
-                print(json)
-                print("result: \(result)")
+                self.answerLabel.text = answer
                 
-                self.answerLabel.text = result
+                // Change color after text updated
+                DispatchQueue.main.async {
+                    self.answerLabel.textColor = self.randomColor()
+                }
                 
             } else {
                 print(response.error?.localizedDescription as Any)
             }
+            
+            self.stopAnimating()
         }
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false  
     }
-
+    
+    // MARK: - Indicator Methods
+    func startAnimating() {
+        self.answerLabel.isHidden = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        self.activityIndicator.color = self.answerLabel.textColor
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopAnimating() {
+        self.activityIndicator.stopAnimating()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        self.answerLabel.isHidden = false
+    }
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
