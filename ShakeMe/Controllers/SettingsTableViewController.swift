@@ -7,16 +7,38 @@
 //
 
 import UIKit
+import CoreData
 
 class SettingsTableViewController: UITableViewController {
     
-    var answers: [String] = []
+    var answers: [NSManagedObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Settings"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "CustomAnswer")
+
+        do {
+            answers = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
     
     // MARK: - Actions
@@ -34,7 +56,7 @@ class SettingsTableViewController: UITableViewController {
             
             if answerToSave.count < 1 { self.guardAlert() }
             
-            self.answers.append(answerToSave)
+            self.save(answer: answerToSave)
             self.tableView.reloadData()
         }
 
@@ -48,6 +70,30 @@ class SettingsTableViewController: UITableViewController {
         present(alert, animated: true)
     }
     
+    // MARK: - Core Data
+    
+    func save(answer: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "CustomAnswer", in: managedContext)!
+        
+        let customAnswer = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        customAnswer.setValue(answer, forKey: "answer")
+        
+        do {
+            try managedContext.save()
+            answers.append(customAnswer)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
     // MARK: - Help metods
     
     func guardAlert() {
@@ -59,7 +105,7 @@ class SettingsTableViewController: UITableViewController {
         present(alert, animated: true)
     }
 
-    // MARK: - Table view data source
+    // MARK: - UITableViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -69,11 +115,12 @@ class SettingsTableViewController: UITableViewController {
         return answers.count
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = answers[indexPath.row]
+        let answer = answers[indexPath.row]
+        
+        cell.textLabel?.text = answer.value(forKey: "answer") as? String
 
         return cell
     }
