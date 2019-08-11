@@ -9,16 +9,14 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-
-struct Answer {
-    let answer: String
-}
+import SystemConfiguration
 
 let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
 var answer = String()
+//var reachability = InternetReachability()
 
 class MainViewController: UIViewController {
-    
+
     // MARK: - Outlets
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var answerLabel: UILabel!
@@ -29,6 +27,10 @@ class MainViewController: UIViewController {
         self.answerLabel.text = "Why are you shakin me?"
         self.activityIndicator.hidesWhenStopped = true
         self.becomeFirstResponder() // To get shake gesture
+        
+        
+        
+
     }
     
     // MARK: - Motions
@@ -40,9 +42,20 @@ class MainViewController: UIViewController {
     
     // Enable detection of shake motion
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        
         if motion == .motionShake {
-            startAnimating()
-            getAnswer(questionApiURL)
+            
+            if InternetReachability.isConnectedToNetwork() {
+                
+                print("Internet connection OK")
+                startAnimating()
+                getAnswer(questionApiURL)
+                
+            } else {
+                self.answerLabel.text = "Sorry... No Internet!"
+                print("Internet connection FAILED")
+            }
+
         }
     }
     
