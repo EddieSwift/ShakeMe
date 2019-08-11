@@ -9,11 +9,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SystemConfiguration
 
 let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
 var answer = String()
-//var reachability = InternetReachability()
 
 class MainViewController: UIViewController {
 
@@ -27,10 +25,6 @@ class MainViewController: UIViewController {
         self.answerLabel.text = "Why are you shakin me?"
         self.activityIndicator.hidesWhenStopped = true
         self.becomeFirstResponder() // To get shake gesture
-        
-        
-        
-
     }
     
     // MARK: - Motions

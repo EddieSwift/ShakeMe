@@ -9,38 +9,75 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
-
+    
+    var answers: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Settings"
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func addCustomAnswer(_ sender: UIBarButtonItem) {
+        
+        let alert = UIAlertController(title: "New answer", message: "Add a new custom answer", preferredStyle: .alert)
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        let saveAction = UIAlertAction(title: "Save", style: .default) { (UIAlertAction) in
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+            guard let textField = alert.textFields?.first,
+                let answerToSave = textField.text else {
+                    return
+            }
+            
+            if answerToSave.count < 1 { self.guardAlert() }
+            
+            self.answers.append(answerToSave)
+            self.tableView.reloadData()
+        }
+
+        let cancleAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alert.addTextField()
+
+        alert.addAction(saveAction)
+        alert.addAction(cancleAction)
+
+        present(alert, animated: true)
+    }
+    
+    // MARK: - Help metods
+    
+    func guardAlert() {
+        let alert = UIAlertController(title: "Error", message: "Answer should be at least one character or more. Try again, please.", preferredStyle: .alert)
+
+        let cancleAction = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(cancleAction)
+        
+        present(alert, animated: true)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return answers.count
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = answers[indexPath.row]
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
