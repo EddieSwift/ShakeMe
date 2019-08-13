@@ -10,10 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
-var answer = String()
-
 class MainViewController: UIViewController {
+    
+    let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
 
     // MARK: - Outlets
     @IBOutlet weak var questionTextField: UITextField!
@@ -40,14 +39,18 @@ class MainViewController: UIViewController {
         if motion == .motionShake {
             
             if InternetReachability.isConnectedToNetwork() {
-                
                 print("Internet connection OK")
                 startAnimating()
                 getAnswer(questionApiURL)
-                
             } else {
-                self.answerLabel.text = "Sorry... No Internet!"
+//                self.answerLabel.text = "Sorry... No Internet!"
                 print("Internet connection FAILED")
+                print("answers.count: \(answers.count)")
+
+                let element = answers.randomElement()
+                if let customAnswer = element?.value(forKey: "answer") as? String {
+                    self.answerLabel.text = customAnswer
+                }
             }
 
         }

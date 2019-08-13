@@ -9,15 +9,15 @@
 import UIKit
 import CoreData
 
+var answers: [NSManagedObject] = []
+
 class SettingsTableViewController: UITableViewController {
-    
-    var answers: [NSManagedObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Settings"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        AnswerTableViewCell.registerIn(tableView: tableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,13 +142,14 @@ class SettingsTableViewController: UITableViewController {
         return answers.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> AnswerTableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.identifier, for: indexPath) as! AnswerTableViewCell
+        
         let answer = answers[indexPath.row]
-        
-        cell.textLabel?.text = answer.value(forKey: "answer") as? String
-        
+
+        cell.configureWith(answer: answer.value(forKey: "answer") as? String)
+
         return cell
     }
     
