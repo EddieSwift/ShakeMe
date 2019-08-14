@@ -7,12 +7,16 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
+import CoreData
+
+// my real shake ;)
+
+var answers: [NSManagedObject] = []
 
 class MainViewController: UIViewController {
     
     let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
+    let customAnswer = CustomAnswer()
 
     // MARK: - Outlets
     @IBOutlet weak var questionTextField: UITextField!
@@ -27,6 +31,7 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Motions
+    
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             print("motionBegan: Shake Began!")
@@ -39,20 +44,16 @@ class MainViewController: UIViewController {
         if motion == .motionShake {
             
             if InternetReachability.isConnectedToNetwork() {
-                print("Internet connection OK")
-                startAnimating()
                 getAnswer(questionApiURL)
             } else {
-//                self.answerLabel.text = "Sorry... No Internet!"
-                print("Internet connection FAILED")
-                print("answers.count: \(answers.count)")
-
+                customAnswer.fetchAllAnswers()
                 let element = answers.randomElement()
+                self.answerLabel.textColor = self.randomColor()
+                
                 if let customAnswer = element?.value(forKey: "answer") as? String {
                     self.answerLabel.text = customAnswer
                 }
             }
-
         }
     }
     
@@ -60,14 +61,15 @@ class MainViewController: UIViewController {
         print("motionCancelled")
     }
     
-    // We are willing to become first responder to get shake motion
+    // Become the first responder to get shake motion
     override var canBecomeFirstResponder: Bool {
         get {
             return true
         }
     }
     
-    // MARK: - Help Methods
+    // MARK: - Help Method
+    
     func randomColor() -> UIColor {
         //Generate between 0 to 1
         let red:CGFloat = CGFloat(drand48())
@@ -77,14 +79,14 @@ class MainViewController: UIViewController {
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
     
-    // MARK: - Network Methods
-    func getAnswer(_ apiUrl: String) {
-        Alamofire.request(apiUrl).responseJSON { response in
-            if response.result.value != nil {
-                
-                let json = JSON(response.result.value!)
-                let answer = json["magic"]["answer"].stringValue
-                
+    // MARK: - Network Method
+    
+    private func getAnswer(_ apiUrl: String) {
+        startAnimating()
+        NetworkingService.shared.getAnswer(apiUrl) { [weak self] state in
+            guard let `self` = self else { return }
+            switch state {
+            case .success(let answer):
                 self.answerLabel.text = answer
                 
                 // Change color after text updated
@@ -92,8 +94,9 @@ class MainViewController: UIViewController {
                     self.answerLabel.textColor = self.randomColor()
                 }
                 
-            } else {
-                print(response.error?.localizedDescription as Any)
+            case .error(let error):
+                print(error.localizedDescription)
+            case .none: break
             }
             
             self.stopAnimating()

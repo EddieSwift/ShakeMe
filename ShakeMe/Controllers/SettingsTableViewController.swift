@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-var answers: [NSManagedObject] = []
-
 class SettingsTableViewController: UITableViewController {
+    
+    let customAnswer = CustomAnswer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,8 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchAllAnswers()
+
+        customAnswer.fetchAllAnswers()
     }
     
     // MARK: - Actions
@@ -44,7 +45,7 @@ class SettingsTableViewController: UITableViewController {
                 return
             }
             
-            self.save(answer: answerToSave)
+            self.customAnswer.save(answer: answerToSave)
             self.tableView.reloadData()
         }
         
@@ -56,69 +57,6 @@ class SettingsTableViewController: UITableViewController {
         alert.addAction(cancleAction)
         
         present(alert, animated: true)
-    }
-    
-    // MARK: - Core Data
-    
-    func save(answer: String) {
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "CustomAnswer", in: managedContext)!
-        
-        let customAnswer = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        customAnswer.setValue(answer, forKey: "answer")
-        
-        do {
-            try managedContext.save()
-            answers.append(customAnswer)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
-    func deleteAnswer(answer: NSManagedObject) {
-        
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        managedContext.delete(answer)
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Error While Deleting Note: \(error.userInfo)")
-        }
-    }
-    
-    func fetchAllAnswers() {
-        
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "CustomAnswer")
-        
-        do {
-            answers = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
     }
     
     // MARK: - Help metods
@@ -158,8 +96,8 @@ class SettingsTableViewController: UITableViewController {
         if editingStyle == .delete {
             
             let answer = answers[indexPath.row]
-            deleteAnswer(answer: answer)
-            fetchAllAnswers()
+            customAnswer.deleteAnswer(answer: answer)
+            customAnswer.fetchAllAnswers()
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
