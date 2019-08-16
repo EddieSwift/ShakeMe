@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import CoreData
 
 class SettingsTableViewController: UITableViewController {
     
-    let customAnswer = CustomAnswer()
+    let coreDataService = CoreDataService.shared
+    let customAnswer: CustomAnswer? = nil
+    private var allSavedAnswers = [CustomAnswer]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +23,8 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        customAnswer.fetchAllAnswers()
+        
+        allSavedAnswers = coreDataService.fetchAllAnswers()
     }
     
     // MARK: - Actions
@@ -45,7 +46,8 @@ class SettingsTableViewController: UITableViewController {
                 return
             }
             
-            self.customAnswer.save(answer: answerToSave)
+            self.coreDataService.save(answerToSave)
+            self.allSavedAnswers = self.coreDataService.fetchAllAnswers()
             self.tableView.reloadData()
         }
         
@@ -77,29 +79,31 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return answers.count
+        return allSavedAnswers.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> AnswerTableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.identifier, for: indexPath) as! AnswerTableViewCell
         
-        let answer = answers[indexPath.row]
-
-        cell.configureWith(answer: answer.value(forKey: "answer") as? String)
-
+        let answer = allSavedAnswers[indexPath.row]
+        cell.configureWith(answer: answer.value(forKey: "answerText") as? String)
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            
-            let answer = answers[indexPath.row]
-            customAnswer.deleteAnswer(answer: answer)
-            customAnswer.fetchAllAnswers()
-            
+            coreDataService.deleteAnswer(answer: allSavedAnswers[indexPath.row])
+            allSavedAnswers.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 56.0
     }
 }

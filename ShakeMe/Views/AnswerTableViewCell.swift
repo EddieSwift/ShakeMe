@@ -12,7 +12,7 @@ class AnswerTableViewCell: UITableViewCell {
     
     public static let identifier = "AnswerTableViewCell"
     private static let nibName = "AnswerTableViewCell"
-
+    
     // MARK: - Outlets
     @IBOutlet weak var answerLabel: UILabel!
     

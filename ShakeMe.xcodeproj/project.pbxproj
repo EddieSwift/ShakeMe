@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0222712305FE1800EB2621 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0222702305FE1800EB2621 /* CoreDataService.swift */; };
 		2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D022FD94490029E28C /* AppDelegate.swift */; };
 		2C4384D622FD94490029E28C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384D422FD94490029E28C /* Main.storyboard */; };
-		2C4384D922FD94490029E28C /* ShakeMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D722FD94490029E28C /* ShakeMe.xcdatamodeld */; };
+		2C4384D922FD94490029E28C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */; };
 		2C4384DB22FD944A0029E28C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384DA22FD944A0029E28C /* Assets.xcassets */; };
 		2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384E522FD94EF0029E28C /* MainViewController.swift */; };
 		2C4384ED22FD95520029E28C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384EC22FD95520029E28C /* LaunchScreen.storyboard */; };
@@ -20,10 +21,12 @@
 		2C8542F0230323280053E112 /* CustomAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */; };
 		2C8542F1230323280053E112 /* CustomAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */; };
 		2C8542F92304344E0053E112 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542F82304344E0053E112 /* NetworkingService.swift */; };
+		2C8542FC2304456E0053E112 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542FB2304456E0053E112 /* CoreDataStack.swift */; };
 		5A68583780A54D85FF9410ED /* Pods_ShakeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C0222702305FE1800EB2621 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		2C4384CD22FD94490029E28C /* ShakeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4384D022FD94490029E28C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4384D522FD94490029E28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -39,6 +42,7 @@
 		2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C8542F82304344E0053E112 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		2C8542FB2304456E0053E112 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		C422BC732261D680C918570B /* Pods-ShakeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.release.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.release.xcconfig"; sourceTree = "<group>"; };
 		CCCF5D2350BC7739E8B50C44 /* Pods-ShakeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.debug.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.debug.xcconfig"; sourceTree = "<group>"; };
 		FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShakeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +69,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2C02226F2305FDDF00EB2621 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				2C0222702305FE1800EB2621 /* CoreDataService.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 		2C4384C422FD94490029E28C = {
 			isa = PBXGroup;
 			children = (
@@ -87,13 +99,14 @@
 			isa = PBXGroup;
 			children = (
 				2C4384D022FD94490029E28C /* AppDelegate.swift */,
-				2C4384E722FD94FD0029E28C /* Controllers */,
-				2C4384E922FD95140029E28C /* Views */,
-				2C4384F022FDBB390029E28C /* Networking */,
 				2C4384E822FD95090029E28C /* Models */,
+				2C4384E922FD95140029E28C /* Views */,
+				2C4384E722FD94FD0029E28C /* Controllers */,
+				2C4384F022FDBB390029E28C /* Networking */,
+				2C02226F2305FDDF00EB2621 /* DataBase */,
+				2C8542FA2304453B0053E112 /* Handlers */,
 				2C4384EE22FDBA3D0029E28C /* Resources */,
 				2C4384EF22FDBA7E0029E28C /* Supporting files */,
-				2C4384DF22FD944A0029E28C /* Info.plist */,
 			);
 			path = ShakeMe;
 			sourceTree = "<group>";
@@ -112,7 +125,7 @@
 			children = (
 				2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */,
 				2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */,
-				2C4384D722FD94490029E28C /* ShakeMe.xcdatamodeld */,
+				2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -139,6 +152,7 @@
 		2C4384EF22FDBA7E0029E28C /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				2C4384DF22FD944A0029E28C /* Info.plist */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -150,6 +164,14 @@
 				2C8542F82304344E0053E112 /* NetworkingService.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		2C8542FA2304453B0053E112 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				2C8542FB2304456E0053E112 /* CoreDataStack.swift */,
+			);
+			path = Handlers;
 			sourceTree = "<group>";
 		};
 		515252C4B49509A73642D500 /* Frameworks */ = {
@@ -280,9 +302,11 @@
 				2C8542F0230323280053E112 /* CustomAnswer+CoreDataClass.swift in Sources */,
 				2C8542E423030A330053E112 /* AnswerTableViewCell.swift in Sources */,
 				2C8542F92304344E0053E112 /* NetworkingService.swift in Sources */,
-				2C4384D922FD94490029E28C /* ShakeMe.xcdatamodeld in Sources */,
+				2C4384D922FD94490029E28C /* DataModel.xcdatamodeld in Sources */,
+				2C8542FC2304456E0053E112 /* CoreDataStack.swift in Sources */,
 				2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */,
 				2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */,
+				2C0222712305FE1800EB2621 /* CoreDataService.swift in Sources */,
 				2C8542F1230323280053E112 /* CustomAnswer+CoreDataProperties.swift in Sources */,
 				2C8542E1230015120053E112 /* InternetReachability.swift in Sources */,
 			);
@@ -425,7 +449,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8345E68DL;
-				INFOPLIST_FILE = ShakeMe/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ShakeMe/Supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -445,7 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8345E68DL;
-				INFOPLIST_FILE = ShakeMe/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ShakeMe/Supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -482,13 +506,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2C4384D722FD94490029E28C /* ShakeMe.xcdatamodeld */ = {
+		2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				2C4384D822FD94490029E28C /* ShakeMe.xcdatamodel */,
 			);
 			currentVersion = 2C4384D822FD94490029E28C /* ShakeMe.xcdatamodel */;
-			path = ShakeMe.xcdatamodeld;
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

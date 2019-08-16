@@ -39,8 +39,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Lgb-Ga-peG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26.666666666666657" id="Rrf-T5-GeD"/>
                             <constraint firstItem="Lgb-Ga-peG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="SAw-Rt-kWw"/>
                             <constraint firstItem="Lgb-Ga-peG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W57-r3-1Ah"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lgb-Ga-peG" secondAttribute="trailing" constant="26.666666666666686" id="WYV-7f-hmK"/>
                             <constraint firstItem="bRU-i5-VA1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tEU-Vq-zLr"/>
                             <constraint firstItem="bRU-i5-VA1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zb6-OS-ytk"/>
                         </constraints>

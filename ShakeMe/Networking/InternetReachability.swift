@@ -25,6 +25,7 @@ class InternetReachability {
         }
         
         var flags: SCNetworkReachabilityFlags = []
+        
         if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
             return false
         }

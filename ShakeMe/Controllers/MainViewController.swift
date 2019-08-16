@@ -7,17 +7,14 @@
 //
 
 import UIKit
-import CoreData
-
-// my real shake ;)
-
-var answers: [NSManagedObject] = []
 
 class MainViewController: UIViewController {
     
     let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
-    let customAnswer = CustomAnswer()
-
+    let customAnswer: CustomAnswer? = nil
+    let coreDataService = CoreDataService.shared
+    private var allSavedAnswers = [CustomAnswer]()
+    
     // MARK: - Outlets
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var answerLabel: UILabel!
@@ -25,7 +22,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.answerLabel.text = "Why are you shakin me?"
+        self.answerLabel.text = "Why are you shaking me?"
         self.activityIndicator.hidesWhenStopped = true
         self.becomeFirstResponder() // To get shake gesture
     }
@@ -34,7 +31,7 @@ class MainViewController: UIViewController {
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            print("motionBegan: Shake Began!")
+            print("motionBegan")
         } 
     }
     
@@ -46,11 +43,11 @@ class MainViewController: UIViewController {
             if InternetReachability.isConnectedToNetwork() {
                 getAnswer(questionApiURL)
             } else {
-                customAnswer.fetchAllAnswers()
-                let element = answers.randomElement()
+                allSavedAnswers = coreDataService.fetchAllAnswers()
+                let element = allSavedAnswers.randomElement()
                 self.answerLabel.textColor = self.randomColor()
                 
-                if let customAnswer = element?.value(forKey: "answer") as? String {
+                if let customAnswer = element?.value(forKey: "answerText") as? String {
                     self.answerLabel.text = customAnswer
                 }
             }

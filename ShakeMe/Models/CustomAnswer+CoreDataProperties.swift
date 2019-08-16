@@ -7,16 +7,13 @@
 //
 //
 
-import Foundation
 import CoreData
 
-
 extension CustomAnswer {
-
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CustomAnswer> {
         return NSFetchRequest<CustomAnswer>(entityName: "CustomAnswer")
     }
-
-    @NSManaged public var answer: String?
-
+    
+    @NSManaged public var answerText: String?
 }
