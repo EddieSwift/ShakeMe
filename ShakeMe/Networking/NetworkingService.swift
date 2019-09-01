@@ -10,17 +10,16 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-public enum NetworkingState {
+public enum NetworkResponse {
     case success(_ answer: String)
     case error(_ error: Error)
-    case none
 }
 
 public class NetworkingService {
     
     public static let shared = NetworkingService()
     
-    public func getAnswer(_ apiUrl: String, completion: @escaping (NetworkingState) -> ()) {
+    public func getAnswer(_ apiUrl: String, completion: @escaping (NetworkResponse) -> ()) {
         
         Alamofire.request(apiUrl).responseJSON { response in
             if response.result.value != nil {
@@ -31,7 +30,7 @@ public class NetworkingService {
                 
             } else {
                 guard let error = response.error else {
-                    completion(.none)
+                    completion(.error(response.error!))
                     return
                 }
                 completion(.error(error))

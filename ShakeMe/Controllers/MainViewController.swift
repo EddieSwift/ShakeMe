@@ -43,13 +43,7 @@ class MainViewController: UIViewController {
             if InternetReachability.isConnectedToNetwork() {
                 getAnswer(questionApiURL)
             } else {
-                allSavedAnswers = coreDataService.fetchAllAnswers()
-                let element = allSavedAnswers.randomElement()
-                self.answerLabel.textColor = self.randomColor()
-                
-                if let customAnswer = element?.answerText {
-                    self.answerLabel.text = customAnswer
-                }
+                showCustomAnswer()
             }
         }
     }
@@ -65,7 +59,17 @@ class MainViewController: UIViewController {
         }
     }
     
-    // MARK: - Help Method
+    // MARK: - Help Methods
+    
+    func showCustomAnswer() {
+        allSavedAnswers = coreDataService.fetchAllAnswers()
+        let element = allSavedAnswers.randomElement()
+        self.answerLabel.textColor = self.randomColor()
+        
+        if let customAnswer = element?.answerText {
+            self.answerLabel.text = customAnswer
+        }
+    }
     
     func randomColor() -> UIColor {
         //Generate between 0 to 1
@@ -92,8 +96,8 @@ class MainViewController: UIViewController {
                 }
                 
             case .error(let error):
+                self.showCustomAnswer()
                 print(error.localizedDescription)
-            case .none: break
             }
             
             self.stopAnimating()
