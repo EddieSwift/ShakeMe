@@ -43,6 +43,13 @@ class MainViewController: UIViewController {
             if InternetReachability.isConnectedToNetwork() {
                 getAnswer(questionApiURL)
             } else {
+                
+                allSavedAnswers = coreDataService.fetchAllAnswers()
+                if allSavedAnswers.isEmpty {
+                    showAlertNoCustomAnswersAndInternet()
+                    return
+                }
+                
                 showCustomAnswer()
             }
         }
@@ -78,6 +85,15 @@ class MainViewController: UIViewController {
         let blue:CGFloat = CGFloat(drand48())
         
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    }
+    
+    func showAlertNoCustomAnswersAndInternet() {
+        let alert = UIAlertController(title: "Warning", message: "Add please custom answers or turn on the internet.", preferredStyle: .alert)
+        
+        let cancleAction = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(cancleAction)
+        
+        present(alert, animated: true)
     }
     
     // MARK: - Network Method
