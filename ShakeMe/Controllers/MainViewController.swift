@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
                 let element = allSavedAnswers.randomElement()
                 self.answerLabel.textColor = self.randomColor()
                 
-                if let customAnswer = element?.value(forKey: "answerText") as? String {
+                if let customAnswer = element?.answerText {
                     self.answerLabel.text = customAnswer
                 }
             }

@@ -11,18 +11,13 @@ import UIKit
 class AnswerTableViewCell: UITableViewCell {
     
     public static let identifier = "AnswerTableViewCell"
-    private static let nibName = "AnswerTableViewCell"
+    public static let nibName = "AnswerTableViewCell"
     
     // MARK: - Outlets
-    @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak private var answerLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-    
-    public static func registerIn(tableView: UITableView) {
-        let nib = UINib.init(nibName: nibName, bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: identifier)
     }
     
     func configureWith(answer: String?) {

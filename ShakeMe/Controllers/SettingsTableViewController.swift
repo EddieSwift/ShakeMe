@@ -18,7 +18,7 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         title = "Settings"
-        AnswerTableViewCell.registerIn(tableView: tableView)
+        tableView.register(UINib.init(nibName: AnswerTableViewCell.nibName, bundle: Bundle.main), forCellReuseIdentifier: AnswerTableViewCell.identifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
