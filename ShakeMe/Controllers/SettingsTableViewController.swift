@@ -16,7 +16,8 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.delegate = self
+        tableView.dataSource = self
         title = "Settings"
         tableView.register(UINib.init(nibName: AnswerTableViewCell.nibName, bundle: Bundle.main), forCellReuseIdentifier: AnswerTableViewCell.identifier)
     }
@@ -71,6 +72,9 @@ class SettingsTableViewController: UITableViewController {
         
         present(alert, animated: true)
     }
+}
+
+extension SettingsTableViewController {
     
     // MARK: - UITableViewDataSource
     
@@ -106,4 +110,5 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 56.0
     }
+
 }
