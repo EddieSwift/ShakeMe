@@ -47,7 +47,7 @@ public class CoreDataService {
         }
     }
     
-    func deleteAnswer(answer: NSManagedObject) {
+    func delete(_ answer: NSManagedObject) {
         guard let context = backgroundContext else { return }
         context.delete(answer)
         

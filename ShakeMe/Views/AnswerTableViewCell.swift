@@ -20,7 +20,7 @@ class AnswerTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configureWith(answer: String?) {
-        self.answerLabel?.text = answer
+    func configureWith(_ answer: CustomAnswer) {
+        self.answerLabel?.text = answer.answerText
     }
 }

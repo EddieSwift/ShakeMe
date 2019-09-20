@@ -37,17 +37,17 @@ class SettingsTableViewController: UITableViewController {
         let saveAction = UIAlertAction(title: "Save", style: .default) { (UIAlertAction) in
             
             guard let textField = alert.textFields?.first,
-                let answerToSave = textField.text else {
+                let newAnswer = textField.text else {
                     return
             }
             
             // Show alert if try save empty string answer
-            if answerToSave.count < 1 {
+            if newAnswer.count < 1 {
                 self.emptyStringAlert()
                 return
             }
             
-            self.coreDataService.save(answerToSave)
+            self.coreDataService.save(newAnswer)
             self.allSavedAnswers = self.coreDataService.fetchAllAnswers()
             self.tableView.reloadData()
         }
@@ -91,7 +91,7 @@ extension SettingsTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.identifier, for: indexPath) as! AnswerTableViewCell
         
         let answer = allSavedAnswers[indexPath.row]
-        cell.configureWith(answer: answer.value(forKey: "answerText") as? String)
+        cell.configureWith(answer)
         
         return cell
     }
@@ -99,7 +99,8 @@ extension SettingsTableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            coreDataService.deleteAnswer(answer: allSavedAnswers[indexPath.row])
+            let answer = allSavedAnswers[indexPath.row]
+            coreDataService.delete(answer)
             allSavedAnswers.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
