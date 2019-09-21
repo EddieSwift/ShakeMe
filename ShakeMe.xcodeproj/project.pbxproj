@@ -192,6 +192,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C4384E222FD944A0029E28C /* Build configuration list for PBXNativeTarget "ShakeMe" */;
 			buildPhases = (
+				2C78E8FB233508F7001C88F7 /* SwiftLint */,
 				487D2A6EE62E1FAA8E318CB9 /* [CP] Check Pods Manifest.lock */,
 				2C4384C922FD94490029E28C /* Sources */,
 				2C4384CA22FD94490029E28C /* Frameworks */,
@@ -256,6 +257,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2C78E8FB233508F7001C88F7 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
 		487D2A6EE62E1FAA8E318CB9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -11,5 +11,4 @@ import CoreData
 
 @objc(CustomAnswer)
 public class CustomAnswer: NSManagedObject {
-    
 }

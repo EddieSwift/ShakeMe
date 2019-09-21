@@ -7,7 +7,8 @@ target 'ShakeMe' do
   
   # Pods for ShakeMe
   
-  pod 'Alamofire', '~>4.8.2'
+  pod 'Alamofire',  '~>4.8.2'
   pod 'SwiftyJSON', '~>5.0.0'
+  pod 'SwiftLint',  '~>0.35.0'
   
 end

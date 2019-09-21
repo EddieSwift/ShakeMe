@@ -9,17 +9,13 @@
 import UIKit
 
 class AnswerTableViewCell: UITableViewCell {
-    
     public static let identifier = "AnswerTableViewCell"
     public static let nibName = "AnswerTableViewCell"
-    
     // MARK: - Outlets
     @IBOutlet weak private var answerLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
     func configureWith(_ answer: CustomAnswer) {
         self.answerLabel?.text = answer.answerText
     }
