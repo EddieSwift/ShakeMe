@@ -17,16 +17,20 @@ class MainViewController: UIViewController {
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var shakeImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.answerLabel.text = "Why are you shaking me?"
+        self.answerLabel.text = L10n.shakingMe
+        self.answerLabel.textColor = Asset.Colors.green.color
+        self.shakeImageView.image = Asset.Images.shakeImage.image
         self.activityIndicator.hidesWhenStopped = true
         self.becomeFirstResponder() // To get shake gesture
     }
     // MARK: - Motions
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            print("motionBegan") }
+            print("motionBegan")
+        }
     }
     // Enable detection of shake motion
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {

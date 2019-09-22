@@ -10,5 +10,6 @@ target 'ShakeMe' do
   pod 'Alamofire',  '~>4.8.2'
   pod 'SwiftyJSON', '~>5.0.0'
   pod 'SwiftLint',  '~>0.35.0'
+  pod 'SwiftGen',   '~>6.1.0'
   
 end

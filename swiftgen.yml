@@ -1,0 +1,11 @@
+strings:
+  inputs: ShakeMe/Resources/Base.lproj
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift4
+      output: ShakeMe/SwiftGen/strings.swift
+xcassets:
+  inputs: ShakeMe/Resources/Assets.xcassets
+  outputs:
+    - templateName: swift4
+      output: ShakeMe/SwiftGen/assets-images.swift
