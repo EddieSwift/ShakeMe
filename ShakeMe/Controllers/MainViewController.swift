@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
     }
     // Become the first responder to get shake motion
     override var canBecomeFirstResponder: Bool {
-            return true
+        return true
     }
     // MARK: - Help Methods
     func showCustomAnswer() {
@@ -65,13 +65,15 @@ class MainViewController: UIViewController {
     }
     func randomColor() -> UIColor {
         //Generate between 0 to 1
-        let red: CGFloat   = CGFloat(drand48())
-        let green: CGFloat = CGFloat(drand48())
-        let blue: CGFloat  = CGFloat(drand48())
+        let red   = CGFloat(drand48())
+        let green = CGFloat(drand48())
+        let blue  = CGFloat(drand48())
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
     func showAlertNoCustomAnswersAndInternet() {
-        let alert = UIAlertController(title: "Warning", message: "Add please custom answers or turn on the internet.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Warning",
+                                      message: "Add please custom answers or turn on the internet.",
+                                      preferredStyle: .alert)
         let cancleAction = UIAlertAction(title: "Ok", style: .cancel)
         alert.addAction(cancleAction)
         present(alert, animated: true)

@@ -30,7 +30,8 @@ public class CoreDataService {
     }
     public func save(_ text: String) {
         guard let context = backgroundContext else { return }
-        guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer", into: context) as? CustomAnswer else { return }
+        guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer",
+                                                               into: context) as? CustomAnswer else { return }
         answer.answerText = text
         do {
             try context.save()

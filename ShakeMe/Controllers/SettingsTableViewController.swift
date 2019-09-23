@@ -17,7 +17,9 @@ class SettingsTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         title = "Settings"
-        tableView.register(UINib.init(nibName: AnswerTableViewCell.nibName, bundle: Bundle.main), forCellReuseIdentifier: AnswerTableViewCell.identifier)
+        tableView.register(UINib.init(nibName: AnswerTableViewCell.nibName,
+                                      bundle: Bundle.main),
+                           forCellReuseIdentifier: AnswerTableViewCell.identifier)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,7 +50,9 @@ class SettingsTableViewController: UITableViewController {
     }
     // MARK: - Help metods
     func emptyStringAlert() {
-        let alert = UIAlertController(title: "Warning", message: "Answer should be at least one character or more. Try again, please.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Warning",
+                                      message: "Answer should be at least one character or more. Try again, please.",
+                                      preferredStyle: .alert)
         let cancleAction = UIAlertAction(title: "Ok", style: .cancel)
         alert.addAction(cancleAction)
         present(alert, animated: true)
@@ -64,14 +68,16 @@ extension SettingsTableViewController {
         return allSavedAnswers.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> AnswerTableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.identifier, for: indexPath) as? AnswerTableViewCell else {
-            fatalError("Cell error")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.identifier,
+                                                       for: indexPath) as? AnswerTableViewCell else {
+                                                        fatalError("Cell error")
         }
         let answer = allSavedAnswers[indexPath.row]
-        cell.configureWith(answer)
+        cell.configure(with: answer)
         return cell
     }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let answer = allSavedAnswers[indexPath.row]
             coreDataService.delete(answer)
@@ -83,5 +89,4 @@ extension SettingsTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 56.0
     }
-
 }
