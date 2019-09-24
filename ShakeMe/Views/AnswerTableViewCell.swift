@@ -9,8 +9,8 @@
 import UIKit
 
 class AnswerTableViewCell: UITableViewCell {
-    public static let identifier = "AnswerTableViewCell"
-    public static let nibName = "AnswerTableViewCell"
+    public static let identifier = L10n.identifier
+    public static let nibName = L10n.nibName
     // MARK: - Outlets
     @IBOutlet weak private var answerLabel: UILabel!
     override func awakeFromNib() {

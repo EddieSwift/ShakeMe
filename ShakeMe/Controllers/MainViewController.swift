@@ -71,10 +71,10 @@ class MainViewController: UIViewController {
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
     func showAlertNoCustomAnswersAndInternet() {
-        let alert = UIAlertController(title: "Warning",
-                                      message: "Add please custom answers or turn on the internet.",
+        let alert = UIAlertController(title: L10n.warning,
+                                      message: L10n.turnOnInternet,
                                       preferredStyle: .alert)
-        let cancleAction = UIAlertAction(title: "Ok", style: .cancel)
+        let cancleAction = UIAlertAction(title: L10n.ok, style: .cancel)
         alert.addAction(cancleAction)
         present(alert, animated: true)
     }

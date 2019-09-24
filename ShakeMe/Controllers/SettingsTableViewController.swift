@@ -16,7 +16,7 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        title = "Settings"
+        title = L10n.settings
         tableView.register(UINib.init(nibName: AnswerTableViewCell.nibName,
                                       bundle: Bundle.main),
                            forCellReuseIdentifier: AnswerTableViewCell.identifier)
@@ -27,8 +27,10 @@ class SettingsTableViewController: UITableViewController {
     }
     // MARK: - Actions
     @IBAction func addCustomAnswer(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "New answer", message: "Add a new custom answer.", preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Save", style: .default) { (_) in
+        let alert = UIAlertController(title: L10n.newAnswer,
+                                      message: L10n.addCustomAnswer,
+                                      preferredStyle: .alert)
+        let saveAction = UIAlertAction(title: L10n.save, style: .default) { (_) in
             guard let textField = alert.textFields?.first,
                 let newAnswer = textField.text else {
                     return
@@ -42,7 +44,7 @@ class SettingsTableViewController: UITableViewController {
             self.allSavedAnswers = self.coreDataService.fetchAllAnswers()
             self.tableView.reloadData()
         }
-        let cancleAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancleAction = UIAlertAction(title: L10n.cancel, style: .cancel)
         alert.addTextField()
         alert.addAction(saveAction)
         alert.addAction(cancleAction)
@@ -50,10 +52,10 @@ class SettingsTableViewController: UITableViewController {
     }
     // MARK: - Help metods
     func emptyStringAlert() {
-        let alert = UIAlertController(title: "Warning",
-                                      message: "Answer should be at least one character or more. Try again, please.",
+        let alert = UIAlertController(title: L10n.warning,
+                                      message: L10n.answerLength,
                                       preferredStyle: .alert)
-        let cancleAction = UIAlertAction(title: "Ok", style: .cancel)
+        let cancleAction = UIAlertAction(title: L10n.ok, style: .cancel)
         alert.addAction(cancleAction)
         present(alert, animated: true)
     }
