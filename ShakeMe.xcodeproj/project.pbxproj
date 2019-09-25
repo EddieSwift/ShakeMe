@@ -23,6 +23,9 @@
 		2C8542F1230323280053E112 /* CustomAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */; };
 		2C8542F92304344E0053E112 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542F82304344E0053E112 /* NetworkingService.swift */; };
 		2C8542FC2304456E0053E112 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542FB2304456E0053E112 /* CoreDataStack.swift */; };
+		2CBD36DF233790E60076B190 /* assets-images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD36DD233790E60076B190 /* assets-images.swift */; };
+		2CBD36E0233790E60076B190 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD36DE233790E60076B190 /* strings.swift */; };
+		2CBD36E62337927B0076B190 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CBD36E42337927B0076B190 /* Localizable.strings */; };
 		5A68583780A54D85FF9410ED /* Pods_ShakeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +48,10 @@
 		2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C8542F82304344E0053E112 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		2C8542FB2304456E0053E112 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		2CBD36DB23378E1E0076B190 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		2CBD36DD233790E60076B190 /* assets-images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "assets-images.swift"; sourceTree = "<group>"; };
+		2CBD36DE233790E60076B190 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
+		2CBD36E52337927B0076B190 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C422BC732261D680C918570B /* Pods-ShakeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.release.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.release.xcconfig"; sourceTree = "<group>"; };
 		CCCF5D2350BC7739E8B50C44 /* Pods-ShakeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.debug.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.debug.xcconfig"; sourceTree = "<group>"; };
 		FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShakeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				2C78E8F923313E4B001C88F7 /* Readme.md */,
+				2CBD36DB23378E1E0076B190 /* swiftgen.yml */,
 				2C4384CF22FD94490029E28C /* ShakeMe */,
 				2C4384CE22FD94490029E28C /* Products */,
 				099A8C4A89B89E1119D26509 /* Pods */,
@@ -109,6 +117,7 @@
 				2C02226F2305FDDF00EB2621 /* DataBase */,
 				2C8542FA2304453B0053E112 /* Managers */,
 				2C4384EE22FDBA3D0029E28C /* Resources */,
+				2CBD36DC23378EB40076B190 /* SwiftGen */,
 				2C4384EF22FDBA7E0029E28C /* Supporting files */,
 			);
 			path = ShakeMe;
@@ -147,6 +156,7 @@
 			children = (
 				2C4384D422FD94490029E28C /* Main.storyboard */,
 				2C4384EC22FD95520029E28C /* LaunchScreen.storyboard */,
+				2CBD36E42337927B0076B190 /* Localizable.strings */,
 				2C4384DA22FD944A0029E28C /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -177,6 +187,15 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		2CBD36DC23378EB40076B190 /* SwiftGen */ = {
+			isa = PBXGroup;
+			children = (
+				2CBD36DD233790E60076B190 /* assets-images.swift */,
+				2CBD36DE233790E60076B190 /* strings.swift */,
+			);
+			path = SwiftGen;
+			sourceTree = "<group>";
+		};
 		515252C4B49509A73642D500 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,7 +211,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C4384E222FD944A0029E28C /* Build configuration list for PBXNativeTarget "ShakeMe" */;
 			buildPhases = (
+				2C78E8FB233508F7001C88F7 /* SwiftLint */,
 				487D2A6EE62E1FAA8E318CB9 /* [CP] Check Pods Manifest.lock */,
+				2C48B6542337DBA00065BCE6 /* SwiftGen */,
 				2C4384C922FD94490029E28C /* Sources */,
 				2C4384CA22FD94490029E28C /* Frameworks */,
 				2C4384CB22FD94490029E28C /* Resources */,
@@ -246,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C78E8FA23313E4B001C88F7 /* Readme.md in Resources */,
+				2CBD36E62337927B0076B190 /* Localizable.strings in Resources */,
 				2C4384ED22FD95520029E28C /* LaunchScreen.storyboard in Resources */,
 				2C4384DB22FD944A0029E28C /* Assets.xcassets in Resources */,
 				2C4384D622FD94490029E28C /* Main.storyboard in Resources */,
@@ -256,6 +278,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2C48B6542337DBA00065BCE6 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen\n";
+		};
+		2C78E8FB233508F7001C88F7 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
 		487D2A6EE62E1FAA8E318CB9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -302,6 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CBD36DF233790E60076B190 /* assets-images.swift in Sources */,
 				2C8542DF22FF50EE0053E112 /* SettingsTableViewController.swift in Sources */,
 				2C8542F0230323280053E112 /* CustomAnswer+CoreDataClass.swift in Sources */,
 				2C8542E423030A330053E112 /* AnswerTableViewCell.swift in Sources */,
@@ -311,6 +370,7 @@
 				2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */,
 				2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */,
 				2C0222712305FE1800EB2621 /* CoreDataService.swift in Sources */,
+				2CBD36E0233790E60076B190 /* strings.swift in Sources */,
 				2C8542F1230323280053E112 /* CustomAnswer+CoreDataProperties.swift in Sources */,
 				2C8542E1230015120053E112 /* InternetReachability.swift in Sources */,
 			);
@@ -325,6 +385,14 @@
 				2C4384D522FD94490029E28C /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2CBD36E42337927B0076B190 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CBD36E52337927B0076B190 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -454,7 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8345E68DL;
 				INFOPLIST_FILE = "$(SRCROOT)/ShakeMe/Supporting files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -474,7 +542,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8345E68DL;
 				INFOPLIST_FILE = "$(SRCROOT)/ShakeMe/Supporting files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

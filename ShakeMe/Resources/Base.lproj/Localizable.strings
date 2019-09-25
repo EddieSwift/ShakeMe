@@ -1,0 +1,12 @@
+"shakingMe"       = "Why are you shaking me?";
+"warning"         = "Warning";
+"turnOnInternet"  = "Add please custom answers or turn on the internet.";
+"newAnswer"       = "New answer";
+"addCustomAnswer" = "Add a new custom answer please.";
+"answerLength"    = "Answer should be at least one character or more. Try again, please.";
+"ok"              = "Ok";
+"cancel"          = "Cancel";
+"save"            = "Save";
+"settings"        = "Settings";
+"identifier"      = "AnswerTableViewCell";
+"nibName"         = "AnswerTableViewCell";

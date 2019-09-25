@@ -16,18 +16,13 @@ public enum NetworkResponse {
 }
 
 public class NetworkingService {
-    
     public static let shared = NetworkingService()
-    
-    public func getAnswer(_ apiUrl: String, completion: @escaping (NetworkResponse) -> ()) {
-        
+    public func getAnswer(_ apiUrl: String, completion: @escaping (NetworkResponse) -> Void) {
         Alamofire.request(apiUrl).responseJSON { response in
             if response.result.value != nil {
-                
                 let json = JSON(response.result.value!)
                 let answer = json["magic"]["answer"].stringValue
                 completion(.success(answer))
-                
             } else {
                 guard let error = response.error else {
                     completion(.error(response.error!))
@@ -37,8 +32,4 @@ public class NetworkingService {
             }
         }
     }
-    
 }
-
-
-
