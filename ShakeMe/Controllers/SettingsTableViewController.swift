@@ -9,9 +9,12 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
-    let coreDataService = CoreDataService.shared
     let customAnswer: CustomAnswer? = nil
     private var allSavedAnswers = [CustomAnswer]()
+    private var coreDataService: CoreDataServiceProvider!
+    func setCoreDataService(_ coreDataService: CoreDataServiceProvider) {
+        self.coreDataService = coreDataService
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self

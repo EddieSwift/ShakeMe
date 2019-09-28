@@ -6,18 +6,20 @@
 //  Copyright © 2019 Eduard Galchenko. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 import SwiftyJSON
 
-public enum NetworkResponse {
+enum NetworkResponse {
     case success(_ answer: String)
     case error(_ error: Error)
 }
 
-public class NetworkingService {
-    public static let shared = NetworkingService()
-    public func getAnswer(_ apiUrl: String, completion: @escaping (NetworkResponse) -> Void) {
+protocol NetworkingServiceProvider {
+    func getAnswer(_ apiUrl: String, completion: @escaping (NetworkResponse) -> Void)
+}
+
+class NetworkingService: NetworkingServiceProvider {
+    func getAnswer(_ apiUrl: String, completion: @escaping (NetworkResponse) -> Void) {
         Alamofire.request(apiUrl).responseJSON { response in
             if response.result.value != nil {
                 let json = JSON(response.result.value!)

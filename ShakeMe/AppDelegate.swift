@@ -14,7 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions
         launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        guard let rootViewController = window?.rootViewController as? UINavigationController,
+            !rootViewController.viewControllers.isEmpty else {
+                return false
+        }
+        if let mainViewController = rootViewController.viewControllers.first as? MainViewController {
+            let networkService = NetworkingService()
+            let coreDataService = CoreDataService()
+            mainViewController.setNetworkService(networkService)
+            mainViewController.setCoreDataService(coreDataService)
+        }
         return true
     }
 }

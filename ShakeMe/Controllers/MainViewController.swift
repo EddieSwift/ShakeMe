@@ -11,8 +11,15 @@ import UIKit
 class MainViewController: UIViewController {
     let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
     let customAnswer: CustomAnswer? = nil
-    let coreDataService = CoreDataService.shared
     private var allSavedAnswers = [CustomAnswer]()
+    private var networkingService: NetworkingServiceProvider!
+    private var coreDataService: CoreDataServiceProvider!
+    func setNetworkService(_ networkService: NetworkingServiceProvider) {
+        self.networkingService = networkService
+    }
+    func setCoreDataService(_ coreDataService: CoreDataServiceProvider) {
+        self.coreDataService = coreDataService
+    }
     // MARK: - Outlets
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var answerLabel: UILabel!
@@ -81,7 +88,7 @@ class MainViewController: UIViewController {
     // MARK: - Network Method
     private func getAnswer(_ apiUrl: String) {
         startAnimating()
-        NetworkingService.shared.getAnswer(apiUrl) { [weak self] state in
+        networkingService.getAnswer(apiUrl) { [weak self] state in
             guard let `self` = self else { return }
             switch state {
             case .success(let answer):
@@ -108,5 +115,13 @@ class MainViewController: UIViewController {
         self.activityIndicator.stopAnimating()
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         self.answerLabel.isHidden = false
+    }
+    // MARK: - Segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SettingsTableViewControllerIdentifier" {
+            if let settingsViewController = segue.destination as? SettingsTableViewController {
+                settingsViewController.setCoreDataService(coreDataService)
+            }
+        }
     }
 }

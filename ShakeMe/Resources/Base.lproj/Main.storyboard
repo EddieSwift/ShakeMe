@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bRU-i5-VA1">
-                                <rect key="frame" x="188" y="498" width="37" height="37"/>
+                                <rect key="frame" x="188.66666666666666" y="498" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your question...?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbY-gX-js6">
@@ -62,7 +62,7 @@
                     <navigationItem key="navigationItem" title="Shake Me" id="hwB-yq-gpy">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="5Wc-CJ-n37">
                             <connections>
-                                <segue destination="OfP-s9-fmc" kind="show" id="YDe-I0-47Y"/>
+                                <segue destination="OfP-s9-fmc" kind="show" identifier="SettingsTableViewControllerIdentifier" id="YDe-I0-47Y"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

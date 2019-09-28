@@ -8,11 +8,16 @@
 
 import CoreData
 
-public class CoreDataService {
-    public static let shared = CoreDataService()
-    // Data
-    public var backgroundContext: NSManagedObjectContext!
-    private init() {
+protocol CoreDataServiceProvider {
+    func fetchAllAnswers() -> [CustomAnswer]
+    func save(_ text: String)
+    func delete(_ answer: NSManagedObject)
+    func createContainer(completion: @escaping (NSPersistentContainer) -> Void)
+}
+
+public class CoreDataService: CoreDataServiceProvider {
+    private var backgroundContext: NSManagedObjectContext!
+    init() {
         createContainer { container in
             self.backgroundContext = container.newBackgroundContext()
         }
@@ -48,7 +53,7 @@ public class CoreDataService {
             print("Error While Deleting Note: \(error.userInfo)")
         }
     }
-    private func createContainer(completion: @escaping
+    func createContainer(completion: @escaping
         (NSPersistentContainer) -> Void) { let container = NSPersistentContainer(name:
         "DataModel")
         container.loadPersistentStores(completionHandler: { _, error in
