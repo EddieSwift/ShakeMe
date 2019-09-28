@@ -15,7 +15,7 @@ protocol CoreDataServiceProvider {
     func createContainer(completion: @escaping (NSPersistentContainer) -> Void)
 }
 
-public class CoreDataService: CoreDataServiceProvider {
+final public class CoreDataService: CoreDataServiceProvider {
     private var backgroundContext: NSManagedObjectContext!
     init() {
         createContainer { container in

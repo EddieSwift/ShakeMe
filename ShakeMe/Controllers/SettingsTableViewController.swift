@@ -8,8 +8,8 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
-    let customAnswer: CustomAnswer? = nil
+final class SettingsTableViewController: UITableViewController {
+    private let customAnswer: CustomAnswer? = nil
     private var allSavedAnswers = [CustomAnswer]()
     private var coreDataService: CoreDataServiceProvider!
     func setCoreDataService(_ coreDataService: CoreDataServiceProvider) {
@@ -29,7 +29,7 @@ class SettingsTableViewController: UITableViewController {
         allSavedAnswers = coreDataService.fetchAllAnswers()
     }
     // MARK: - Actions
-    @IBAction func addCustomAnswer(_ sender: UIBarButtonItem) {
+    @IBAction private func addCustomAnswer(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: L10n.newAnswer,
                                       message: L10n.addCustomAnswer,
                                       preferredStyle: .alert)
@@ -54,7 +54,7 @@ class SettingsTableViewController: UITableViewController {
         present(alert, animated: true)
     }
     // MARK: - Help metods
-    func emptyStringAlert() {
+    private func emptyStringAlert() {
         let alert = UIAlertController(title: L10n.warning,
                                       message: L10n.answerLength,
                                       preferredStyle: .alert)

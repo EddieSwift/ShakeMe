@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
     let customAnswer: CustomAnswer? = nil
     private var allSavedAnswers = [CustomAnswer]()
@@ -21,10 +21,10 @@ class MainViewController: UIViewController {
         self.coreDataService = coreDataService
     }
     // MARK: - Outlets
-    @IBOutlet weak var questionTextField: UITextField!
-    @IBOutlet weak var answerLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var shakeImageView: UIImageView!
+    @IBOutlet private weak var questionTextField: UITextField!
+    @IBOutlet private weak var answerLabel: UILabel!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var shakeImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.answerLabel.text = L10n.shakingMe
@@ -62,7 +62,7 @@ class MainViewController: UIViewController {
         return true
     }
     // MARK: - Help Methods
-    func showCustomAnswer() {
+    private func showCustomAnswer() {
         allSavedAnswers = coreDataService.fetchAllAnswers()
         let element = allSavedAnswers.randomElement()
         self.answerLabel.textColor = self.randomColor()
@@ -70,14 +70,14 @@ class MainViewController: UIViewController {
             self.answerLabel.text = customAnswer
         }
     }
-    func randomColor() -> UIColor {
+    private func randomColor() -> UIColor {
         //Generate between 0 to 1
         let red   = CGFloat(drand48())
         let green = CGFloat(drand48())
         let blue  = CGFloat(drand48())
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
-    func showAlertNoCustomAnswersAndInternet() {
+    private func showAlertNoCustomAnswersAndInternet() {
         let alert = UIAlertController(title: L10n.warning,
                                       message: L10n.turnOnInternet,
                                       preferredStyle: .alert)
@@ -105,13 +105,13 @@ class MainViewController: UIViewController {
         }
     }
     // MARK: - Indicator Methods
-    func startAnimating() {
+    private func startAnimating() {
         self.answerLabel.isHidden = true
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         self.activityIndicator.color = self.answerLabel.textColor
         self.activityIndicator.startAnimating()
     }
-    func stopAnimating() {
+    private func stopAnimating() {
         self.activityIndicator.stopAnimating()
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         self.answerLabel.isHidden = false

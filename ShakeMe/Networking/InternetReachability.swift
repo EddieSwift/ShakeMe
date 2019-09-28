@@ -8,7 +8,7 @@
 
 import SystemConfiguration
 
-class InternetReachability {
+final public class InternetReachability {
     class func isConnectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)

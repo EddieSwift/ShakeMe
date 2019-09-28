@@ -9,7 +9,7 @@
 import Alamofire
 import SwiftyJSON
 
-enum NetworkResponse {
+public enum NetworkResponse {
     case success(_ answer: String)
     case error(_ error: Error)
 }
@@ -18,7 +18,7 @@ protocol NetworkingServiceProvider {
     func getAnswer(_ apiUrl: String, completion: @escaping (NetworkResponse) -> Void)
 }
 
-class NetworkingService: NetworkingServiceProvider {
+final public class NetworkingService: NetworkingServiceProvider {
     func getAnswer(_ apiUrl: String, completion: @escaping (NetworkResponse) -> Void) {
         Alamofire.request(apiUrl).responseJSON { response in
             if response.result.value != nil {
