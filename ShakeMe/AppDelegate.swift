@@ -14,16 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions
         launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        guard let rootViewController = window?.rootViewController as? UINavigationController,
-            !rootViewController.viewControllers.isEmpty else {
-                return false
-        }
-        if let mainViewController = rootViewController.viewControllers.first as? MainViewController {
-            let networkService = NetworkingService()
-            let coreDataService = CoreDataService()
-            mainViewController.setNetworkService(networkService)
-            mainViewController.setCoreDataService(coreDataService)
-        }
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let navigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            as? UINavigationController
+        let mainViewController = navigationController?.topViewController as? MainViewController
+        let networkService = NetworkingService()
+        let coreDataService = CoreDataService()
+        mainViewController?.setNetworkService(networkService)
+        mainViewController?.setCoreDataService(coreDataService)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         return true
     }
 }
