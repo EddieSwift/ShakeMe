@@ -9,3 +9,10 @@ xcassets:
   outputs:
     - templateName: swift4
       output: ShakeMe/SwiftGen/assets-images.swift
+ib:
+  inputs: ShakeMe/Resources/
+  outputs:
+  - templateName: scenes-swift4
+    output: ShakeMe/SwiftGen/StoryboardScenes.swift
+  - templateName: segues-swift4
+    output: ShakeMe/SwiftGen/StoryboardSegues.swift
