@@ -20,6 +20,7 @@ final class MainViewController: UIViewController {
     func setCoreDataService(_ coreDataService: CoreDataServiceProvider) {
         self.coreDataService = coreDataService
     }
+    var mainViewModel: MainViewModel!
     // MARK: - Outlets
     @IBOutlet private weak var questionTextField: UITextField!
     @IBOutlet private weak var answerLabel: UILabel!
@@ -32,6 +33,12 @@ final class MainViewController: UIViewController {
         self.shakeImageView.image = Asset.Images.shakeImage.image
         self.activityIndicator.hidesWhenStopped = true
         self.becomeFirstResponder() // To get shake gesture
+//        mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
+//            self?.setAnimationEnabled(shouldAnimate)
+//        }
+    }
+    private func setAnimationEnabled(_ enabled: Bool) {
+        // start or stop animation here
     }
     // MARK: - Motions
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
