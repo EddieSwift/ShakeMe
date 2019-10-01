@@ -14,4 +14,7 @@ extension CustomAnswer {
         return NSFetchRequest<CustomAnswer>(entityName: "CustomAnswer")
     }
     @NSManaged public var answerText: String?
+        func toPresentableAnswer() -> PresentableAnswer {
+            return PresentableAnswer(answer: answerText!)
+    }
 }

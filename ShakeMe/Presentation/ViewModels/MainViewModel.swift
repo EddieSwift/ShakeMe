@@ -7,17 +7,23 @@
 //
 
 import Foundation
+import UIKit
 
 class MainViewModel {
-    private let model: MainModel
-    init(model: MainModel) {
-        self.model = model
+    // MARK: - Properties
+    private let mainModel: MainModel
+    init(_ mainModel: MainModel) {
+        self.mainModel = mainModel
     }
-    // ViewModel should pass observation closure from VC to Model.
-    // Also, it "maps" UI terms (spinner animation) to Model terms (data loading)
     var shouldAnimateLoadingStateHandler: ((Bool) -> Void)? {
         didSet {
-            model.isLoadingDataStateHandler = shouldAnimateLoadingStateHandler
+            mainModel.isLoadingDataStateHandler = shouldAnimateLoadingStateHandler
+        }
+    }
+    // MARK: - Methods
+    func shakeDetected(completion: @escaping (String?) -> Void) {
+        mainModel.getShakedAnswer { fetchedAnswer in
+            completion(fetchedAnswer?.uppercased())
         }
     }
 }

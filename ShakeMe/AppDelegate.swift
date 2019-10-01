@@ -18,8 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainViewController = StoryboardScene.Main.mainViewController.instantiate()
         let networkService = NetworkingService()
         let coreDataService = CoreDataService()
-        mainViewController.setNetworkService(networkService)
-        mainViewController.setCoreDataService(coreDataService)
+        let internetReachability = InternetReachability()
+        let mainModel = MainModel(coreDataService, networkService, internetReachability)
+        let mainViewModel = MainViewModel(mainModel)
+        mainViewController.setMainViewModel(mainViewModel)
         window?.rootViewController = UINavigationController(rootViewController: mainViewController)
         window?.makeKeyAndVisible()
         return true
