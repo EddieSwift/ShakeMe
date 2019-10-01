@@ -13,6 +13,6 @@ struct Answer {
 }
 extension Answer {
     func toPresentableAnswer() -> PresentableAnswer {
-        return PresentableAnswer(answer: answer)
+        return PresentableAnswer(answerText: answer)
     }
 }

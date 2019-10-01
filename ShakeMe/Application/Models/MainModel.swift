@@ -37,24 +37,26 @@ final class MainModel {
         return allSavedAnswers[index]
     }
     // MARK: - Network Method
-    func getShakedAnswer(completion: @escaping (String?) -> Void) {
+    func getShakedAnswer(completion: @escaping (Answer) -> Void) {
         isLoadingData = true
         networkingService.getAnswer(questionApiURL) { [weak self] state in
             guard let `self` = self else { return }
             switch state {
             case .success(let fetchedAnswer):
-                completion(fetchedAnswer)
+                let answer = Answer(answer: fetchedAnswer)
+                completion(answer)
             case .error(let error):
-                completion(nil)
+                let customAnswer = self.getCustomAnswer()
+                completion(customAnswer)
                 print(error.localizedDescription)
             }
             self.isLoadingData = false
         }
     }
     // MARK: - Help Methods
-    private func getCustomAnswer() -> CustomAnswer {
+    private func getCustomAnswer() -> Answer {
         allSavedAnswers = coreDataService.fetchAllAnswers()
-        guard let randomAnswer = allSavedAnswers.randomElement() else { return CustomAnswer() }
-        return randomAnswer
+        let randomAnswer = allSavedAnswers.randomElement()
+        return randomAnswer?.toAnswer() ?? Answer(answer: L10n.turnOnInternet)
     }
 }

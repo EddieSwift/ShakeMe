@@ -10,11 +10,11 @@
 import CoreData
 
 extension CustomAnswer {
+    @NSManaged public var answerText: String?
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CustomAnswer> {
         return NSFetchRequest<CustomAnswer>(entityName: "CustomAnswer")
     }
-    @NSManaged public var answerText: String?
-        func toPresentableAnswer() -> PresentableAnswer {
-            return PresentableAnswer(answer: answerText!)
+    func toAnswer() -> Answer {
+        return Answer(answer: answerText ?? "")
     }
 }

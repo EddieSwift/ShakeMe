@@ -15,7 +15,6 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var answerLabel: UILabel!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var shakeImageView: UIImageView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.answerLabel.text = L10n.shakingMe
@@ -39,7 +38,8 @@ final class MainViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake { // Enable detection of shake motion
             mainViewModel.shakeDetected { fetchedAnswer in
-                self.answerLabel.text = fetchedAnswer
+                let answer = fetchedAnswer.answerText
+                self.answerLabel.text = answer
                 self.answerLabel.textColor = self.randomColor()
             }
         }

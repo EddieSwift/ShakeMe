@@ -9,6 +9,5 @@
 import Foundation
 
 struct PresentableAnswer {
-    var answer: String
-    var getAnswerHandler: (() -> Void)?
+    var answerText: String
 }

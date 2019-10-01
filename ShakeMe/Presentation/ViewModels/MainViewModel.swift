@@ -21,9 +21,11 @@ class MainViewModel {
         }
     }
     // MARK: - Methods
-    func shakeDetected(completion: @escaping (String?) -> Void) {
+    func shakeDetected(completion: @escaping (PresentableAnswer) -> Void) {
         mainModel.getShakedAnswer { fetchedAnswer in
-            completion(fetchedAnswer?.uppercased())
+            var answer = fetchedAnswer.toPresentableAnswer()
+            answer.answerText = answer.answerText.uppercased()
+            completion(answer) // uppercased()
         }
     }
 }
