@@ -9,6 +9,7 @@
 import Foundation
 
 final class MainModel {
+    // MARK: - Properties
     let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
     private let coreDataService: CoreDataServiceProvider
     private let networkingService: NetworkingServiceProvider
@@ -27,16 +28,13 @@ final class MainModel {
         self.networkingService = networkService
         self.internetReachability = internetReachability
     }
-    func fetchAnswers() {
-        allSavedAnswers = coreDataService.fetchAllAnswers()
-    }
     func numberOfAnswers() -> Int {
         return allSavedAnswers.count
     }
     func answer(at index: Int) -> CustomAnswer {
         return allSavedAnswers[index]
     }
-    // MARK: - Network Method
+    // MARK: - Network Methods
     func getShakedAnswer(completion: @escaping (Answer) -> Void) {
         isLoadingData = true
         networkingService.getAnswer(questionApiURL) { [weak self] state in
@@ -53,7 +51,10 @@ final class MainModel {
             self.isLoadingData = false
         }
     }
-    // MARK: - Help Methods
+    func fetchAnswers() {
+        allSavedAnswers = coreDataService.fetchAllAnswers()
+    }
+    // MARK: - Data Methods
     private func getCustomAnswer() -> Answer {
         allSavedAnswers = coreDataService.fetchAllAnswers()
         let randomAnswer = allSavedAnswers.randomElement()

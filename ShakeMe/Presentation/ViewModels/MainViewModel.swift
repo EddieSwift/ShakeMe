@@ -25,7 +25,7 @@ class MainViewModel {
         mainModel.getShakedAnswer { fetchedAnswer in
             var answer = fetchedAnswer.toPresentableAnswer()
             answer.answerText = answer.answerText.uppercased()
-            completion(answer) // uppercased()
+            completion(answer)
         }
     }
 }

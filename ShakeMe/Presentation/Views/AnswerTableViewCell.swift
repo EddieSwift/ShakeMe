@@ -16,7 +16,7 @@ class AnswerTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    func configure(with answer: CustomAnswer) {
+    func configure(with answer: PresentableAnswer) {
         self.answerLabel?.text = answer.answerText
     }
 }

@@ -9,11 +9,9 @@
 import UIKit
 
 final class SettingsTableViewController: UITableViewController {
-    private let customAnswer: CustomAnswer? = nil
-    private var allSavedAnswers = [CustomAnswer]()
-    private var coreDataService: CoreDataServiceProvider!
-    func setCoreDataService(_ coreDataService: CoreDataServiceProvider) {
-        self.coreDataService = coreDataService
+    private var settingsViewModel: SettingsViewModel!
+    func setSettingsViewModel(_ settingsViewModel: SettingsViewModel) {
+        self.settingsViewModel = settingsViewModel
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +24,9 @@ final class SettingsTableViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        allSavedAnswers = coreDataService.fetchAllAnswers()
+        settingsViewModel.fetchAnswers {
+            tableView.reloadData()
+        }
     }
     // MARK: - Actions
     @IBAction private func addCustomAnswer(_ sender: UIBarButtonItem) {
@@ -38,13 +38,14 @@ final class SettingsTableViewController: UITableViewController {
                 let newAnswer = textField.text else {
                     return
             }
-            // Show alert if try save empty string answer
-            if newAnswer.count < 1 {
+            if newAnswer.count < 1 {   // Show alert if try save empty string answer
                 self.emptyStringAlert()
                 return
             }
-            self.coreDataService.save(newAnswer)
-            self.allSavedAnswers = self.coreDataService.fetchAllAnswers()
+            self.settingsViewModel.saveAnswer(newAnswer: newAnswer)
+            self.settingsViewModel.fetchAnswers {
+                self.tableView.reloadData()
+            }
             self.tableView.reloadData()
         }
         let cancleAction = UIAlertAction(title: L10n.cancel, style: .cancel)
@@ -63,32 +64,22 @@ final class SettingsTableViewController: UITableViewController {
         present(alert, animated: true)
     }
 }
-
 extension SettingsTableViewController {
     // MARK: - UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allSavedAnswers.count
+        return settingsViewModel.numberOfAnswersInSection()
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> AnswerTableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.identifier,
                                                        for: indexPath) as? AnswerTableViewCell else {
                                                         fatalError("Cell error")
         }
-        let answer = allSavedAnswers[indexPath.row]
+        let answer = settingsViewModel.answerAtIndexPath(indexPath: indexPath)
         cell.configure(with: answer)
         return cell
-    }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
-                            forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let answer = allSavedAnswers[indexPath.row]
-            coreDataService.delete(answer)
-            allSavedAnswers.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
     }
     // MARK: UITableViewDelegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

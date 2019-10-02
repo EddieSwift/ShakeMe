@@ -9,12 +9,14 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    private var mainViewModel: MainViewModel!
     // MARK: - Outlets
     @IBOutlet private weak var questionTextField: UITextField!
     @IBOutlet private weak var answerLabel: UILabel!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var shakeImageView: UIImageView!
+    private var mainViewModel: MainViewModel!
+    var settingsViewController: SettingsTableViewController!
+    private var settingsViewModel: SettingsViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.answerLabel.text = L10n.shakingMe
@@ -25,7 +27,12 @@ final class MainViewController: UIViewController {
         mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
             self?.setAnimationEnabled(shouldAnimate)
         }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(settingsTapped))
     }
+    // MARK: - Setter Method
     func setMainViewModel(_ mainViewModel: MainViewModel) {
         self.mainViewModel = mainViewModel
     }
@@ -38,8 +45,8 @@ final class MainViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake { // Enable detection of shake motion
             mainViewModel.shakeDetected { fetchedAnswer in
-                let answer = fetchedAnswer.answerText
-                self.answerLabel.text = answer
+                //                let answer = fetchedAnswer.answerText
+                self.answerLabel.text = fetchedAnswer.answerText
                 self.answerLabel.textColor = self.randomColor()
             }
         }
@@ -49,6 +56,18 @@ final class MainViewController: UIViewController {
     }
     override var canBecomeFirstResponder: Bool { // Become the first responder to get shake motion
         return true
+    }
+    // MARK: - Navigation Methods
+    @objc func settingsTapped() {
+        presentSettings()
+    }
+    private func presentSettings() {
+        settingsViewController = StoryboardScene.Main.settingsTableViewController.instantiate()
+        let coreDataService = CoreDataService()
+        let settingsModel = SettingsModel(coreDataService)
+        let settingsViewModel = SettingsViewModel(settingsModel)
+        settingsViewController.setSettingsViewModel(settingsViewModel)
+        self.navigationController?.pushViewController(settingsViewController, animated: true)
     }
     // MARK: - Indicator Methods
     private func setAnimationEnabled(_ enabled: Bool) {

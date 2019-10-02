@@ -26,12 +26,13 @@ final public class CoreDataService: CoreDataServiceProvider {
         let fetchRequest =
             NSFetchRequest<NSFetchRequestResult>(entityName: "CustomAnswer")
         do {
-            guard let answers = try backgroundContext.fetch(fetchRequest) as? [CustomAnswer] else { return [] }
+            guard let answers = try backgroundContext
+                .fetch(fetchRequest) as? [CustomAnswer] else { return [CustomAnswer]() }
             return answers
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        return []
+        return [CustomAnswer]()
     }
     public func save(_ text: String) {
         guard let context = backgroundContext else { return }

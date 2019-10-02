@@ -130,6 +130,7 @@
 				2CBDE29D2341F6530025F6D0 /* Presentation */,
 				2CBDE29C2341F5DB0025F6D0 /* Application */,
 				2CBDE29B2341F5D30025F6D0 /* Data */,
+				2CBDE2A82344E98A0025F6D0 /* Services */,
 				2C4384EE22FDBA3D0029E28C /* Resources */,
 				2CBD36DC23378EB40076B190 /* SwiftGen */,
 				2C4384EF22FDBA7E0029E28C /* Supporting files */,
@@ -140,8 +141,6 @@
 		2C4384E822FD95090029E28C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2CBDE299234146C30025F6D0 /* MainModel.swift */,
-				2CBDE297234146AE0025F6D0 /* SettingsModel.swift */,
 				2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */,
 				2CBDE2A42342002D0025F6D0 /* Answer.swift */,
 				2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */,
@@ -213,8 +212,7 @@
 		2CBDE29B2341F5D30025F6D0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				2C4384F022FDBB390029E28C /* Networking */,
-				2C02226F2305FDDF00EB2621 /* DataBase */,
+				2C4384E822FD95090029E28C /* Models */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -222,7 +220,8 @@
 		2CBDE29C2341F5DB0025F6D0 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				2C4384E822FD95090029E28C /* Models */,
+				2CBDE299234146C30025F6D0 /* MainModel.swift */,
+				2CBDE297234146AE0025F6D0 /* SettingsModel.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -234,6 +233,15 @@
 				2CBDE292234122540025F6D0 /* ViewModels */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		2CBDE2A82344E98A0025F6D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2C4384F022FDBB390029E28C /* Networking */,
+				2C02226F2305FDDF00EB2621 /* DataBase */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		515252C4B49509A73642D500 /* Frameworks */ = {

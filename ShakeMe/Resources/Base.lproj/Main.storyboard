@@ -60,11 +60,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Shake Me" id="hwB-yq-gpy">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="5Wc-CJ-n37">
-                            <connections>
-                                <segue destination="OfP-s9-fmc" kind="show" identifier="SettingsTableViewControllerIdentifier" id="YDe-I0-47Y"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="5Wc-CJ-n37"/>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="bRU-i5-VA1" id="TxS-rq-XPk"/>
