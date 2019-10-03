@@ -14,7 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions
         launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let mainViewController = StoryboardScene.Main.mainViewController.instantiate()
+        let networkService = NetworkingService()
+        let coreDataService = CoreDataService()
+        let internetReachability = InternetReachability()
+        let mainModel = MainModel(coreDataService: coreDataService,
+                                  networkService: networkService,
+                                  internetReachability: internetReachability)
+        let mainViewModel = MainViewModel(mainModel)
+        mainViewController.setMainViewModel(mainViewModel)
+        window?.rootViewController = UINavigationController(rootViewController: mainViewController)
+        window?.makeKeyAndVisible()
         return true
     }
 }

@@ -8,10 +8,11 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
-    let coreDataService = CoreDataService.shared
-    let customAnswer: CustomAnswer? = nil
-    private var allSavedAnswers = [CustomAnswer]()
+final class SettingsTableViewController: UITableViewController {
+    private var settingsViewModel: SettingsViewModel!
+    func setSettingsViewModel(_ settingsViewModel: SettingsViewModel) {
+        self.settingsViewModel = settingsViewModel
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -23,10 +24,12 @@ class SettingsTableViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        allSavedAnswers = coreDataService.fetchAllAnswers()
+        settingsViewModel.fetchAnswers {
+            tableView.reloadData()
+        }
     }
     // MARK: - Actions
-    @IBAction func addCustomAnswer(_ sender: UIBarButtonItem) {
+    @IBAction private func addCustomAnswer(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: L10n.newAnswer,
                                       message: L10n.addCustomAnswer,
                                       preferredStyle: .alert)
@@ -35,13 +38,14 @@ class SettingsTableViewController: UITableViewController {
                 let newAnswer = textField.text else {
                     return
             }
-            // Show alert if try save empty string answer
-            if newAnswer.count < 1 {
+            if newAnswer.count < 1 {   // Show alert if try save empty string answer
                 self.emptyStringAlert()
                 return
             }
-            self.coreDataService.save(newAnswer)
-            self.allSavedAnswers = self.coreDataService.fetchAllAnswers()
+            self.settingsViewModel.saveAnswer(newAnswer: newAnswer)
+            self.settingsViewModel.fetchAnswers {
+                self.tableView.reloadData()
+            }
             self.tableView.reloadData()
         }
         let cancleAction = UIAlertAction(title: L10n.cancel, style: .cancel)
@@ -51,7 +55,7 @@ class SettingsTableViewController: UITableViewController {
         present(alert, animated: true)
     }
     // MARK: - Help metods
-    func emptyStringAlert() {
+    private func emptyStringAlert() {
         let alert = UIAlertController(title: L10n.warning,
                                       message: L10n.answerLength,
                                       preferredStyle: .alert)
@@ -60,32 +64,22 @@ class SettingsTableViewController: UITableViewController {
         present(alert, animated: true)
     }
 }
-
 extension SettingsTableViewController {
     // MARK: - UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allSavedAnswers.count
+        return settingsViewModel.numberOfAnswers()
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> AnswerTableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.identifier,
                                                        for: indexPath) as? AnswerTableViewCell else {
                                                         fatalError("Cell error")
         }
-        let answer = allSavedAnswers[indexPath.row]
+        let answer = settingsViewModel.answerAtIndexPath(indexPath: indexPath)
         cell.configure(with: answer)
         return cell
-    }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
-                            forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let answer = allSavedAnswers[indexPath.row]
-            coreDataService.delete(answer)
-            allSavedAnswers.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
     }
     // MARK: UITableViewDelegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

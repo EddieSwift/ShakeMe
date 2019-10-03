@@ -6,18 +6,22 @@
 //  Copyright © 2019 Eduard Galchenko. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 import SwiftyJSON
+
+private let apiUrl = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
 
 public enum NetworkResponse {
     case success(_ answer: String)
     case error(_ error: Error)
 }
 
-public class NetworkingService {
-    public static let shared = NetworkingService()
-    public func getAnswer(_ apiUrl: String, completion: @escaping (NetworkResponse) -> Void) {
+protocol NetworkingServiceProvider {
+    func getAnswer(completion: @escaping (NetworkResponse) -> Void)
+}
+
+final public class NetworkingService: NetworkingServiceProvider {
+    func getAnswer(completion: @escaping (NetworkResponse) -> Void) {
         Alamofire.request(apiUrl).responseJSON { response in
             if response.result.value != nil {
                 let json = JSON(response.result.value!)

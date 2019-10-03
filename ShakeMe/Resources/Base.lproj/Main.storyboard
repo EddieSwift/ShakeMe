@@ -11,13 +11,13 @@
         <!--Shake Me-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ShakeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" customModule="ShakeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bRU-i5-VA1">
-                                <rect key="frame" x="188" y="498" width="37" height="37"/>
+                                <rect key="frame" x="188.66666666666666" y="498" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your question...?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbY-gX-js6">
@@ -26,15 +26,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why are you shaking me?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lgb-Ga-peG">
-                                <rect key="frame" x="27" y="496.99999999999994" width="360.33333333333331" height="38.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why are you shaking me?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lgb-Ga-peG">
+                                <rect key="frame" x="38" y="498.33333333333326" width="338.33333333333331" height="36"/>
                                 <viewLayoutGuide key="safeArea" id="jiF-F6-A6c"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dwb-lY-dHc">
-                                <rect key="frame" x="147" y="361" width="120" height="120"/>
+                                <rect key="frame" x="147" y="362.33333333333331" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="4eD-CR-tAt"/>
                                     <constraint firstAttribute="height" constant="120" id="5qF-uF-7h2"/>
@@ -60,11 +60,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Shake Me" id="hwB-yq-gpy">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="5Wc-CJ-n37">
-                            <connections>
-                                <segue destination="OfP-s9-fmc" kind="show" id="YDe-I0-47Y"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="5Wc-CJ-n37"/>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="bRU-i5-VA1" id="TxS-rq-XPk"/>
@@ -80,7 +76,7 @@
         <!--Settings-->
         <scene sceneID="drD-c6-dOX">
             <objects>
-                <tableViewController id="OfP-s9-fmc" customClass="SettingsTableViewController" customModule="ShakeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsTableViewController" id="OfP-s9-fmc" customClass="SettingsTableViewController" customModule="ShakeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MMg-IT-M5S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
