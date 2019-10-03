@@ -10,34 +10,26 @@ import Foundation
 
 final class MainModel {
     // MARK: - Properties
-    let questionApiURL = "https://8ball.delegator.com/magic/JSON/Why%20are%20you%20shaking%20me"
     private let coreDataService: CoreDataServiceProvider
     private let networkingService: NetworkingServiceProvider
     private let internetReachability: InternetReachabilityProvider
-    private var allSavedAnswers = [CustomAnswer]()
     var isLoadingDataStateHandler: ((Bool) -> Void)?
     private var isLoadingData = false {
         didSet {
             isLoadingDataStateHandler?(isLoadingData)
         }
     }
-    init(_ coreDataService: CoreDataServiceProvider,
-         _ networkService: NetworkingServiceProvider,
-         _ internetReachability: InternetReachability) {
+    init(coreDataService: CoreDataServiceProvider,
+         networkService: NetworkingServiceProvider,
+         internetReachability: InternetReachability) {
         self.coreDataService = coreDataService
         self.networkingService = networkService
         self.internetReachability = internetReachability
     }
-    func numberOfAnswers() -> Int {
-        return allSavedAnswers.count
-    }
-    func answer(at index: Int) -> CustomAnswer {
-        return allSavedAnswers[index]
-    }
     // MARK: - Network Methods
     func getShakedAnswer(completion: @escaping (Answer) -> Void) {
         isLoadingData = true
-        networkingService.getAnswer(questionApiURL) { [weak self] state in
+        networkingService.getAnswer { [weak self] state in
             guard let `self` = self else { return }
             switch state {
             case .success(let fetchedAnswer):
@@ -51,13 +43,9 @@ final class MainModel {
             self.isLoadingData = false
         }
     }
-    func fetchAnswers() {
-        allSavedAnswers = coreDataService.fetchAllAnswers()
-    }
     // MARK: - Data Methods
     private func getCustomAnswer() -> Answer {
-        allSavedAnswers = coreDataService.fetchAllAnswers()
-        let randomAnswer = allSavedAnswers.randomElement()
-        return randomAnswer?.toAnswer() ?? Answer(answer: L10n.turnOnInternet)
+        let randomAnswer = coreDataService.fetchAllAnswers().randomElement() ?? Answer(answer: L10n.turnOnInternet)
+        return randomAnswer
     }
 }

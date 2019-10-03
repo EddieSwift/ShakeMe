@@ -17,10 +17,16 @@ class SettingsModel {
     }
     // MARK: - Methods
     func fetchAnswers(completion: ([Answer]) -> Void) {
-        allSavedAnswers = coreDataService.fetchAllAnswers().map { $0.toAnswer() }
+        allSavedAnswers = coreDataService.fetchAllAnswers()
         completion(allSavedAnswers)
     }
     func saveNewAnswer(newAnswer: String) {
         coreDataService.save(newAnswer)
+    }
+    func numberOfAnswers() -> Int {
+        return allSavedAnswers.count
+    }
+    func answer(at indexPath: IndexPath) -> Answer {
+        return allSavedAnswers[indexPath.row]
     }
 }

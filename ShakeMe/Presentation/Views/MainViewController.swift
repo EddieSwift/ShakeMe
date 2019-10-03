@@ -15,8 +15,6 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var shakeImageView: UIImageView!
     private var mainViewModel: MainViewModel!
-    var settingsViewController: SettingsTableViewController!
-    private var settingsViewModel: SettingsViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.answerLabel.text = L10n.shakingMe
@@ -27,7 +25,7 @@ final class MainViewController: UIViewController {
         mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
             self?.setAnimationEnabled(shouldAnimate)
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings",
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.settings,
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(settingsTapped))
@@ -62,7 +60,7 @@ final class MainViewController: UIViewController {
         presentSettings()
     }
     private func presentSettings() {
-        settingsViewController = StoryboardScene.Main.settingsTableViewController.instantiate()
+        let settingsViewController = StoryboardScene.Main.settingsTableViewController.instantiate()
         let coreDataService = CoreDataService()
         let settingsModel = SettingsModel(coreDataService)
         let settingsViewModel = SettingsViewModel(settingsModel)

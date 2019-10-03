@@ -9,7 +9,7 @@
 import CoreData
 
 protocol CoreDataServiceProvider {
-    func fetchAllAnswers() -> [CustomAnswer]
+    func fetchAllAnswers() -> [Answer]
     func save(_ text: String)
     func delete(_ answer: NSManagedObject)
     func createContainer(completion: @escaping (NSPersistentContainer) -> Void)
@@ -22,17 +22,17 @@ final public class CoreDataService: CoreDataServiceProvider {
             self.backgroundContext = container.newBackgroundContext()
         }
     }
-    func fetchAllAnswers() -> [CustomAnswer] {
+    func fetchAllAnswers() -> [Answer] {
         let fetchRequest =
             NSFetchRequest<NSFetchRequestResult>(entityName: "CustomAnswer")
         do {
             guard let answers = try backgroundContext
-                .fetch(fetchRequest) as? [CustomAnswer] else { return [CustomAnswer]() }
-            return answers
+                .fetch(fetchRequest) as? [CustomAnswer] else { return [Answer]() }
+            return answers.map { $0.toAnswer() }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        return [CustomAnswer]()
+        return [Answer]()
     }
     public func save(_ text: String) {
         guard let context = backgroundContext else { return }

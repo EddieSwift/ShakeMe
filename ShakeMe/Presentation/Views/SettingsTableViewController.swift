@@ -70,7 +70,7 @@ extension SettingsTableViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingsViewModel.numberOfAnswersInSection()
+        return settingsViewModel.numberOfAnswers()
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> AnswerTableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.identifier,
