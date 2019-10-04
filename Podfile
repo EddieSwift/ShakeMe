@@ -11,5 +11,6 @@ target 'ShakeMe' do
   pod 'SwiftyJSON', '~>5.0.0'
   pod 'SwiftLint',  '~>0.35.0'
   pod 'SwiftGen',   '~>6.1.0'
+  pod 'SnapKit',    '~> 5.0.1'
   
 end

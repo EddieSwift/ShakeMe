@@ -259,8 +259,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C4384E222FD944A0029E28C /* Build configuration list for PBXNativeTarget "ShakeMe" */;
 			buildPhases = (
-				2C78E8FB233508F7001C88F7 /* SwiftLint */,
 				487D2A6EE62E1FAA8E318CB9 /* [CP] Check Pods Manifest.lock */,
+				2C78E8FB233508F7001C88F7 /* SwiftLint */,
 				2C48B6542337DBA00065BCE6 /* SwiftGen */,
 				2C4384C922FD94490029E28C /* Sources */,
 				2C4384CA22FD94490029E28C /* Frameworks */,
