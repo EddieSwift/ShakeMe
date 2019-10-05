@@ -7,32 +7,71 @@
 //
 
 import UIKit
+import SnapKit
 
 final class MainViewController: UIViewController {
     // MARK: - Outlets
-    @IBOutlet private weak var questionTextField: UITextField!
-    @IBOutlet private weak var answerLabel: UILabel!
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet private weak var shakeImageView: UIImageView!
+    private var answerLabel: UILabel!
+    private var activityIndicator: UIActivityIndicatorView!
+    private var shakeImageView: UIImageView!
     private var mainViewModel: MainViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.answerLabel.text = L10n.shakingMe
-        self.answerLabel.textColor = Asset.Colors.green.color
-        self.shakeImageView.image = Asset.Images.shakeImage.image
-        self.activityIndicator.hidesWhenStopped = true
+        setupUI()
         self.becomeFirstResponder() // To get shake gesture
         mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
             self?.setAnimationEnabled(shouldAnimate)
         }
+    }
+    // MARK: - Setup UI Constraints
+    func setupUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.settings,
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(settingsTapped))
+        view.backgroundColor = Asset.Colors.white.color
+        title = L10n.shakeMe
+        answerLabel = UILabel(frame: CGRect(x: 38, y: 498, width: 338, height: 36))
+        answerLabel.translatesAutoresizingMaskIntoConstraints = false
+        answerLabel.center = CGPoint(x: 160, y: 285)
+        answerLabel.textAlignment = .center
+        answerLabel.numberOfLines = 4
+        answerLabel.font = UIFont.systemFont(ofSize: 30, weight: .medium)
+        answerLabel.textColor = Asset.Colors.green.color
+        answerLabel.text = L10n.shakingMe
+        shakeImageView  = UIImageView(image: Asset.Images.shakeImage.image)
+        shakeImageView.frame = CGRect(x: 147, y: 312, width: 120, height: 120)
+        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        self.activityIndicator.hidesWhenStopped = true
+        view.addSubview(answerLabel)
+        view.addSubview(shakeImageView)
+        view.addSubview(activityIndicator)
+        shakeImageView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        answerLabel.snp.makeConstraints { make in
+            make.bottom.left.right.equalTo(view)
+            make.top.equalTo(view).offset(162)
+        }
+        shakeImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(120)
+            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).offset(-42)
+        }
+        activityIndicator.snp.makeConstraints { make in
+            make.bottom.left.right.equalTo(view)
+            make.top.equalTo(view).offset(162)
+        }
     }
-    // MARK: - Setter Method
+    // MARK: - Setter and Init Methods
     func setMainViewModel(_ mainViewModel: MainViewModel) {
         self.mainViewModel = mainViewModel
+    }
+    init(mainViewModel: MainViewModel) {
+        self.mainViewModel = mainViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     // MARK: - Motions
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -43,7 +82,6 @@ final class MainViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake { // Enable detection of shake motion
             mainViewModel.shakeDetected { fetchedAnswer in
-                //                let answer = fetchedAnswer.answerText
                 self.answerLabel.text = fetchedAnswer.answerText
                 self.answerLabel.textColor = self.randomColor()
             }
@@ -60,7 +98,7 @@ final class MainViewController: UIViewController {
         presentSettings()
     }
     private func presentSettings() {
-        let settingsViewController = StoryboardScene.Main.settingsTableViewController.instantiate()
+        let settingsViewController = SettingsTableViewController()
         let coreDataService = CoreDataService()
         let settingsModel = SettingsModel(coreDataService)
         let settingsViewModel = SettingsViewModel(settingsModel)

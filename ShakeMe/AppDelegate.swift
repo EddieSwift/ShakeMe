@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions
         launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let mainViewController = StoryboardScene.Main.mainViewController.instantiate()
         let networkService = NetworkingService()
         let coreDataService = CoreDataService()
         let internetReachability = InternetReachability()
@@ -23,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                   networkService: networkService,
                                   internetReachability: internetReachability)
         let mainViewModel = MainViewModel(mainModel)
-        mainViewController.setMainViewModel(mainViewModel)
+        let mainViewController = MainViewController(mainViewModel: mainViewModel)
         window?.rootViewController = UINavigationController(rootViewController: mainViewController)
         window?.makeKeyAndVisible()
         return true

@@ -17,10 +17,7 @@ final class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        title = L10n.settings
-        tableView.register(UINib.init(nibName: AnswerTableViewCell.nibName,
-                                      bundle: Bundle.main),
-                           forCellReuseIdentifier: AnswerTableViewCell.identifier)
+        setupUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -28,8 +25,18 @@ final class SettingsTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-    // MARK: - Actions
-    @IBAction private func addCustomAnswer(_ sender: UIBarButtonItem) {
+    // MARK: - Setup UI Constraints
+    func setupUI() {
+        title = L10n.settings
+        tableView.register(UINib.init(nibName: AnswerTableViewCell.nibName,
+                                      bundle: Bundle.main),
+                           forCellReuseIdentifier: AnswerTableViewCell.identifier)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(addTapped))
+    }
+    // MARK: - Bar Button Action Methods
+    @objc func addTapped() {
         let alert = UIAlertController(title: L10n.newAnswer,
                                       message: L10n.addCustomAnswer,
                                       preferredStyle: .alert)

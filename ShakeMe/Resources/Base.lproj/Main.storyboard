@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YXD-QX-7ch">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -20,12 +20,6 @@
                                 <rect key="frame" x="188.66666666666666" y="498" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your question...?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbY-gX-js6">
-                                <rect key="frame" x="20" y="142" width="374" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why are you shaking me?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lgb-Ga-peG">
                                 <rect key="frame" x="38" y="498.33333333333326" width="338.33333333333331" height="36"/>
                                 <viewLayoutGuide key="safeArea" id="jiF-F6-A6c"/>
@@ -53,66 +47,12 @@
                             <constraint firstItem="bRU-i5-VA1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="68.5" id="zb6-OS-ytk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="fbY-gX-js6"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Shake Me" id="hwB-yq-gpy">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="5Wc-CJ-n37"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="activityIndicator" destination="bRU-i5-VA1" id="TxS-rq-XPk"/>
-                        <outlet property="answerLabel" destination="Lgb-Ga-peG" id="kcD-LY-3Qj"/>
-                        <outlet property="questionTextField" destination="fbY-gX-js6" id="ccM-Lv-xp1"/>
-                        <outlet property="shakeImageView" destination="Dwb-lY-dHc" id="GlK-u9-r5f"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Shake Me" id="hwB-yq-gpy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-512" y="660"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="drD-c6-dOX">
-            <objects>
-                <tableViewController storyboardIdentifier="SettingsTableViewController" id="OfP-s9-fmc" customClass="SettingsTableViewController" customModule="ShakeMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MMg-IT-M5S">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <connections>
-                            <outlet property="dataSource" destination="OfP-s9-fmc" id="N0t-uh-4DR"/>
-                            <outlet property="delegate" destination="OfP-s9-fmc" id="2Ih-uM-nkT"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="K2g-lG-Bct">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="NgF-1U-AoH">
-                            <connections>
-                                <action selector="addCustomAnswer:" destination="OfP-s9-fmc" id="7Ra-yB-qZi"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nxq-xs-Txw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="377" y="660"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="wNh-Nx-Wu3">
-            <objects>
-                <navigationController id="YXD-QX-7ch" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JNQ-Cy-KaP">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lAi-gw-xQd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2O1-tE-g9g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1384" y="660"/>
         </scene>
     </scenes>
 </document>

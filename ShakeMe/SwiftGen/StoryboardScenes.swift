@@ -20,11 +20,7 @@ internal enum StoryboardScene {
   internal enum Main: StoryboardType {
     internal static let storyboardName = "Main"
 
-    internal static let initialScene = InitialSceneType<UIKit.UINavigationController>(storyboard: Main.self)
-
     internal static let mainViewController = SceneType<ShakeMe.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
-
-    internal static let settingsTableViewController = SceneType<ShakeMe.SettingsTableViewController>(storyboard: Main.self, identifier: "SettingsTableViewController")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name

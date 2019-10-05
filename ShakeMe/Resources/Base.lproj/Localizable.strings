@@ -10,3 +10,4 @@
 "settings"        = "Settings";
 "identifier"      = "AnswerTableViewCell";
 "nibName"         = "AnswerTableViewCell";
+"shakeMe"         = "Shake Me";
