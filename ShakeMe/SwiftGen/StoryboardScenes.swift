@@ -17,11 +17,6 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: LaunchScreen.self)
   }
-  internal enum Main: StoryboardType {
-    internal static let storyboardName = "Main"
-
-    internal static let mainViewController = SceneType<ShakeMe.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
-  }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
 

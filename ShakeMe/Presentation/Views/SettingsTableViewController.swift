@@ -28,9 +28,8 @@ final class SettingsTableViewController: UITableViewController {
     // MARK: - Setup UI Constraints
     func setupUI() {
         title = L10n.settings
-        tableView.register(UINib.init(nibName: AnswerTableViewCell.nibName,
-                                      bundle: Bundle.main),
-                           forCellReuseIdentifier: AnswerTableViewCell.identifier)
+        tableView.allowsSelection = false
+        tableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: AnswerTableViewCell.identifier)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped))
@@ -88,7 +87,7 @@ extension SettingsTableViewController {
         cell.configure(with: answer)
         return cell
     }
-    // MARK: UITableViewDelegate
+    // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 56.0
     }

@@ -23,6 +23,14 @@ final class MainViewController: UIViewController {
             self?.setAnimationEnabled(shouldAnimate)
         }
     }
+    // MARK: - Setter and Init Methods
+    init(mainViewModel: MainViewModel) {
+        self.mainViewModel = mainViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     // MARK: - Setup UI Constraints
     func setupUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.settings,
@@ -61,17 +69,6 @@ final class MainViewController: UIViewController {
             make.bottom.left.right.equalTo(view)
             make.top.equalTo(view).offset(162)
         }
-    }
-    // MARK: - Setter and Init Methods
-    func setMainViewModel(_ mainViewModel: MainViewModel) {
-        self.mainViewModel = mainViewModel
-    }
-    init(mainViewModel: MainViewModel) {
-        self.mainViewModel = mainViewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
     // MARK: - Motions
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {

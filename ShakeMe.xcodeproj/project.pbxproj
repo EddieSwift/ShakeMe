@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2C0222712305FE1800EB2621 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0222702305FE1800EB2621 /* CoreDataService.swift */; };
 		2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D022FD94490029E28C /* AppDelegate.swift */; };
-		2C4384D622FD94490029E28C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384D422FD94490029E28C /* Main.storyboard */; };
 		2C4384D922FD94490029E28C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */; };
 		2C4384DB22FD944A0029E28C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384DA22FD944A0029E28C /* Assets.xcassets */; };
 		2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384E522FD94EF0029E28C /* MainViewController.swift */; };
@@ -18,7 +17,6 @@
 		2C8542DF22FF50EE0053E112 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542DE22FF50EE0053E112 /* SettingsTableViewController.swift */; };
 		2C8542E1230015120053E112 /* InternetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542E0230015120053E112 /* InternetReachability.swift */; };
 		2C8542E423030A330053E112 /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542E223030A330053E112 /* AnswerTableViewCell.swift */; };
-		2C8542E523030A330053E112 /* AnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8542E323030A330053E112 /* AnswerTableViewCell.xib */; };
 		2C8542F0230323280053E112 /* CustomAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */; };
 		2C8542F1230323280053E112 /* CustomAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */; };
 		2C8542F92304344E0053E112 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542F82304344E0053E112 /* NetworkingService.swift */; };
@@ -41,7 +39,6 @@
 		2C0222702305FE1800EB2621 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		2C4384CD22FD94490029E28C /* ShakeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4384D022FD94490029E28C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C4384D522FD94490029E28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C4384D822FD94490029E28C /* ShakeMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShakeMe.xcdatamodel; sourceTree = "<group>"; };
 		2C4384DA22FD944A0029E28C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C4384DF22FD944A0029E28C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,7 +48,6 @@
 		2C8542DE22FF50EE0053E112 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		2C8542E0230015120053E112 /* InternetReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetReachability.swift; sourceTree = "<group>"; };
 		2C8542E223030A330053E112 /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTableViewCell.swift; sourceTree = "<group>"; };
-		2C8542E323030A330053E112 /* AnswerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerTableViewCell.xib; sourceTree = "<group>"; };
 		2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C8542F82304344E0053E112 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
@@ -156,7 +152,6 @@
 				2C4384E522FD94EF0029E28C /* MainViewController.swift */,
 				2C8542DE22FF50EE0053E112 /* SettingsTableViewController.swift */,
 				2C8542E223030A330053E112 /* AnswerTableViewCell.swift */,
-				2C8542E323030A330053E112 /* AnswerTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,7 +159,6 @@
 		2C4384EE22FDBA3D0029E28C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2C4384D422FD94490029E28C /* Main.storyboard */,
 				2C4384EC22FD95520029E28C /* LaunchScreen.storyboard */,
 				2CBD36E42337927B0076B190 /* Localizable.strings */,
 				2C4384DA22FD944A0029E28C /* Assets.xcassets */,
@@ -318,8 +312,6 @@
 				2CBD36E62337927B0076B190 /* Localizable.strings in Resources */,
 				2C4384ED22FD95520029E28C /* LaunchScreen.storyboard in Resources */,
 				2C4384DB22FD944A0029E28C /* Assets.xcassets in Resources */,
-				2C4384D622FD94490029E28C /* Main.storyboard in Resources */,
-				2C8542E523030A330053E112 /* AnswerTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,14 +427,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2C4384D422FD94490029E28C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C4384D522FD94490029E28C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2CBD36E42337927B0076B190 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

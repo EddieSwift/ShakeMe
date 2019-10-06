@@ -30,7 +30,7 @@ final public class CoreDataService: CoreDataServiceProvider {
                 .fetch(fetchRequest) as? [CustomAnswer] else { return [Answer]() }
             return answers.map { $0.toAnswer() }
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("Could not fetch. \(error.localizedDescription), \(error.userInfo)")
         }
         return [Answer]()
     }
