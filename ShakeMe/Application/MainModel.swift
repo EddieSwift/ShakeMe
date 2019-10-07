@@ -33,7 +33,7 @@ final class MainModel {
             guard let `self` = self else { return }
             switch state {
             case .success(let fetchedAnswer):
-                let answer = Answer(answer: fetchedAnswer)
+                let answer = Answer(answerText: fetchedAnswer)
                 completion(answer)
             case .error(let error):
                 let customAnswer = self.getCustomAnswer()
@@ -45,7 +45,7 @@ final class MainModel {
     }
     // MARK: - Data Methods
     private func getCustomAnswer() -> Answer {
-        let randomAnswer = coreDataService.fetchAllAnswers().randomElement() ?? Answer(answer: L10n.turnOnInternet)
+        let randomAnswer = coreDataService.fetchAllAnswers().randomElement() ?? Answer(answerText: L10n.turnOnInternet)
         return randomAnswer
     }
 }

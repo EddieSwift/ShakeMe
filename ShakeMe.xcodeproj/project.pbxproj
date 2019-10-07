@@ -134,18 +134,6 @@
 			path = ShakeMe;
 			sourceTree = "<group>";
 		};
-		2C4384E822FD95090029E28C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */,
-				2CBDE2A42342002D0025F6D0 /* Answer.swift */,
-				2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */,
-				2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */,
-				2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		2C4384E922FD95140029E28C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,7 +194,11 @@
 		2CBDE29B2341F5D30025F6D0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				2C4384E822FD95090029E28C /* Models */,
+				2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */,
+				2CBDE2A42342002D0025F6D0 /* Answer.swift */,
+				2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */,
+				2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */,
+				2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */,
 			);
 			path = Data;
 			sourceTree = "<group>";

@@ -15,6 +15,6 @@ extension CustomAnswer {
         return NSFetchRequest<CustomAnswer>(entityName: "CustomAnswer")
     }
     func toAnswer() -> Answer {
-        return Answer(answer: answerText ?? "")
+        return Answer(answerText: answerText ?? "")
     }
 }
