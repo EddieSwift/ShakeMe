@@ -18,9 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let networkService = NetworkingService()
         let coreDataService = CoreDataService()
         let internetReachability = InternetReachability()
+        let secureStorageService = SecureStorageService()
         let mainModel = MainModel(coreDataService: coreDataService,
                                   networkService: networkService,
-                                  internetReachability: internetReachability)
+                                  internetReachability: internetReachability,
+                                  secureStorageService: secureStorageService)
         let mainViewModel = MainViewModel(mainModel)
         let mainViewController = MainViewController(mainViewModel: mainViewModel)
         window?.rootViewController = UINavigationController(rootViewController: mainViewController)

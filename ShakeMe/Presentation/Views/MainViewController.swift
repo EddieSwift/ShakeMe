@@ -15,12 +15,16 @@ final class MainViewController: UIViewController {
     private var activityIndicator: UIActivityIndicatorView!
     private var shakeImageView: UIImageView!
     private var mainViewModel: MainViewModel!
+    private var shakesCounterLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         self.becomeFirstResponder() // To get shake gesture
         mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
             self?.setAnimationEnabled(shouldAnimate)
+        }
+        mainViewModel.loadFromStorage { counter in
+            self.shakesCounterLabel.text = "Shakes: \(counter)"
         }
     }
     // MARK: - Setter and Init Methods
@@ -51,14 +55,22 @@ final class MainViewController: UIViewController {
         shakeImageView.frame = CGRect(x: 147, y: 312, width: 120, height: 120)
         activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         self.activityIndicator.hidesWhenStopped = true
+        shakesCounterLabel = UILabel(frame: CGRect(x: 16, y: 90, width: 90, height: 24))
+        shakesCounterLabel.textColor = Asset.Colors.green.color
+        shakesCounterLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        shakesCounterLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(answerLabel)
         view.addSubview(shakeImageView)
         view.addSubview(activityIndicator)
+        view.addSubview(shakesCounterLabel)
         shakeImageView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         answerLabel.snp.makeConstraints { make in
             make.bottom.left.right.equalTo(view)
             make.top.equalTo(view).offset(162)
+        }
+        shakesCounterLabel.snp.makeConstraints { make in
+            make.top.left.equalTo(view.safeAreaLayoutGuide).offset(16)
         }
         shakeImageView.snp.makeConstraints { make in
             make.width.height.equalTo(120)
@@ -78,9 +90,15 @@ final class MainViewController: UIViewController {
     }
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake { // Enable detection of shake motion
+            let randomColor = self.randomColor()
             mainViewModel.shakeDetected { fetchedAnswer in
                 self.answerLabel.text = fetchedAnswer.answerText
-                self.answerLabel.textColor = self.randomColor()
+                self.answerLabel.textColor = randomColor
+            }
+            mainViewModel.updateInStorage()
+            mainViewModel.loadFromStorage { counter in
+                self.shakesCounterLabel.text = "Shakes: \(counter)"
+                self.shakesCounterLabel.textColor = randomColor
             }
         }
     }

@@ -12,5 +12,6 @@ target 'ShakeMe' do
   pod 'SwiftLint',  '~>0.35.0'
   pod 'SwiftGen',   '~>6.1.0'
   pod 'SnapKit',    '~> 5.0.1'
+  pod 'Locksmith',  '~> 4.0.0'
   
 end

@@ -20,12 +20,21 @@ class MainViewModel {
             mainModel.isLoadingDataStateHandler = shouldAnimateLoadingStateHandler
         }
     }
-    // MARK: - Methods
+    // MARK: - Network Methods
     func shakeDetected(completion: @escaping (PresentableAnswer) -> Void) {
         mainModel.getShakedAnswer { fetchedAnswer in
             var answer = fetchedAnswer.toPresentableAnswer()
             answer.answerText = answer.answerText.uppercased()
             completion(answer)
+        }
+    }
+    // MARK: - Secure Storage Methods
+    func updateInStorage() {
+        mainModel.updateInStorage()
+    }
+    func loadFromStorage(completion: @escaping (Int) -> Void) {
+        mainModel.loadFromStorage { counter in
+            completion(counter)
         }
     }
 }
