@@ -12,9 +12,11 @@ import UIKit
 class MainViewModel {
     // MARK: - Properties
     private let mainModel: MainModel
+
     init(_ mainModel: MainModel) {
         self.mainModel = mainModel
     }
+
     var shouldAnimateLoadingStateHandler: ((Bool) -> Void)? {
         didSet {
             mainModel.isLoadingDataStateHandler = shouldAnimateLoadingStateHandler
@@ -28,13 +30,12 @@ class MainViewModel {
             completion(answer)
         }
     }
-    // MARK: - Secure Storage Methods
-    func updateInStorage() {
-        mainModel.updateInStorage()
+    // MARK: - Shakes Counter Methods
+    func incrementShakesCounter() {
+        mainModel.incrementShakesCounter()
     }
-    func loadFromStorage(completion: @escaping (Int) -> Void) {
-        mainModel.loadFromStorage { counter in
-            completion(counter)
-        }
+
+    func loadShakesCounter() -> Int {
+        return mainModel.loadShakesCounter()
     }
 }

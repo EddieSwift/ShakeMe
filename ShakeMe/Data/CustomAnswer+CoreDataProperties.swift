@@ -11,9 +11,11 @@ import CoreData
 
 extension CustomAnswer {
     @NSManaged public var answerText: String?
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CustomAnswer> {
         return NSFetchRequest<CustomAnswer>(entityName: "CustomAnswer")
     }
+
     func toAnswer() -> Answer {
         return Answer(answerText: answerText ?? "")
     }

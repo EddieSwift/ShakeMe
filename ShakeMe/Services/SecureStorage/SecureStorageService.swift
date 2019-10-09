@@ -15,13 +15,15 @@ protocol SecureStorageServiceProvider {
 }
 
 final public class SecureStorageService: SecureStorageServiceProvider {
+    
     func saveToStorage(counter: Int) {
-            do {
-                try Locksmith.saveData(data: ["counter": counter], forUserAccount: "ShakeKeychain")
-            } catch {
-                print("Unable to save to keychain")
-            }
+        do {
+            try Locksmith.saveData(data: ["counter": counter], forUserAccount: "ShakeKeychain")
+        } catch {
+            print("Unable to save to keychain")
+        }
     }
+    
     func updateInStorage(counter: Int) {
         do {
             try Locksmith.updateData(data: ["counter": counter], forUserAccount: "ShakeKeychain")
@@ -29,6 +31,7 @@ final public class SecureStorageService: SecureStorageServiceProvider {
             print("Unable to update in keychain")
         }
     }
+    
     func loadFromStorage() -> Int {
         guard let counter = Locksmith.loadDataForUserAccount(userAccount: "ShakeKeychain")?["counter"] as? Int else {
             return 0

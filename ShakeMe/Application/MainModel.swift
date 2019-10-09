@@ -14,13 +14,14 @@ final class MainModel {
     private let networkingService: NetworkingServiceProvider
     private let internetReachability: InternetReachabilityProvider
     private let secureStorageService: SecureStorageServiceProvider
-    private var secureCounter: Int!
+    private var shakesCounter: Int!
     var isLoadingDataStateHandler: ((Bool) -> Void)?
     private var isLoadingData = false {
         didSet {
             isLoadingDataStateHandler?(isLoadingData)
         }
     }
+
     init(coreDataService: CoreDataServiceProvider,
          networkService: NetworkingServiceProvider,
          internetReachability: InternetReachability,
@@ -52,18 +53,16 @@ final class MainModel {
         let randomAnswer = coreDataService.fetchAllAnswers().randomElement() ?? Answer(answerText: L10n.turnOnInternet)
         return randomAnswer
     }
-    // MARK: - Secure Storage Methods
-    func saveToStorage(counter: Int) {
-        secureStorageService.saveToStorage(counter: counter)
+    // MARK: - Shakes Counter Methods
+    func incrementShakesCounter() {
+        secureStorageService.updateInStorage(counter: shakesCounter + 1)
     }
-    func updateInStorage() {
-        secureStorageService.updateInStorage(counter: secureCounter + 1)
-    }
-    func loadFromStorage(completion: @escaping (Int) -> Void) {
-        secureCounter = secureStorageService.loadFromStorage()
-        if secureCounter == 0 {
-            secureStorageService.saveToStorage(counter: secureCounter)
+
+    func loadShakesCounter() -> Int {
+        shakesCounter = secureStorageService.loadFromStorage()
+        if shakesCounter == 0 {
+            secureStorageService.saveToStorage(counter: shakesCounter)
         }
-        completion(secureCounter)
+        return shakesCounter
     }
 }

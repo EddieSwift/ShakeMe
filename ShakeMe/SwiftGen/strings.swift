@@ -31,6 +31,8 @@ internal enum L10n {
   internal static let settings = L10n.tr("Localizable", "settings")
   /// Shake Me
   internal static let shakeMe = L10n.tr("Localizable", "shakeMe")
+  /// Shakes
+  internal static let shakes = L10n.tr("Localizable", "Shakes")
   /// Why are you shaking me?
   internal static let shakingMe = L10n.tr("Localizable", "shakingMe")
   /// Add please custom answers or turn on the internet.

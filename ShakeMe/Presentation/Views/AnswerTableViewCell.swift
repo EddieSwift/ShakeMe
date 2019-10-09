@@ -10,10 +10,9 @@ import UIKit
 import SnapKit
 
 class AnswerTableViewCell: UITableViewCell {
-    public static let identifier = "AnswerTableViewCell"
-    public static let nibName = "AnswerTableViewCell"
     // MARK: - Outlets
     private var answerLabel: UILabel!
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -22,6 +21,7 @@ class AnswerTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
     func configure(with answer: PresentableAnswer) {
         self.answerLabel?.text = answer.answerText
     }

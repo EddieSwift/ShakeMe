@@ -16,67 +16,81 @@ final class MainViewController: UIViewController {
     private var shakeImageView: UIImageView!
     private var mainViewModel: MainViewModel!
     private var shakesCounterLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupMainUI()
         self.becomeFirstResponder() // To get shake gesture
         mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
             self?.setAnimationEnabled(shouldAnimate)
         }
-        mainViewModel.loadFromStorage { counter in
-            self.shakesCounterLabel.text = "Shakes: \(counter)"
-        }
+        shakesCounterLabel.text = "\(L10n.shakes): \(String(describing: mainViewModel.loadShakesCounter()))"
     }
     // MARK: - Setter and Init Methods
     init(mainViewModel: MainViewModel) {
         self.mainViewModel = mainViewModel
         super.init(nibName: nil, bundle: nil)
     }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    // MARK: - Setup UI Constraints
-    func setupUI() {
+    // MARK: - Setup UI Methods
+    func setupMainUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.settings,
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(settingsTapped))
         view.backgroundColor = Asset.Colors.white.color
         title = L10n.shakeMe
-        answerLabel = UILabel(frame: CGRect(x: 38, y: 498, width: 338, height: 36))
-        answerLabel.translatesAutoresizingMaskIntoConstraints = false
-        answerLabel.center = CGPoint(x: 160, y: 285)
+        setupAnswerUI()
+        setupImageUI()
+        setupCounterUI()
+        setupIndicatorUI()
+    }
+
+    func setupAnswerUI() {
+        answerLabel = UILabel()
         answerLabel.textAlignment = .center
         answerLabel.numberOfLines = 4
         answerLabel.font = UIFont.systemFont(ofSize: 30, weight: .medium)
         answerLabel.textColor = Asset.Colors.green.color
         answerLabel.text = L10n.shakingMe
-        shakeImageView  = UIImageView(image: Asset.Images.shakeImage.image)
-        shakeImageView.frame = CGRect(x: 147, y: 312, width: 120, height: 120)
-        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
-        self.activityIndicator.hidesWhenStopped = true
-        shakesCounterLabel = UILabel(frame: CGRect(x: 16, y: 90, width: 90, height: 24))
-        shakesCounterLabel.textColor = Asset.Colors.green.color
-        shakesCounterLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        shakesCounterLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(answerLabel)
-        view.addSubview(shakeImageView)
-        view.addSubview(activityIndicator)
-        view.addSubview(shakesCounterLabel)
-        shakeImageView.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        answerLabel.translatesAutoresizingMaskIntoConstraints = false
         answerLabel.snp.makeConstraints { make in
             make.bottom.left.right.equalTo(view)
             make.top.equalTo(view).offset(162)
         }
-        shakesCounterLabel.snp.makeConstraints { make in
-            make.top.left.equalTo(view.safeAreaLayoutGuide).offset(16)
-        }
+    }
+
+    func setupImageUI() {
+        shakeImageView  = UIImageView(image: Asset.Images.shakeImage.image)
+        view.addSubview(shakeImageView)
+        shakeImageView.translatesAutoresizingMaskIntoConstraints = false
         shakeImageView.snp.makeConstraints { make in
             make.width.height.equalTo(120)
             make.centerX.equalTo(view)
             make.centerY.equalTo(view).offset(-42)
         }
+    }
+
+    func setupCounterUI() {
+        shakesCounterLabel = UILabel()
+        shakesCounterLabel.textColor = Asset.Colors.green.color
+        shakesCounterLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        view.addSubview(shakesCounterLabel)
+        shakesCounterLabel.translatesAutoresizingMaskIntoConstraints = false
+        shakesCounterLabel.snp.makeConstraints { make in
+            make.top.left.equalTo(view.safeAreaLayoutGuide).offset(16)
+        }
+    }
+
+    func setupIndicatorUI() {
+        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        self.activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.snp.makeConstraints { make in
             make.bottom.left.right.equalTo(view)
             make.top.equalTo(view).offset(162)
@@ -88,23 +102,26 @@ final class MainViewController: UIViewController {
             print("motionBegan")
         }
     }
+
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake { // Enable detection of shake motion
             let randomColor = self.randomColor()
+
             mainViewModel.shakeDetected { fetchedAnswer in
                 self.answerLabel.text = fetchedAnswer.answerText
                 self.answerLabel.textColor = randomColor
             }
-            mainViewModel.updateInStorage()
-            mainViewModel.loadFromStorage { counter in
-                self.shakesCounterLabel.text = "Shakes: \(counter)"
-                self.shakesCounterLabel.textColor = randomColor
-            }
+
+            mainViewModel.incrementShakesCounter()
+            shakesCounterLabel.text = "\(L10n.shakes): \(String(describing: mainViewModel.loadShakesCounter()))"
+            shakesCounterLabel.textColor = randomColor
         }
     }
+
     override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         print("motionCancelled")
     }
+
     override var canBecomeFirstResponder: Bool { // Become the first responder to get shake motion
         return true
     }
@@ -112,6 +129,7 @@ final class MainViewController: UIViewController {
     @objc func settingsTapped() {
         presentSettings()
     }
+
     private func presentSettings() {
         let settingsViewController = SettingsTableViewController()
         let coreDataService = CoreDataService()
