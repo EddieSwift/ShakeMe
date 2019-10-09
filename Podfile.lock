@@ -15,14 +15,13 @@ DEPENDENCIES:
   - SwiftyJSON (~> 5.0.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - Locksmith
     - SnapKit
     - SwiftGen
-    - SwiftyJSON
-  trunk:
     - SwiftLint
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -32,6 +31,6 @@ SPEC CHECKSUMS:
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 342b2ba8d198b7ec914cab575f9d471f6916e20e
+PODFILE CHECKSUM: ea314ef7accb441bdde6974eeb89ddf833ecbfbd
 
-COCOAPODS: 1.8.0.beta.1
+COCOAPODS: 1.8.3

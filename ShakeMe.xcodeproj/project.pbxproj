@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28D872B69133C76B2B9EA935 /* Pods_ShakeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D5EE209AEF4310683AF341 /* Pods_ShakeMe.framework */; };
 		2C0222712305FE1800EB2621 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0222702305FE1800EB2621 /* CoreDataService.swift */; };
 		2C0F6D61234D27270078E80F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F6D60234D27270078E80F /* Assets.xcassets */; };
 		2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D022FD94490029E28C /* AppDelegate.swift */; };
@@ -33,10 +34,10 @@
 		2CBDE2A52342002D0025F6D0 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBDE2A42342002D0025F6D0 /* Answer.swift */; };
 		2CBDE2A7234200540025F6D0 /* PresentableAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */; };
 		2CDED00B234C73C2008041C3 /* SecureStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDED00A234C73C2008041C3 /* SecureStorageService.swift */; };
-		5A68583780A54D85FF9410ED /* Pods_ShakeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19D5EE209AEF4310683AF341 /* Pods_ShakeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShakeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0222702305FE1800EB2621 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		2C0F6D60234D27270078E80F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C4384CD22FD94490029E28C /* ShakeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,9 +67,8 @@
 		2CBDE2A42342002D0025F6D0 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableAnswer.swift; sourceTree = "<group>"; };
 		2CDED00A234C73C2008041C3 /* SecureStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageService.swift; sourceTree = "<group>"; };
-		C422BC732261D680C918570B /* Pods-ShakeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.release.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.release.xcconfig"; sourceTree = "<group>"; };
-		CCCF5D2350BC7739E8B50C44 /* Pods-ShakeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.debug.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.debug.xcconfig"; sourceTree = "<group>"; };
-		FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShakeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A165C045E920BE1CA0FECB3 /* Pods-ShakeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.debug.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.debug.xcconfig"; sourceTree = "<group>"; };
+		DD201F6826D07BCA59B91660 /* Pods-ShakeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.release.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A68583780A54D85FF9410ED /* Pods_ShakeMe.framework in Frameworks */,
+				28D872B69133C76B2B9EA935 /* Pods_ShakeMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,8 +86,8 @@
 		099A8C4A89B89E1119D26509 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CCCF5D2350BC7739E8B50C44 /* Pods-ShakeMe.debug.xcconfig */,
-				C422BC732261D680C918570B /* Pods-ShakeMe.release.xcconfig */,
+				9A165C045E920BE1CA0FECB3 /* Pods-ShakeMe.debug.xcconfig */,
+				DD201F6826D07BCA59B91660 /* Pods-ShakeMe.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -109,7 +109,7 @@
 				2C4384CF22FD94490029E28C /* ShakeMe */,
 				2C4384CE22FD94490029E28C /* Products */,
 				099A8C4A89B89E1119D26509 /* Pods */,
-				515252C4B49509A73642D500 /* Frameworks */,
+				E5563DE8C532763CE598AB7E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -241,10 +241,10 @@
 			path = SecureStorage;
 			sourceTree = "<group>";
 		};
-		515252C4B49509A73642D500 /* Frameworks */ = {
+		E5563DE8C532763CE598AB7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FF415AA97346FDEB888BC7C8 /* Pods_ShakeMe.framework */,
+				19D5EE209AEF4310683AF341 /* Pods_ShakeMe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -256,13 +256,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C4384E222FD944A0029E28C /* Build configuration list for PBXNativeTarget "ShakeMe" */;
 			buildPhases = (
-				487D2A6EE62E1FAA8E318CB9 /* [CP] Check Pods Manifest.lock */,
+				F9722B188C7BEC31349EA335 /* [CP] Check Pods Manifest.lock */,
 				2C78E8FB233508F7001C88F7 /* SwiftLint */,
 				2C48B6542337DBA00065BCE6 /* SwiftGen */,
 				2C4384C922FD94490029E28C /* Sources */,
 				2C4384CA22FD94490029E28C /* Frameworks */,
 				2C4384CB22FD94490029E28C /* Resources */,
-				62A08DAC77C26CDD497CDFE0 /* [CP] Embed Pods Frameworks */,
+				A38D60EE6D23F505788CE885 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -357,7 +357,24 @@
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
-		487D2A6EE62E1FAA8E318CB9 /* [CP] Check Pods Manifest.lock */ = {
+		A38D60EE6D23F505788CE885 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShakeMe/Pods-ShakeMe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShakeMe/Pods-ShakeMe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShakeMe/Pods-ShakeMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9722B188C7BEC31349EA335 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -377,23 +394,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		62A08DAC77C26CDD497CDFE0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShakeMe/Pods-ShakeMe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShakeMe/Pods-ShakeMe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShakeMe/Pods-ShakeMe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -560,7 +560,7 @@
 		};
 		2C4384E322FD944A0029E28C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCCF5D2350BC7739E8B50C44 /* Pods-ShakeMe.debug.xcconfig */;
+			baseConfigurationReference = 9A165C045E920BE1CA0FECB3 /* Pods-ShakeMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -580,7 +580,7 @@
 		};
 		2C4384E422FD944A0029E28C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C422BC732261D680C918570B /* Pods-ShakeMe.release.xcconfig */;
+			baseConfigurationReference = DD201F6826D07BCA59B91660 /* Pods-ShakeMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
