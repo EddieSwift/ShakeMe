@@ -26,7 +26,7 @@ class AnswerTableViewCell: UITableViewCell {
         self.answerLabel?.text = answer.answerText
     }
     // MARK: - Setup UI Constraints
-    func setupUI() {
+    private func setupUI() {
         answerLabel = UILabel(frame: CGRect(x: 20, y: 18, width: 288, height: 20))
         answerLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         contentView.addSubview(answerLabel)

@@ -30,7 +30,7 @@ final class SettingsTableViewController: UITableViewController {
         }
     }
     // MARK: - Setup UI Constraints
-    func setupUI() {
+    private func setupUI() {
         title = L10n.settings
         tableView.allowsSelection = false
         tableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: "AnswerTableViewCell")
@@ -39,7 +39,7 @@ final class SettingsTableViewController: UITableViewController {
                                                             action: #selector(addTapped))
     }
     // MARK: - Bar Button Action Methods
-    @objc func addTapped() {
+    @objc private func addTapped() {
         let alert = UIAlertController(title: L10n.newAnswer,
                                       message: L10n.addCustomAnswer,
                                       preferredStyle: .alert)

@@ -24,7 +24,7 @@ final class MainViewController: UIViewController {
         mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
             self?.setAnimationEnabled(shouldAnimate)
         }
-        shakesCounterLabel.text = "\(L10n.shakes): \(String(describing: mainViewModel.loadShakesCounter()))"
+        shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())
     }
     // MARK: - Setter and Init Methods
     init(mainViewModel: MainViewModel) {
@@ -36,7 +36,7 @@ final class MainViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     // MARK: - Setup UI Methods
-    func setupMainUI() {
+    private func setupMainUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.settings,
                                                             style: .plain,
                                                             target: self,
@@ -49,7 +49,7 @@ final class MainViewController: UIViewController {
         setupIndicatorUI()
     }
 
-    func setupAnswerUI() {
+    private func setupAnswerUI() {
         answerLabel = UILabel()
         answerLabel.textAlignment = .center
         answerLabel.numberOfLines = 4
@@ -64,7 +64,7 @@ final class MainViewController: UIViewController {
         }
     }
 
-    func setupImageUI() {
+    private func setupImageUI() {
         shakeImageView  = UIImageView(image: Asset.Images.shakeImage.image)
         view.addSubview(shakeImageView)
         shakeImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +75,7 @@ final class MainViewController: UIViewController {
         }
     }
 
-    func setupCounterUI() {
+    private func setupCounterUI() {
         shakesCounterLabel = UILabel()
         shakesCounterLabel.textColor = Asset.Colors.green.color
         shakesCounterLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
@@ -86,7 +86,7 @@ final class MainViewController: UIViewController {
         }
     }
 
-    func setupIndicatorUI() {
+    private func setupIndicatorUI() {
         activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         self.activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
@@ -113,7 +113,7 @@ final class MainViewController: UIViewController {
             }
 
             mainViewModel.incrementShakesCounter()
-            shakesCounterLabel.text = "\(L10n.shakes): \(String(describing: mainViewModel.loadShakesCounter()))"
+            shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())
             shakesCounterLabel.textColor = randomColor
         }
     }
@@ -126,7 +126,7 @@ final class MainViewController: UIViewController {
         return true
     }
     // MARK: - Navigation Methods
-    @objc func settingsTapped() {
+    @objc private func settingsTapped() {
         presentSettings()
     }
 

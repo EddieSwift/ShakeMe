@@ -11,4 +11,4 @@
 "identifier"      = "AnswerTableViewCell";
 "nibName"         = "AnswerTableViewCell";
 "shakeMe"         = "Shake Me";
-"Shakes"          = "Shakes";
+"Shakes"          = "Shakes %d";

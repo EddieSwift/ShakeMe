@@ -16,15 +16,15 @@ protocol CoreDataServiceProvider {
 }
 
 final public class CoreDataService: CoreDataServiceProvider {
-    
+
     private var backgroundContext: NSManagedObjectContext!
-    
+
     init() {
         createContainer { container in
             self.backgroundContext = container.newBackgroundContext()
         }
     }
-    
+
     func fetchAllAnswers() -> [Answer] {
         let fetchRequest =
             NSFetchRequest<NSFetchRequestResult>(entityName: "CustomAnswer")
@@ -37,7 +37,7 @@ final public class CoreDataService: CoreDataServiceProvider {
         }
         return [Answer]()
     }
-    
+
     public func save(_ text: String) {
         guard let context = backgroundContext else { return }
         guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer",
@@ -49,7 +49,7 @@ final public class CoreDataService: CoreDataServiceProvider {
             print(error)
         }
     }
-    
+
     func delete(_ answer: NSManagedObject) {
         guard let context = backgroundContext else { return }
         context.delete(answer)
@@ -59,7 +59,7 @@ final public class CoreDataService: CoreDataServiceProvider {
             print("Error While Deleting Note: \(error.userInfo)")
         }
     }
-    
+
     func createContainer(completion: @escaping
         (NSPersistentContainer) -> Void) { let container = NSPersistentContainer(name:
         "DataModel")
