@@ -7,32 +7,94 @@
 //
 
 import UIKit
+import SnapKit
 
 final class MainViewController: UIViewController {
     // MARK: - Outlets
-    @IBOutlet private weak var questionTextField: UITextField!
-    @IBOutlet private weak var answerLabel: UILabel!
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet private weak var shakeImageView: UIImageView!
+    private var answerLabel: UILabel!
+    private var activityIndicator: UIActivityIndicatorView!
+    private var shakeImageView: UIImageView!
     private var mainViewModel: MainViewModel!
+    private var shakesCounterLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.answerLabel.text = L10n.shakingMe
-        self.answerLabel.textColor = Asset.Colors.green.color
-        self.shakeImageView.image = Asset.Images.shakeImage.image
-        self.activityIndicator.hidesWhenStopped = true
+        setupMainUI()
         self.becomeFirstResponder() // To get shake gesture
         mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
             self?.setAnimationEnabled(shouldAnimate)
         }
+        shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())
+    }
+    // MARK: - Setter and Init Methods
+    init(mainViewModel: MainViewModel) {
+        self.mainViewModel = mainViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    // MARK: - Setup UI Methods
+    private func setupMainUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.settings,
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(settingsTapped))
+        view.backgroundColor = Asset.Colors.white.color
+        title = L10n.shakeMe
+        setupAnswerUI()
+        setupImageUI()
+        setupCounterUI()
+        setupIndicatorUI()
     }
-    // MARK: - Setter Method
-    func setMainViewModel(_ mainViewModel: MainViewModel) {
-        self.mainViewModel = mainViewModel
+
+    private func setupAnswerUI() {
+        answerLabel = UILabel()
+        answerLabel.textAlignment = .center
+        answerLabel.numberOfLines = 4
+        answerLabel.font = UIFont.systemFont(ofSize: 30, weight: .medium)
+        answerLabel.textColor = Asset.Colors.green.color
+        answerLabel.text = L10n.shakingMe
+        view.addSubview(answerLabel)
+        answerLabel.translatesAutoresizingMaskIntoConstraints = false
+        answerLabel.snp.makeConstraints { make in
+            make.bottom.left.right.equalTo(view)
+            make.top.equalTo(view).offset(162)
+        }
+    }
+
+    private func setupImageUI() {
+        shakeImageView  = UIImageView(image: Asset.Images.shakeImage.image)
+        view.addSubview(shakeImageView)
+        shakeImageView.translatesAutoresizingMaskIntoConstraints = false
+        shakeImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(120)
+            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).offset(-42)
+        }
+    }
+
+    private func setupCounterUI() {
+        shakesCounterLabel = UILabel()
+        shakesCounterLabel.textColor = Asset.Colors.green.color
+        shakesCounterLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        view.addSubview(shakesCounterLabel)
+        shakesCounterLabel.translatesAutoresizingMaskIntoConstraints = false
+        shakesCounterLabel.snp.makeConstraints { make in
+            make.top.left.equalTo(view.safeAreaLayoutGuide).offset(16)
+        }
+    }
+
+    private func setupIndicatorUI() {
+        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        self.activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.snp.makeConstraints { make in
+            make.bottom.left.right.equalTo(view)
+            make.top.equalTo(view).offset(162)
+        }
     }
     // MARK: - Motions
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -40,27 +102,36 @@ final class MainViewController: UIViewController {
             print("motionBegan")
         }
     }
+
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake { // Enable detection of shake motion
+            let randomColor = self.randomColor()
+
             mainViewModel.shakeDetected { fetchedAnswer in
-                //                let answer = fetchedAnswer.answerText
                 self.answerLabel.text = fetchedAnswer.answerText
-                self.answerLabel.textColor = self.randomColor()
+                self.answerLabel.textColor = randomColor
             }
+
+            mainViewModel.incrementShakesCounter()
+            shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())
+            shakesCounterLabel.textColor = randomColor
         }
     }
+
     override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         print("motionCancelled")
     }
+
     override var canBecomeFirstResponder: Bool { // Become the first responder to get shake motion
         return true
     }
     // MARK: - Navigation Methods
-    @objc func settingsTapped() {
+    @objc private func settingsTapped() {
         presentSettings()
     }
+
     private func presentSettings() {
-        let settingsViewController = StoryboardScene.Main.settingsTableViewController.instantiate()
+        let settingsViewController = SettingsTableViewController()
         let coreDataService = CoreDataService()
         let settingsModel = SettingsModel(coreDataService)
         let settingsViewModel = SettingsViewModel(settingsModel)

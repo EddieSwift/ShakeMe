@@ -14,18 +14,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions
         launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
         window = UIWindow(frame: UIScreen.main.bounds)
-        let mainViewController = StoryboardScene.Main.mainViewController.instantiate()
         let networkService = NetworkingService()
         let coreDataService = CoreDataService()
         let internetReachability = InternetReachability()
+        let secureStorageService = SecureStorageService()
+
         let mainModel = MainModel(coreDataService: coreDataService,
                                   networkService: networkService,
-                                  internetReachability: internetReachability)
+                                  internetReachability: internetReachability,
+                                  secureStorageService: secureStorageService)
         let mainViewModel = MainViewModel(mainModel)
-        mainViewController.setMainViewModel(mainViewModel)
+        let mainViewController = MainViewController(mainViewModel: mainViewModel)
         window?.rootViewController = UINavigationController(rootViewController: mainViewController)
         window?.makeKeyAndVisible()
+
         return true
     }
 }

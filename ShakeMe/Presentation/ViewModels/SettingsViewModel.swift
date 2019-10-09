@@ -12,6 +12,7 @@ import UIKit
 class SettingsViewModel {
     // MARK: - Properties
     private let settingsModel: SettingsModel
+
     init(_ settingsModel: SettingsModel) {
         self.settingsModel = settingsModel
     }
@@ -21,12 +22,15 @@ class SettingsViewModel {
             completion()
         }
     }
+
     func numberOfAnswers() -> Int {
         return settingsModel.numberOfAnswers()
     }
+
     func answerAtIndexPath(indexPath: IndexPath) -> PresentableAnswer {
         return settingsModel.answer(at: indexPath).toPresentableAnswer()
     }
+
     func saveAnswer(newAnswer: String) {
         settingsModel.saveNewAnswer(newAnswer: newAnswer)
     }

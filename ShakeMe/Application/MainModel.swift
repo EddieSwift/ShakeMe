@@ -13,18 +13,23 @@ final class MainModel {
     private let coreDataService: CoreDataServiceProvider
     private let networkingService: NetworkingServiceProvider
     private let internetReachability: InternetReachabilityProvider
+    private let secureStorageService: SecureStorageServiceProvider
+    private var shakesCounter: Int!
     var isLoadingDataStateHandler: ((Bool) -> Void)?
     private var isLoadingData = false {
         didSet {
             isLoadingDataStateHandler?(isLoadingData)
         }
     }
+
     init(coreDataService: CoreDataServiceProvider,
          networkService: NetworkingServiceProvider,
-         internetReachability: InternetReachability) {
+         internetReachability: InternetReachability,
+         secureStorageService: SecureStorageService) {
         self.coreDataService = coreDataService
         self.networkingService = networkService
         self.internetReachability = internetReachability
+        self.secureStorageService = secureStorageService
     }
     // MARK: - Network Methods
     func getShakedAnswer(completion: @escaping (Answer) -> Void) {
@@ -33,7 +38,7 @@ final class MainModel {
             guard let `self` = self else { return }
             switch state {
             case .success(let fetchedAnswer):
-                let answer = Answer(answer: fetchedAnswer)
+                let answer = Answer(answerText: fetchedAnswer)
                 completion(answer)
             case .error(let error):
                 let customAnswer = self.getCustomAnswer()
@@ -45,7 +50,19 @@ final class MainModel {
     }
     // MARK: - Data Methods
     private func getCustomAnswer() -> Answer {
-        let randomAnswer = coreDataService.fetchAllAnswers().randomElement() ?? Answer(answer: L10n.turnOnInternet)
+        let randomAnswer = coreDataService.fetchAllAnswers().randomElement() ?? Answer(answerText: L10n.turnOnInternet)
         return randomAnswer
+    }
+    // MARK: - Shakes Counter Methods
+    func incrementShakesCounter() {
+        secureStorageService.updateInStorage(counter: shakesCounter + 1)
+    }
+
+    func loadShakesCounter() -> Int {
+        shakesCounter = secureStorageService.loadFromStorage()
+        if shakesCounter == 0 {
+            secureStorageService.saveToStorage(counter: shakesCounter)
+        }
+        return shakesCounter
     }
 }

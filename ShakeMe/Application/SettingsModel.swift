@@ -12,6 +12,7 @@ class SettingsModel {
     // MARK: - Properties
     private let coreDataService: CoreDataServiceProvider
     private var allSavedAnswers = [Answer]()
+
     init(_ coreDataService: CoreDataServiceProvider) {
         self.coreDataService = coreDataService
     }
@@ -20,12 +21,15 @@ class SettingsModel {
         allSavedAnswers = coreDataService.fetchAllAnswers()
         completion(allSavedAnswers)
     }
+
     func saveNewAnswer(newAnswer: String) {
         coreDataService.save(newAnswer)
     }
+
     func numberOfAnswers() -> Int {
         return allSavedAnswers.count
     }
+
     func answer(at indexPath: IndexPath) -> Answer {
         return allSavedAnswers[indexPath.row]
     }

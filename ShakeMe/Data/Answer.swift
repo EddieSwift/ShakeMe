@@ -9,10 +9,11 @@
 import Foundation
 
 struct Answer {
-    var answer: String
+    var answerText: String
 }
+
 extension Answer {
     func toPresentableAnswer() -> PresentableAnswer {
-        return PresentableAnswer(answerText: answer)
+        return PresentableAnswer(answerText: answerText)
     }
 }
