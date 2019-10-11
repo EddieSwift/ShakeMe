@@ -40,6 +40,7 @@ final class MainModel {
             case .success(let fetchedAnswer):
                 let answer = Answer(answerText: fetchedAnswer)
                 completion(answer)
+                self.saveNewAnswer(newAnswer: fetchedAnswer)
             case .error(let error):
                 let customAnswer = self.getCustomAnswer()
                 completion(customAnswer)
@@ -52,6 +53,10 @@ final class MainModel {
     private func getCustomAnswer() -> Answer {
         let randomAnswer = coreDataService.fetchAllAnswers().randomElement() ?? Answer(answerText: L10n.turnOnInternet)
         return randomAnswer
+    }
+
+    private func saveNewAnswer(newAnswer: String) {
+        coreDataService.save(newAnswer)
     }
     // MARK: - Shakes Counter Methods
     func incrementShakesCounter() {
