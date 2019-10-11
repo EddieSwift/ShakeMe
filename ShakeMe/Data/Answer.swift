@@ -10,10 +10,15 @@ import Foundation
 
 struct Answer {
     var answerText: String
+    var answerDate: Date?
+    var answerId: String?
 }
 
 extension Answer {
     func toPresentableAnswer() -> PresentableAnswer {
-        return PresentableAnswer(answerText: answerText)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM yyyy, HH:mm"
+        let presentableDate = dateFormatter.string(from: answerDate ?? Date())
+        return PresentableAnswer(answerText: answerText, answerDate: presentableDate)
     }
 }

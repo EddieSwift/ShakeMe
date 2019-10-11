@@ -10,4 +10,5 @@ import Foundation
 
 struct PresentableAnswer {
     var answerText: String
+    var answerDate: String
 }

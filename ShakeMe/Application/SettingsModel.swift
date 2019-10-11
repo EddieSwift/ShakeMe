@@ -33,4 +33,9 @@ class SettingsModel {
     func answer(at indexPath: IndexPath) -> Answer {
         return allSavedAnswers[indexPath.row]
     }
+
+    func deleteAnswer(at indexPath: IndexPath) {
+        coreDataService.delete(allSavedAnswers[indexPath.row])
+        allSavedAnswers.remove(at: indexPath.row)
+    }
 }

@@ -11,7 +11,7 @@ import CoreData
 protocol CoreDataServiceProvider {
     func fetchAllAnswers() -> [Answer]
     func save(_ text: String)
-    func delete(_ answer: NSManagedObject)
+    func delete(_ answer: Answer)
     func createContainer(completion: @escaping (NSPersistentContainer) -> Void)
 }
 
@@ -43,6 +43,9 @@ final public class CoreDataService: CoreDataServiceProvider {
         guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer",
                                                                into: context) as? CustomAnswer else { return }
         answer.answerText = text
+        answer.answerDate = Date()
+        answer.answerId = UUID().uuidString
+
         do {
             try context.save()
         } catch {
@@ -50,9 +53,24 @@ final public class CoreDataService: CoreDataServiceProvider {
         }
     }
 
-    func delete(_ answer: NSManagedObject) {
+    func delete(_ answer: Answer) {
         guard let context = backgroundContext else { return }
-        context.delete(answer)
+
+        var fetchResults: [CustomAnswer] = []
+
+        backgroundContext.performAndWait {
+            let fetchRequest: NSFetchRequest<CustomAnswer> = CustomAnswer.fetchRequest()
+            do {
+                fetchResults = try backgroundContext.fetch(fetchRequest)
+            } catch {
+                print("Fetch error")
+            }
+        }
+
+        for obj in fetchResults where obj.answerId == answer.answerId {
+            context.delete(obj)
+        }
+
         do {
             try context.save()
         } catch let error as NSError {

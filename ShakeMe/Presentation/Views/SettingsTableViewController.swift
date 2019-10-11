@@ -99,6 +99,14 @@ extension SettingsTableViewController {
         cell.configure(with: answer)
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            settingsViewModel.deleteAnswer(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 56.0

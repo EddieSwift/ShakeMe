@@ -34,4 +34,8 @@ class SettingsViewModel {
     func saveAnswer(newAnswer: String) {
         settingsModel.saveNewAnswer(newAnswer: newAnswer)
     }
+
+    func deleteAnswer(at indexPath: IndexPath) {
+        return settingsModel.deleteAnswer(at: indexPath)
+    }
 }
