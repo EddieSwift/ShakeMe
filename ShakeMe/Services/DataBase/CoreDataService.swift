@@ -28,6 +28,7 @@ final public class CoreDataService: CoreDataServiceProvider {
     func fetchAllAnswers() -> [Answer] {
         let fetchRequest =
             NSFetchRequest<NSFetchRequestResult>(entityName: "CustomAnswer")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "answerDate", ascending: false)]
         do {
             guard let answers = try backgroundContext
                 .fetch(fetchRequest) as? [CustomAnswer] else { return [Answer]() }
