@@ -25,18 +25,22 @@ final public class CoreDataService: CoreDataServiceProvider {
         }
     }
 
-    func fetchAllAnswers() -> [Answer] {
-        let fetchRequest =
-            NSFetchRequest<NSFetchRequestResult>(entityName: "CustomAnswer")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "answerDate", ascending: false)]
-        do {
-            guard let answers = try backgroundContext
-                .fetch(fetchRequest) as? [CustomAnswer] else { return [Answer]() }
-            return answers.map { $0.toAnswer() }
-        } catch let error as NSError {
-            print("Could not fetch. \(error.localizedDescription), \(error.userInfo)")
+    func fetch() -> [CustomAnswer] {
+        var fetchResults: [CustomAnswer] = []
+        backgroundContext.performAndWait {
+            let fetchRequest: NSFetchRequest<CustomAnswer> = CustomAnswer.fetchRequest()
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "answerDate", ascending: false)]
+            do {
+                fetchResults = try backgroundContext.fetch(fetchRequest)
+            } catch {
+                print("Fetch error")
+            }
         }
-        return [Answer]()
+        return fetchResults
+    }
+
+    func fetchAllAnswers() -> [Answer] {
+        return  fetch().map { $0.toAnswer() }
     }
 
     public func save(_ text: String) {
@@ -57,16 +61,7 @@ final public class CoreDataService: CoreDataServiceProvider {
     func delete(_ answer: Answer) {
         guard let context = backgroundContext else { return }
 
-        var fetchResults: [CustomAnswer] = []
-
-        backgroundContext.performAndWait {
-            let fetchRequest: NSFetchRequest<CustomAnswer> = CustomAnswer.fetchRequest()
-            do {
-                fetchResults = try backgroundContext.fetch(fetchRequest)
-            } catch {
-                print("Fetch error")
-            }
-        }
+        let fetchResults = fetch()
 
         for obj in fetchResults where obj.answerId == answer.answerId {
             context.delete(obj)
