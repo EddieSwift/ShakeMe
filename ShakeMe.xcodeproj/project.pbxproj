@@ -31,9 +31,9 @@
 		2CBDE29A234146C30025F6D0 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBDE299234146C30025F6D0 /* MainModel.swift */; };
 		2CBDE2A52342002D0025F6D0 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBDE2A42342002D0025F6D0 /* Answer.swift */; };
 		2CBDE2A7234200540025F6D0 /* PresentableAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */; };
+		2CCF08592353B49000960621 /* CustomAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCF08572353B49000960621 /* CustomAnswer+CoreDataClass.swift */; };
+		2CCF085A2353B49000960621 /* CustomAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCF08582353B49000960621 /* CustomAnswer+CoreDataProperties.swift */; };
 		2CDED00B234C73C2008041C3 /* SecureStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDED00A234C73C2008041C3 /* SecureStorageService.swift */; };
-		2CFB08D5234F752800C65DE6 /* CustomAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFB08D3234F752800C65DE6 /* CustomAnswer+CoreDataClass.swift */; };
-		2CFB08D6234F752800C65DE6 /* CustomAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFB08D4234F752800C65DE6 /* CustomAnswer+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,9 +64,9 @@
 		2CBDE299234146C30025F6D0 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		2CBDE2A42342002D0025F6D0 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableAnswer.swift; sourceTree = "<group>"; };
+		2CCF08572353B49000960621 /* CustomAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CustomAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2CCF08582353B49000960621 /* CustomAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CustomAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2CDED00A234C73C2008041C3 /* SecureStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageService.swift; sourceTree = "<group>"; };
-		2CFB08D3234F752800C65DE6 /* CustomAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CustomAnswer+CoreDataClass.swift"; path = "../../../../../.Trash/CustomAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2CFB08D4234F752800C65DE6 /* CustomAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CustomAnswer+CoreDataProperties.swift"; path = "../../../../../.Trash/CustomAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9A165C045E920BE1CA0FECB3 /* Pods-ShakeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.debug.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.debug.xcconfig"; sourceTree = "<group>"; };
 		DD201F6826D07BCA59B91660 /* Pods-ShakeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShakeMe.release.xcconfig"; path = "Target Support Files/Pods-ShakeMe/Pods-ShakeMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,8 +196,8 @@
 		2CBDE29B2341F5D30025F6D0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				2CFB08D3234F752800C65DE6 /* CustomAnswer+CoreDataClass.swift */,
-				2CFB08D4234F752800C65DE6 /* CustomAnswer+CoreDataProperties.swift */,
+				2CCF08572353B49000960621 /* CustomAnswer+CoreDataClass.swift */,
+				2CCF08582353B49000960621 /* CustomAnswer+CoreDataProperties.swift */,
 				2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */,
 				2CBDE2A42342002D0025F6D0 /* Answer.swift */,
 				2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */,
@@ -416,14 +416,14 @@
 				2C4384D922FD94490029E28C /* DataModel.xcdatamodeld in Sources */,
 				2C8542FC2304456E0053E112 /* CoreDataStack.swift in Sources */,
 				2CBDE296234146860025F6D0 /* MainViewModel.swift in Sources */,
-				2CFB08D5234F752800C65DE6 /* CustomAnswer+CoreDataClass.swift in Sources */,
+				2CCF08592353B49000960621 /* CustomAnswer+CoreDataClass.swift in Sources */,
 				2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */,
 				2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */,
 				2C0222712305FE1800EB2621 /* CoreDataService.swift in Sources */,
 				2CBD36E0233790E60076B190 /* strings.swift in Sources */,
 				2C8542E1230015120053E112 /* InternetReachability.swift in Sources */,
 				2CBDE2912340A8070025F6D0 /* StoryboardScenes.swift in Sources */,
-				2CFB08D6234F752800C65DE6 /* CustomAnswer+CoreDataProperties.swift in Sources */,
+				2CCF085A2353B49000960621 /* CustomAnswer+CoreDataProperties.swift in Sources */,
 				2CBDE294234146360025F6D0 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
