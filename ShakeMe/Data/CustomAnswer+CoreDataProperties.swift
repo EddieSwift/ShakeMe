@@ -1,5 +1,5 @@
 //
-//  CustomAnswer+CoreDataProperties.swift
+//  CustomAnswer+CoreDataClass.swift
 //  ShakeMe
 //
 //  Created by Eduard Galchenko on 10/10/19.
@@ -7,7 +7,6 @@
 //
 //
 
-import Foundation
 import CoreData
 
 extension CustomAnswer {
@@ -16,14 +15,11 @@ extension CustomAnswer {
         return NSFetchRequest<CustomAnswer>(entityName: "CustomAnswer")
     }
 
-    @NSManaged public var answerText: String?
     @NSManaged public var answerDate: Date?
     @NSManaged public var answerId: String?
+    @NSManaged public var answerText: String?
 
     func toAnswer() -> Answer {
-        return Answer(answerText: answerText ?? "")
-    }
-    func createAnswer() {
-        answerDate = Date()
+        return Answer(answerText: answerText ?? "", answerDate: answerDate, answerId: answerId)
     }
 }

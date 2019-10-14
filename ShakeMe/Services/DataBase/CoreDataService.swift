@@ -27,8 +27,7 @@ final public class CoreDataService: CoreDataServiceProvider {
 
     func fetch() -> [CustomAnswer] {
         var fetchResults: [CustomAnswer] = []
-        guard let context = backgroundContext else { return fetchResults }
-        context.performAndWait {
+        backgroundContext.performAndWait {
             let fetchRequest: NSFetchRequest<CustomAnswer> = CustomAnswer.fetchRequest()
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: "answerDate", ascending: false)]
             do {
@@ -46,16 +45,16 @@ final public class CoreDataService: CoreDataServiceProvider {
 
     public func save(_ text: String) {
         guard let context = backgroundContext else { return }
-        context.automaticallyMergesChangesFromParent = true
         guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer",
                                                                into: context) as? CustomAnswer else { return }
+        backgroundContext.automaticallyMergesChangesFromParent = true
         answer.answerText = text
         answer.answerDate = Date()
         answer.answerId = UUID().uuidString
-        context.performAndWait {
+
+        backgroundContext.performAndWait {
             do {
-                try
-                    context.save()
+                try context.save()
             } catch {
                 print(error)
             }
@@ -71,10 +70,12 @@ final public class CoreDataService: CoreDataServiceProvider {
             context.delete(obj)
         }
 
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Error While Deleting Note: \(error.userInfo)")
+        backgroundContext.performAndWait {
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print("Error While Deleting Note: \(error.userInfo)")
+            }
         }
     }
 
