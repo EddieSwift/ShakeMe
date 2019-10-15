@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/eddie/Documents/iOSSwift/ShakeMe/ShakeMe/Data/CustomAnswer+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/eddie/Documents/iOSSwift/ShakeMe/ShakeMe/Data/CustomAnswer+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:ShakeMe.xcodeproj">
    </FileRef>
    <FileRef
