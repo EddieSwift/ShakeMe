@@ -22,6 +22,7 @@ final public class CoreDataService: CoreDataServiceProvider {
     init() {
         createContainer { container in
             self.backgroundContext = container.newBackgroundContext()
+            self.backgroundContext.automaticallyMergesChangesFromParent = true
         }
     }
 
@@ -29,11 +30,11 @@ final public class CoreDataService: CoreDataServiceProvider {
         var fetchResults: [CustomAnswer] = []
         backgroundContext.performAndWait {
             let fetchRequest: NSFetchRequest<CustomAnswer> = CustomAnswer.fetchRequest()
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(CustomAnswer.date), ascending: false)]
             do {
                 fetchResults = try backgroundContext.fetch(fetchRequest)
             } catch {
-                print("Fetch error")
+                fatalError("Fetch error")
             }
         }
         return fetchResults
@@ -47,7 +48,6 @@ final public class CoreDataService: CoreDataServiceProvider {
         guard let context = backgroundContext else { return }
         guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer",
                                                                into: context) as? CustomAnswer else { return }
-        backgroundContext.automaticallyMergesChangesFromParent = true
         answer.text = text
         answer.date = Date()
         answer.identifier = UUID().uuidString
@@ -64,14 +64,13 @@ final public class CoreDataService: CoreDataServiceProvider {
     func delete(_ answer: Answer) {
         guard let context = backgroundContext else { return }
 
-        let fetchResults = fetch()
-
-        for obj in fetchResults where obj.identifier == answer.identifier {
-            context.delete(obj)
-        }
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CustomAnswer.self))
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", answer.identifier ?? "")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         backgroundContext.performAndWait {
             do {
+                try context.execute(deleteRequest)
                 try context.save()
             } catch let error as NSError {
                 print("Error While Deleting Note: \(error.userInfo)")

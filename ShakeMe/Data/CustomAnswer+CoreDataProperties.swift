@@ -22,4 +22,8 @@ extension CustomAnswer {
     func toAnswer() -> Answer {
         return Answer(text: text ?? "", date: date, identifier: identifier)
     }
+
+    public convenience init(context: NSManagedObjectContext?) {
+        self.init(entity: type(of: self).entity(), insertInto: context)
+    }
 }

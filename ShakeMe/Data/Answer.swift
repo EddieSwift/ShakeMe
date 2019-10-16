@@ -21,4 +21,8 @@ extension Answer {
         let presentableDate = dateFormatter.string(from: date ?? Date())
         return PresentableAnswer(text: text, date: presentableDate)
     }
+
+    func awakeFromInsert() {
+
+    }
 }
