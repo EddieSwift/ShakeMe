@@ -20,6 +20,7 @@ final class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 80.0
         setupUI()
     }
 
@@ -106,9 +107,5 @@ extension SettingsTableViewController {
             settingsViewModel.deleteAnswer(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-    }
-    // MARK: - UITableViewDelegate
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
     }
 }

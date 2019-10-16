@@ -34,7 +34,7 @@ class AnswerTableViewCell: UITableViewCell {
     }
 
     private func setupAnswerUI() {
-        answerLabel = UILabel(frame: CGRect(x: 20, y: 30, width: 288, height: 20))
+        answerLabel = UILabel()
         answerLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         contentView.addSubview(answerLabel)
         answerLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +46,7 @@ class AnswerTableViewCell: UITableViewCell {
     }
 
     private func setupDateUI() {
-        dateLabel = UILabel(frame: CGRect(x: 320, y: 8, width: 40, height: 16))
+        dateLabel = UILabel()
         dateLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         contentView.addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
