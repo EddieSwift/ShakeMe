@@ -9,16 +9,16 @@
 import Foundation
 
 struct Answer {
-    var answerText: String
-    var answerDate: Date?
-    var answerId: String?
+    var text: String
+    var date: Date?
+    var identifier: String?
 }
 
 extension Answer {
     func toPresentableAnswer() -> PresentableAnswer {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMM yyyy, HH:mm"
-        let presentableDate = dateFormatter.string(from: answerDate ?? Date())
-        return PresentableAnswer(answerText: answerText, answerDate: presentableDate)
+        let presentableDate = dateFormatter.string(from: date ?? Date())
+        return PresentableAnswer(text: text, date: presentableDate)
     }
 }

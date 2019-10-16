@@ -29,7 +29,7 @@ final public class CoreDataService: CoreDataServiceProvider {
         var fetchResults: [CustomAnswer] = []
         backgroundContext.performAndWait {
             let fetchRequest: NSFetchRequest<CustomAnswer> = CustomAnswer.fetchRequest()
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "answerDate", ascending: false)]
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
             do {
                 fetchResults = try backgroundContext.fetch(fetchRequest)
             } catch {
@@ -48,9 +48,9 @@ final public class CoreDataService: CoreDataServiceProvider {
         guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer",
                                                                into: context) as? CustomAnswer else { return }
         backgroundContext.automaticallyMergesChangesFromParent = true
-        answer.answerText = text
-        answer.answerDate = Date()
-        answer.answerId = UUID().uuidString
+        answer.text = text
+        answer.date = Date()
+        answer.identifier = UUID().uuidString
 
         backgroundContext.performAndWait {
             do {
@@ -66,7 +66,7 @@ final public class CoreDataService: CoreDataServiceProvider {
 
         let fetchResults = fetch()
 
-        for obj in fetchResults where obj.answerId == answer.answerId {
+        for obj in fetchResults where obj.identifier == answer.identifier {
             context.delete(obj)
         }
 

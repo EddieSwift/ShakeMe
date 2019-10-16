@@ -9,6 +9,6 @@
 import Foundation
 
 struct PresentableAnswer {
-    var answerText: String
-    var answerDate: String
+    var text: String
+    var date: String
 }

@@ -26,7 +26,7 @@ class MainViewModel {
     func shakeDetected(completion: @escaping (PresentableAnswer) -> Void) {
         mainModel.getShakedAnswer { fetchedAnswer in
             var answer = fetchedAnswer.toPresentableAnswer()
-            answer.answerText = answer.answerText.uppercased()
+            answer.text = answer.text.uppercased()
             completion(answer)
         }
     }

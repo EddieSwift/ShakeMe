@@ -24,8 +24,8 @@ class AnswerTableViewCell: UITableViewCell {
     }
 
     func configure(with answer: PresentableAnswer) {
-        self.answerLabel?.text = answer.answerText
-        self.dateLabel.text = answer.answerDate
+        self.answerLabel?.text = answer.text
+        self.dateLabel.text = answer.date
     }
     // MARK: - Setup UI Methods
     private func setupUI() {

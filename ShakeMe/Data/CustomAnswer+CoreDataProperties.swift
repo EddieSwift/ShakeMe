@@ -15,11 +15,11 @@ extension CustomAnswer {
         return NSFetchRequest<CustomAnswer>(entityName: "CustomAnswer")
     }
 
-    @NSManaged public var answerDate: Date?
-    @NSManaged public var answerId: String?
-    @NSManaged public var answerText: String?
+    @NSManaged public var date: Date?
+    @NSManaged public var identifier: String?
+    @NSManaged public var text: String?
 
     func toAnswer() -> Answer {
-        return Answer(answerText: answerText ?? "", answerDate: answerDate, answerId: answerId)
+        return Answer(text: text ?? "", date: date, identifier: identifier)
     }
 }
