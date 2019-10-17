@@ -65,7 +65,7 @@ final public class CoreDataService: CoreDataServiceProvider {
         guard let context = backgroundContext else { return }
 
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CustomAnswer.self))
-        fetchRequest.predicate = NSPredicate(format: "identifier == %@", answer.identifier ?? "")
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", answer.identifier!)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         backgroundContext.performAndWait {

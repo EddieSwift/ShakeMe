@@ -16,13 +16,6 @@ struct Answer {
 
 extension Answer {
     func toPresentableAnswer() -> PresentableAnswer {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yyyy, HH:mm"
-        let presentableDate = dateFormatter.string(from: date ?? Date())
-        return PresentableAnswer(text: text, date: presentableDate)
-    }
-
-    func awakeFromInsert() {
-
+        return PresentableAnswer(text: text, date: date ?? Date())
     }
 }
