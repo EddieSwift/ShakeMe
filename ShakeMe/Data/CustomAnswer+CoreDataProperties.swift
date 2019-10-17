@@ -23,8 +23,10 @@ extension CustomAnswer {
         return Answer(text: text ?? "", date: date, identifier: identifier)
     }
 
-    public convenience init(context: NSManagedObjectContext?) {
-        self.init(entity: type(of: self).entity(), insertInto: context)
+    convenience init(text: String, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
+        let entity = NSEntityDescription.entity(forEntityName: "CustomAnswer", in: context)!
+        self.init(entity: entity, insertInto: context)
+        self.text = text
     }
 
     public override func awakeFromInsert() {

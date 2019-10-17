@@ -46,9 +46,8 @@ final public class CoreDataService: CoreDataServiceProvider {
 
     public func save(_ text: String) {
         guard let context = backgroundContext else { return }
-        guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer",
-                                                               into: context) as? CustomAnswer else { return }
-        answer.text = text
+
+        let answer = CustomAnswer(text: text, insertIntoManagedObjectContext: context)
         answer.awakeFromInsert()
 
         backgroundContext.performAndWait {
@@ -64,15 +63,19 @@ final public class CoreDataService: CoreDataServiceProvider {
         guard let context = backgroundContext else { return }
 
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CustomAnswer.self))
-        fetchRequest.predicate = NSPredicate(format: "identifier == %@", answer.identifier!)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
-        backgroundContext.performAndWait {
-            do {
-                try context.execute(deleteRequest)
-                try context.save()
-            } catch let error as NSError {
-                print("Error While Deleting Note: \(error.userInfo)")
+        if let identifier = answer.identifier {
+            fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier)
+
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+            backgroundContext.performAndWait {
+                do {
+                    try context.execute(deleteRequest)
+                    try context.save()
+                } catch let error as NSError {
+                    print("Error While Deleting Note: \(error.userInfo)")
+                }
             }
         }
     }

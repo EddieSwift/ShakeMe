@@ -8,6 +8,8 @@
 
 import UIKit
 
+let rowHeight: CGFloat = 80.0
+
 final class SettingsTableViewController: UITableViewController {
     // MARK: - Outlets and Setter
     private var settingsViewModel: SettingsViewModel!
@@ -20,7 +22,7 @@ final class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 80.0
+        tableView.rowHeight = rowHeight
         setupUI()
     }
 
