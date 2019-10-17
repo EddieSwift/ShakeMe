@@ -49,8 +49,7 @@ final public class CoreDataService: CoreDataServiceProvider {
         guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer",
                                                                into: context) as? CustomAnswer else { return }
         answer.text = text
-        answer.date = Date()
-        answer.identifier = UUID().uuidString
+        answer.awakeFromInsert()
 
         backgroundContext.performAndWait {
             do {

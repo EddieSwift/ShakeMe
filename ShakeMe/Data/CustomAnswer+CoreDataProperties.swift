@@ -26,4 +26,10 @@ extension CustomAnswer {
     public convenience init(context: NSManagedObjectContext?) {
         self.init(entity: type(of: self).entity(), insertInto: context)
     }
+
+    public override func awakeFromInsert() {
+        super.awakeFromInsert()
+        date = Date()
+        identifier = UUID().uuidString
+    }
 }
