@@ -108,7 +108,7 @@ final class MainViewController: UIViewController {
             let randomColor = self.randomColor()
 
             mainViewModel.shakeDetected { fetchedAnswer in
-                self.answerLabel.text = fetchedAnswer.answerText
+                self.answerLabel.text = fetchedAnswer.text
                 self.answerLabel.textColor = randomColor
             }
 

@@ -11,7 +11,7 @@ import CoreData
 protocol CoreDataServiceProvider {
     func fetchAllAnswers() -> [Answer]
     func save(_ text: String)
-    func delete(_ answer: NSManagedObject)
+    func delete(_ answer: Answer)
     func createContainer(completion: @escaping (NSPersistentContainer) -> Void)
 }
 
@@ -22,41 +22,61 @@ final public class CoreDataService: CoreDataServiceProvider {
     init() {
         createContainer { container in
             self.backgroundContext = container.newBackgroundContext()
+            self.backgroundContext.automaticallyMergesChangesFromParent = true
         }
     }
 
-    func fetchAllAnswers() -> [Answer] {
-        let fetchRequest =
-            NSFetchRequest<NSFetchRequestResult>(entityName: "CustomAnswer")
-        do {
-            guard let answers = try backgroundContext
-                .fetch(fetchRequest) as? [CustomAnswer] else { return [Answer]() }
-            return answers.map { $0.toAnswer() }
-        } catch let error as NSError {
-            print("Could not fetch. \(error.localizedDescription), \(error.userInfo)")
+    func fetch() -> [CustomAnswer] {
+        var fetchResults: [CustomAnswer] = []
+        backgroundContext.performAndWait {
+            let fetchRequest: NSFetchRequest<CustomAnswer> = CustomAnswer.fetchRequest()
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(CustomAnswer.date), ascending: false)]
+            do {
+                fetchResults = try backgroundContext.fetch(fetchRequest)
+            } catch {
+                fatalError("Fetch error")
+            }
         }
-        return [Answer]()
+        return fetchResults
+    }
+
+    func fetchAllAnswers() -> [Answer] {
+        return  fetch().map { $0.toAnswer() }
     }
 
     public func save(_ text: String) {
         guard let context = backgroundContext else { return }
-        guard let answer = NSEntityDescription.insertNewObject(forEntityName: "CustomAnswer",
-                                                               into: context) as? CustomAnswer else { return }
-        answer.answerText = text
-        do {
-            try context.save()
-        } catch {
-            print(error)
+
+        let answer = CustomAnswer(text: text, insertIntoManagedObjectContext: context)
+        answer.awakeFromInsert()
+
+        backgroundContext.performAndWait {
+            do {
+                try context.save()
+            } catch {
+                print(error)
+            }
         }
     }
 
-    func delete(_ answer: NSManagedObject) {
+    func delete(_ answer: Answer) {
         guard let context = backgroundContext else { return }
-        context.delete(answer)
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Error While Deleting Note: \(error.userInfo)")
+
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CustomAnswer.self))
+
+        if let identifier = answer.identifier {
+            fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier)
+
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+            backgroundContext.performAndWait {
+                do {
+                    try context.execute(deleteRequest)
+                    try context.save()
+                } catch let error as NSError {
+                    print("Error While Deleting Note: \(error.userInfo)")
+                }
+            }
         }
     }
 

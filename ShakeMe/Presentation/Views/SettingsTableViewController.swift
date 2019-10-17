@@ -8,6 +8,8 @@
 
 import UIKit
 
+let rowHeight: CGFloat = 80.0
+
 final class SettingsTableViewController: UITableViewController {
     // MARK: - Outlets and Setter
     private var settingsViewModel: SettingsViewModel!
@@ -20,6 +22,7 @@ final class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = rowHeight
         setupUI()
     }
 
@@ -99,8 +102,12 @@ extension SettingsTableViewController {
         cell.configure(with: answer)
         return cell
     }
-    // MARK: - UITableViewDelegate
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 56.0
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            settingsViewModel.deleteAnswer(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 }

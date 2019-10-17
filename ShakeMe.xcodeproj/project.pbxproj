@@ -15,11 +15,11 @@
 		2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384E522FD94EF0029E28C /* MainViewController.swift */; };
 		2C4384ED22FD95520029E28C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4384EC22FD95520029E28C /* LaunchScreen.storyboard */; };
 		2C78E8FA23313E4B001C88F7 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 2C78E8F923313E4B001C88F7 /* Readme.md */; };
+		2C82CA5D23575A920060526C /* CustomAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82CA5B23575A920060526C /* CustomAnswer+CoreDataClass.swift */; };
+		2C82CA5E23575A920060526C /* CustomAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82CA5C23575A920060526C /* CustomAnswer+CoreDataProperties.swift */; };
 		2C8542DF22FF50EE0053E112 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542DE22FF50EE0053E112 /* SettingsTableViewController.swift */; };
 		2C8542E1230015120053E112 /* InternetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542E0230015120053E112 /* InternetReachability.swift */; };
 		2C8542E423030A330053E112 /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542E223030A330053E112 /* AnswerTableViewCell.swift */; };
-		2C8542F0230323280053E112 /* CustomAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */; };
-		2C8542F1230323280053E112 /* CustomAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */; };
 		2C8542F92304344E0053E112 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542F82304344E0053E112 /* NetworkingService.swift */; };
 		2C8542FC2304456E0053E112 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8542FB2304456E0053E112 /* CoreDataStack.swift */; };
 		2CBD36DF233790E60076B190 /* assets-images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD36DD233790E60076B190 /* assets-images.swift */; };
@@ -47,11 +47,11 @@
 		2C4384E522FD94EF0029E28C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2C4384EC22FD95520029E28C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C78E8F923313E4B001C88F7 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		2C82CA5B23575A920060526C /* CustomAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CustomAnswer+CoreDataClass.swift"; path = "/Users/eddie/Documents/iOSSwift/ShakeMe/ShakeMe/Data/CustomAnswer+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		2C82CA5C23575A920060526C /* CustomAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CustomAnswer+CoreDataProperties.swift"; path = "/Users/eddie/Documents/iOSSwift/ShakeMe/ShakeMe/Data/CustomAnswer+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		2C8542DE22FF50EE0053E112 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		2C8542E0230015120053E112 /* InternetReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetReachability.swift; sourceTree = "<group>"; };
 		2C8542E223030A330053E112 /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTableViewCell.swift; sourceTree = "<group>"; };
-		2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C8542F82304344E0053E112 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		2C8542FB2304456E0053E112 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		2CBD36DB23378E1E0076B190 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
@@ -196,10 +196,10 @@
 		2CBDE29B2341F5D30025F6D0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2C82CA5B23575A920060526C /* CustomAnswer+CoreDataClass.swift */,
+				2C82CA5C23575A920060526C /* CustomAnswer+CoreDataProperties.swift */,
 				2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */,
 				2CBDE2A42342002D0025F6D0 /* Answer.swift */,
-				2C8542EE230323280053E112 /* CustomAnswer+CoreDataClass.swift */,
-				2C8542EF230323280053E112 /* CustomAnswer+CoreDataProperties.swift */,
 				2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */,
 			);
 			path = Data;
@@ -404,11 +404,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBDE298234146AE0025F6D0 /* SettingsModel.swift in Sources */,
+				2C82CA5D23575A920060526C /* CustomAnswer+CoreDataClass.swift in Sources */,
 				2CBDE2902340A8070025F6D0 /* StoryboardSegues.swift in Sources */,
 				2CBD36DF233790E60076B190 /* assets-images.swift in Sources */,
 				2CBDE2A7234200540025F6D0 /* PresentableAnswer.swift in Sources */,
 				2C8542DF22FF50EE0053E112 /* SettingsTableViewController.swift in Sources */,
-				2C8542F0230323280053E112 /* CustomAnswer+CoreDataClass.swift in Sources */,
 				2C8542E423030A330053E112 /* AnswerTableViewCell.swift in Sources */,
 				2CBDE29A234146C30025F6D0 /* MainModel.swift in Sources */,
 				2CDED00B234C73C2008041C3 /* SecureStorageService.swift in Sources */,
@@ -417,11 +417,11 @@
 				2C4384D922FD94490029E28C /* DataModel.xcdatamodeld in Sources */,
 				2C8542FC2304456E0053E112 /* CoreDataStack.swift in Sources */,
 				2CBDE296234146860025F6D0 /* MainViewModel.swift in Sources */,
+				2C82CA5E23575A920060526C /* CustomAnswer+CoreDataProperties.swift in Sources */,
 				2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */,
 				2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */,
 				2C0222712305FE1800EB2621 /* CoreDataService.swift in Sources */,
 				2CBD36E0233790E60076B190 /* strings.swift in Sources */,
-				2C8542F1230323280053E112 /* CustomAnswer+CoreDataProperties.swift in Sources */,
 				2C8542E1230015120053E112 /* InternetReachability.swift in Sources */,
 				2CBDE2912340A8070025F6D0 /* StoryboardScenes.swift in Sources */,
 				2CBDE294234146360025F6D0 /* SettingsViewModel.swift in Sources */,

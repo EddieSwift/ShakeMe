@@ -12,6 +12,7 @@ import SnapKit
 class AnswerTableViewCell: UITableViewCell {
     // MARK: - Outlets
     private var answerLabel: UILabel!
+    private var dateLabel: UILabel!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,18 +24,35 @@ class AnswerTableViewCell: UITableViewCell {
     }
 
     func configure(with answer: PresentableAnswer) {
-        self.answerLabel?.text = answer.answerText
+        self.answerLabel?.text = answer.text
+        self.dateLabel.text = answer.date
     }
-    // MARK: - Setup UI Constraints
+    // MARK: - Setup UI Methods
     private func setupUI() {
-        answerLabel = UILabel(frame: CGRect(x: 20, y: 18, width: 288, height: 20))
+        setupAnswerUI()
+        setupDateUI()
+    }
+
+    private func setupAnswerUI() {
+        answerLabel = UILabel()
         answerLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         contentView.addSubview(answerLabel)
         answerLabel.translatesAutoresizingMaskIntoConstraints = false
         answerLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView).offset(18)
+            make.top.equalTo(contentView).offset(30)
             make.left.equalTo(contentView).offset(20)
             make.right.equalTo(contentView).offset(20)
+        }
+    }
+
+    private func setupDateUI() {
+        dateLabel = UILabel()
+        dateLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        contentView.addSubview(dateLabel)
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView).offset(8)
+            make.right.equalTo(contentView).offset(-20)
         }
     }
 }

@@ -8,6 +8,18 @@
 
 import Foundation
 
+private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "d MMM yyyy, HH:mm"
+    return formatter
+}()
+
 struct PresentableAnswer {
-    var answerText: String
+    var text: String
+    var date: String
+
+    init(text: String, date: Date) {
+        self.date = dateFormatter.string(from: date)
+        self.text = text
+    }
 }
