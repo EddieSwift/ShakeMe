@@ -8,19 +8,6 @@
 
 import CoreData
 
-extension NSManagedObjectContext {
-
-    func returnPerformAndWait<T>(_ work: () -> T) -> T {
-        var result: T!
-
-        performAndWait {
-            result = work()
-        }
-
-        return result
-    }
-}
-
 protocol CoreDataServiceProvider {
     func fetchAllAnswers() -> [Answer]
     func save(_ text: String)
