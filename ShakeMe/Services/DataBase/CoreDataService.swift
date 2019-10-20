@@ -41,8 +41,9 @@ final public class CoreDataService: CoreDataServiceProvider {
 
     func fetchAllAnswers() -> [Answer] {
         var fetchResults: [CustomAnswer] = []
+        guard let context = backgroundContext else { return [Answer]() }
 
-        backgroundContext.performAndWait {
+        context.performAndWait {
             let fetchRequest: NSFetchRequest<CustomAnswer> = CustomAnswer.fetchRequest()
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(CustomAnswer.date), ascending: false)]
 
@@ -53,7 +54,7 @@ final public class CoreDataService: CoreDataServiceProvider {
             }
         }
 
-        return backgroundContext.returnPerformAndWait {
+        return context.returnPerformAndWait {
             fetchResults.map { $0.toAnswer() }
         }
     }
