@@ -9,6 +9,7 @@
 import CoreData
 
 protocol CoreDataServiceProvider {
+
     func fetchAllAnswers() -> [Answer]
     func save(_ text: String)
     func delete(_ answer: Answer)
@@ -94,4 +95,5 @@ final public class CoreDataService: CoreDataServiceProvider {
             DispatchQueue.main.async { completion(container) }
         })
     }
+
 }

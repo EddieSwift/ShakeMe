@@ -10,7 +10,9 @@ import UIKit
 import SnapKit
 
 final class MainViewController: UIViewController {
+
     // MARK: - Outlets
+
     private var answerLabel: UILabel!
     private var activityIndicator: UIActivityIndicatorView!
     private var shakeImageView: UIImageView!
@@ -20,14 +22,16 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMainUI()
-        self.becomeFirstResponder() // To get shake gesture
+        self.becomeFirstResponder()
         mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
             self?.setAnimationEnabled(shouldAnimate)
             self?.shakeImageView.shakeAnimation(shouldAnimate)
         }
         shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())
     }
+
     // MARK: - Setter and Init Methods
+
     init(mainViewModel: MainViewModel) {
         self.mainViewModel = mainViewModel
         super.init(nibName: nil, bundle: nil)
@@ -36,7 +40,9 @@ final class MainViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
     // MARK: - Setup UI Methods
+
     private func setupMainUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.settings,
                                                             style: .plain,
@@ -97,7 +103,9 @@ final class MainViewController: UIViewController {
             make.top.equalTo(view).offset(162)
         }
     }
+
     // MARK: - Motions
+
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             print("motionBegan")
@@ -123,10 +131,13 @@ final class MainViewController: UIViewController {
         print("motionCancelled")
     }
 
-    override var canBecomeFirstResponder: Bool { // Become the first responder to get shake motion
+    // Become the first responder to get shake motion
+    override var canBecomeFirstResponder: Bool {
         return true
     }
+
     // MARK: - Navigation Methods
+
     @objc private func settingsTapped() {
         presentSettings()
     }
@@ -139,7 +150,9 @@ final class MainViewController: UIViewController {
         settingsViewController.setSettingsViewModel(settingsViewModel)
         self.navigationController?.pushViewController(settingsViewController, animated: true)
     }
+
     // MARK: - Indicator Methods
+
     private func setAnimationEnabled(_ enabled: Bool) {
         if enabled {
             self.answerLabel.isHidden = true
@@ -152,7 +165,9 @@ final class MainViewController: UIViewController {
             self.answerLabel.isHidden = false
         }
     }
+
     // MARK: - Help Methods
+
     private func randomColor() -> UIColor {
         //Generate between 0 to 1
         let red   = CGFloat(drand48())
@@ -160,4 +175,5 @@ final class MainViewController: UIViewController {
         let blue  = CGFloat(drand48())
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
+
 }

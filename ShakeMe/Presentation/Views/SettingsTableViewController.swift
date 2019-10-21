@@ -11,7 +11,9 @@ import UIKit
 let rowHeight: CGFloat = 80.0
 
 final class SettingsTableViewController: UITableViewController {
+
     // MARK: - Outlets and Setter
+
     private var settingsViewModel: SettingsViewModel!
 
     func setSettingsViewModel(_ settingsViewModel: SettingsViewModel) {
@@ -33,6 +35,7 @@ final class SettingsTableViewController: UITableViewController {
         }
     }
     // MARK: - Setup UI Constraints
+
     private func setupUI() {
         title = L10n.settings
         tableView.allowsSelection = false
@@ -41,7 +44,9 @@ final class SettingsTableViewController: UITableViewController {
                                                             target: self,
                                                             action: #selector(addTapped))
     }
+
     // MARK: - Bar Button Action Methods
+
     @objc private func addTapped() {
         let alert = UIAlertController(title: L10n.newAnswer,
                                       message: L10n.addCustomAnswer,
@@ -71,7 +76,9 @@ final class SettingsTableViewController: UITableViewController {
         alert.addAction(cancleAction)
         present(alert, animated: true)
     }
+
     // MARK: - Alert metod
+
     private func emptyStringAlert() {
         let alert = UIAlertController(title: L10n.warning,
                                       message: L10n.answerLength,
@@ -82,8 +89,11 @@ final class SettingsTableViewController: UITableViewController {
         present(alert, animated: true)
     }
 }
+
 extension SettingsTableViewController {
+
     // MARK: - UITableViewDataSource
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -110,4 +120,5 @@ extension SettingsTableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+
 }

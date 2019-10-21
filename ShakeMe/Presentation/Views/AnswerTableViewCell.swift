@@ -10,7 +10,9 @@ import UIKit
 import SnapKit
 
 class AnswerTableViewCell: UITableViewCell {
+
     // MARK: - Outlets
+
     private var answerLabel: UILabel!
     private var dateLabel: UILabel!
 
@@ -18,7 +20,9 @@ class AnswerTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
+
     // MARK: - Init Methods
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -27,7 +31,9 @@ class AnswerTableViewCell: UITableViewCell {
         self.answerLabel?.text = answer.text
         self.dateLabel.text = answer.date
     }
+
     // MARK: - Setup UI Methods
+
     private func setupUI() {
         setupAnswerUI()
         setupDateUI()
@@ -55,4 +61,5 @@ class AnswerTableViewCell: UITableViewCell {
             make.right.equalTo(contentView).offset(-20)
         }
     }
+
 }

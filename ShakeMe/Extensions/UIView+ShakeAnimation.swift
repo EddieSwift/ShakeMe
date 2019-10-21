@@ -28,4 +28,5 @@ extension UIView {
         shakeGroup.speed       = enabled ? 3.5 : 0.1
         self.layer.add(shakeGroup, forKey: "shakeIt")
     }
+
 }

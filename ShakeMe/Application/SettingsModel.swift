@@ -9,14 +9,18 @@
 import Foundation
 
 class SettingsModel {
+
     // MARK: - Properties
+
     private let coreDataService: CoreDataServiceProvider
     private var allSavedAnswers = [Answer]()
 
     init(_ coreDataService: CoreDataServiceProvider) {
         self.coreDataService = coreDataService
     }
+
     // MARK: - Methods
+
     func fetchAnswers(completion: ([Answer]) -> Void) {
         allSavedAnswers = coreDataService.fetchAllAnswers()
         completion(allSavedAnswers)
@@ -38,4 +42,5 @@ class SettingsModel {
         coreDataService.delete(allSavedAnswers[indexPath.row])
         allSavedAnswers.remove(at: indexPath.row)
     }
+
 }

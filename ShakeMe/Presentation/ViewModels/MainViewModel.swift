@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 
 class MainViewModel {
+
     // MARK: - Properties
+
     private let mainModel: MainModel
 
     init(_ mainModel: MainModel) {
@@ -22,7 +24,9 @@ class MainViewModel {
             mainModel.isLoadingDataStateHandler = shouldAnimateLoadingStateHandler
         }
     }
+
     // MARK: - Network Methods
+
     func shakeDetected(completion: @escaping (PresentableAnswer) -> Void) {
         mainModel.getShakedAnswer { fetchedAnswer in
             var answer = fetchedAnswer.toPresentableAnswer()
@@ -30,7 +34,9 @@ class MainViewModel {
             completion(answer)
         }
     }
+
     // MARK: - Shakes Counter Methods
+
     func incrementShakesCounter() {
         mainModel.incrementShakesCounter()
     }
@@ -38,4 +44,5 @@ class MainViewModel {
     func loadShakesCounter() -> Int {
         return mainModel.loadShakesCounter()
     }
+
 }

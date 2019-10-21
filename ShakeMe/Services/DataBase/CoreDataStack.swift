@@ -9,7 +9,9 @@
 import CoreData
 
 class CoreDataStack {
+
     // MARK: - Core Data stack
+
     static var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -38,8 +40,11 @@ class CoreDataStack {
         })
         return container
     }()
+
     // MARK: - Core Data Saving support
+
     class func saveContext () {
+
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -54,4 +59,5 @@ class CoreDataStack {
             }
         }
     }
+
 }

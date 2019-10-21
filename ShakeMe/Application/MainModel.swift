@@ -9,7 +9,9 @@
 import Foundation
 
 final class MainModel {
+
     // MARK: - Properties
+
     private let coreDataService: CoreDataServiceProvider
     private let networkingService: NetworkingServiceProvider
     private let internetReachability: InternetReachabilityProvider
@@ -31,7 +33,9 @@ final class MainModel {
         self.internetReachability = internetReachability
         self.secureStorageService = secureStorageService
     }
+
     // MARK: - Network Methods
+
     func getShakedAnswer(completion: @escaping (Answer) -> Void) {
         isLoadingData = true
         networkingService.getAnswer { [weak self] state in
@@ -49,7 +53,9 @@ final class MainModel {
             self.isLoadingData = false
         }
     }
+
     // MARK: - Data Methods
+
     private func getCustomAnswer() -> Answer {
         let randomAnswer = coreDataService.fetchAllAnswers().randomElement() ?? Answer(text: L10n.turnOnInternet)
         return randomAnswer
@@ -58,7 +64,9 @@ final class MainModel {
     private func saveNewAnswer(_ newAnswer: String) {
         coreDataService.save(newAnswer)
     }
+
     // MARK: - Shakes Counter Methods
+
     func incrementShakesCounter() {
         secureStorageService.updateInStorage(counter: shakesCounter + 1)
     }
@@ -70,4 +78,5 @@ final class MainModel {
         }
         return shakesCounter
     }
+
 }
