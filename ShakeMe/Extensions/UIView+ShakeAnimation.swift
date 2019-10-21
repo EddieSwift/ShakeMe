@@ -1,5 +1,5 @@
 //
-//  UIView.swift
+//  UIView+ShakeAnimation.swift
 //  ShakeMe
 //
 //  Created by Eduard Galchenko on 10/20/19.
@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView {
 
-    func shakingAnimation(_ enabled: Bool) {
+    func shakeAnimation(_ enabled: Bool) {
         let translation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         translation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         translation.values = [-5, 5, -5, 5, -3, 3, -2, 2, 0]

@@ -23,7 +23,7 @@ final class MainViewController: UIViewController {
         self.becomeFirstResponder() // To get shake gesture
         mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
             self?.setAnimationEnabled(shouldAnimate)
-            self?.shakeImageView.shakingAnimation(shouldAnimate)
+            self?.shakeImageView.shakeAnimation(shouldAnimate)
         }
         shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())
     }
