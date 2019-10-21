@@ -26,31 +26,33 @@ final public class CoreDataService: CoreDataServiceProvider {
         }
     }
 
-    func fetch() -> [CustomAnswer] {
+    func fetchAllAnswers() -> [Answer] {
         var fetchResults: [CustomAnswer] = []
-        backgroundContext.performAndWait {
+        guard let context = backgroundContext else { return [Answer]() }
+
+        context.performAndWait {
             let fetchRequest: NSFetchRequest<CustomAnswer> = CustomAnswer.fetchRequest()
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(CustomAnswer.date), ascending: false)]
+
             do {
                 fetchResults = try backgroundContext.fetch(fetchRequest)
             } catch {
                 fatalError("Fetch error")
             }
         }
-        return fetchResults
-    }
 
-    func fetchAllAnswers() -> [Answer] {
-        return  fetch().map { $0.toAnswer() }
+        return context.returnPerformAndWait {
+            fetchResults.map { $0.toAnswer() }
+        }
     }
 
     public func save(_ text: String) {
         guard let context = backgroundContext else { return }
 
-        let answer = CustomAnswer(text: text, insertIntoManagedObjectContext: context)
-        answer.awakeFromInsert()
-
         backgroundContext.performAndWait {
+            let answer = CustomAnswer(text: text, insertIntoManagedObjectContext: context)
+            answer.awakeFromInsert()
+
             do {
                 try context.save()
             } catch {
@@ -83,10 +85,12 @@ final public class CoreDataService: CoreDataServiceProvider {
     func createContainer(completion: @escaping
         (NSPersistentContainer) -> Void) { let container = NSPersistentContainer(name:
         "DataModel")
+
         container.loadPersistentStores(completionHandler: { _, error in
             guard error == nil else {
                 fatalError("Failed to load store")
             }
+
             DispatchQueue.main.async { completion(container) }
         })
     }

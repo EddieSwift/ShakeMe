@@ -10,6 +10,8 @@
 		28D872B69133C76B2B9EA935 /* Pods_ShakeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D5EE209AEF4310683AF341 /* Pods_ShakeMe.framework */; };
 		2C0222712305FE1800EB2621 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0222702305FE1800EB2621 /* CoreDataService.swift */; };
 		2C0F6D61234D27270078E80F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F6D60234D27270078E80F /* Assets.xcassets */; };
+		2C3A3DB7235CD629009D6A9C /* UIView+ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3A3DB6235CD629009D6A9C /* UIView+ShakeAnimation.swift */; };
+		2C3A3DB9235CD796009D6A9C /* NSManagedObjectContext+PerformAndWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3A3DB8235CD796009D6A9C /* NSManagedObjectContext+PerformAndWait.swift */; };
 		2C4384D122FD94490029E28C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D022FD94490029E28C /* AppDelegate.swift */; };
 		2C4384D922FD94490029E28C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */; };
 		2C4384E622FD94EF0029E28C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4384E522FD94EF0029E28C /* MainViewController.swift */; };
@@ -40,6 +42,8 @@
 		19D5EE209AEF4310683AF341 /* Pods_ShakeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShakeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0222702305FE1800EB2621 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		2C0F6D60234D27270078E80F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2C3A3DB6235CD629009D6A9C /* UIView+ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ShakeAnimation.swift"; sourceTree = "<group>"; };
+		2C3A3DB8235CD796009D6A9C /* NSManagedObjectContext+PerformAndWait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+PerformAndWait.swift"; sourceTree = "<group>"; };
 		2C4384CD22FD94490029E28C /* ShakeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4384D022FD94490029E28C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4384D822FD94490029E28C /* ShakeMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShakeMe.xcdatamodel; sourceTree = "<group>"; };
@@ -101,6 +105,15 @@
 			path = DataBase;
 			sourceTree = "<group>";
 		};
+		2C3A3DB5235CD597009D6A9C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C3A3DB6235CD629009D6A9C /* UIView+ShakeAnimation.swift */,
+				2C3A3DB8235CD796009D6A9C /* NSManagedObjectContext+PerformAndWait.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2C4384C422FD94490029E28C = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +143,7 @@
 				2CBDE29B2341F5D30025F6D0 /* Data */,
 				2CBDE2A82344E98A0025F6D0 /* Services */,
 				2C4384EE22FDBA3D0029E28C /* Resources */,
+				2C3A3DB5235CD597009D6A9C /* Extensions */,
 				2CBD36DC23378EB40076B190 /* SwiftGen */,
 				2C4384EF22FDBA7E0029E28C /* Supporting files */,
 			);
@@ -404,12 +418,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBDE298234146AE0025F6D0 /* SettingsModel.swift in Sources */,
+				2C3A3DB9235CD796009D6A9C /* NSManagedObjectContext+PerformAndWait.swift in Sources */,
 				2C82CA5D23575A920060526C /* CustomAnswer+CoreDataClass.swift in Sources */,
 				2CBDE2902340A8070025F6D0 /* StoryboardSegues.swift in Sources */,
 				2CBD36DF233790E60076B190 /* assets-images.swift in Sources */,
 				2CBDE2A7234200540025F6D0 /* PresentableAnswer.swift in Sources */,
 				2C8542DF22FF50EE0053E112 /* SettingsTableViewController.swift in Sources */,
 				2C8542E423030A330053E112 /* AnswerTableViewCell.swift in Sources */,
+				2C3A3DB7235CD629009D6A9C /* UIView+ShakeAnimation.swift in Sources */,
 				2CBDE29A234146C30025F6D0 /* MainModel.swift in Sources */,
 				2CDED00B234C73C2008041C3 /* SecureStorageService.swift in Sources */,
 				2CBDE2A52342002D0025F6D0 /* Answer.swift in Sources */,
