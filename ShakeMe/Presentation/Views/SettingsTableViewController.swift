@@ -17,6 +17,7 @@ final class SettingsTableViewController: UITableViewController {
     // MARK: - Outlets and Setter
 
     private var settingsViewModel: SettingsViewModel!
+    private let disposeBag = DisposeBag()
 
     func setSettingsViewModel(_ settingsViewModel: SettingsViewModel) {
         self.settingsViewModel = settingsViewModel
@@ -36,6 +37,12 @@ final class SettingsTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+
+    // MARK: - Bindings
+    private func setupBindigns() {
+
+    }
+
     // MARK: - Setup UI Constraints
 
     private func setupUI() {

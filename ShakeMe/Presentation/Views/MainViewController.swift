@@ -21,6 +21,8 @@ final class MainViewController: UIViewController {
     private var mainViewModel: MainViewModel!
     private var shakesCounterLabel: UILabel!
 
+    private let disposeBag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMainUI()
@@ -30,6 +32,16 @@ final class MainViewController: UIViewController {
             self?.shakeImageView.shakeAnimation(shouldAnimate)
         }
         shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())
+
+        setupBindigns()
+    }
+
+    // MARK: - Bindings RxSwift
+    private func setupBindigns() {
+        mainViewModel.text.bind(to: answerLabel.rx.text).disposed(by: disposeBag)
+        mainViewModel.loadingState.subscribe(onNext: { [weak self] enabled in
+            self?.setAnimationEnabled(enabled)
+        })
     }
 
     // MARK: - Setter and Init Methods
@@ -122,6 +134,9 @@ final class MainViewController: UIViewController {
                 self.answerLabel.text = fetchedAnswer.text
                 self.answerLabel.textColor = randomColor
             }
+
+            // RxSwift
+//            self.mainViewModel.shakeAction.onNext()
 
             mainViewModel.incrementShakesCounter()
             shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())

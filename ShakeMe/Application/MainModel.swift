@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 
 final class MainModel {
 
@@ -18,6 +19,11 @@ final class MainModel {
     private let internetReachability: InternetReachabilityProvider
     private let secureStorageService: SecureStorageServiceProvider
     private var shakesCounter: Int!
+
+    // RxSwift
+    let text = BehaviorRelay<String?>(value: nil)
+    let loading = PublishSubject<Bool>()
+
     var isLoadingDataStateHandler: ((Bool) -> Void)?
     private var isLoadingData = false {
         didSet {
@@ -33,22 +39,34 @@ final class MainModel {
         self.networkingService = networkService
         self.internetReachability = internetReachability
         self.secureStorageService = secureStorageService
+
+        // RxSwift
     }
 
     // MARK: - Network Methods
 
     func getShakedAnswer(completion: @escaping (Answer) -> Void) {
         isLoadingData = true
+        // RxSwift
+        self.loading.onNext(true)
         networkingService.getAnswer { [weak self] state in
+            // RxSwift
+            self?.loading.onNext(false)
+
             guard let `self` = self else { return }
             switch state {
             case .success(let fetchedAnswer):
                 self.saveNewAnswer(fetchedAnswer)
                 let answer = Answer(text: fetchedAnswer)
-                completion(answer)
+//                completion(answer)
+//                self.text.onNext(answer.text)
+                self.text.accept(answer.text)
             case .error(let error):
                 let customAnswer = self.getCustomAnswer()
-                completion(customAnswer)
+//                self.text.on
+//                completion(customAnswer)
+//                self.text.onNext(customAnswer.text)
+                self.text.accept(customAnswer.text)
                 print(error.localizedDescription)
             }
             self.isLoadingData = false

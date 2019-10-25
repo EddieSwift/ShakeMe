@@ -16,6 +16,8 @@ class SettingsViewModel {
 
     private let settingsModel: SettingsModel
 
+    private let disposeBag = DisposeBag()
+
     init(_ settingsModel: SettingsModel) {
         self.settingsModel = settingsModel
     }
