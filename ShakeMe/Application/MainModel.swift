@@ -20,7 +20,7 @@ final class MainModel {
     private let secureStorageService: SecureStorageServiceProvider
     private var shakesCounter: Int!
 
-    let answer = BehaviorRelay<String?>(value: nil)
+    let answer = BehaviorRelay<Answer?>(value: nil)
     let loading = PublishSubject<Bool>()
 
     init(coreDataService: CoreDataServiceProvider,
@@ -44,10 +44,10 @@ final class MainModel {
             case .success(let fetchedAnswer):
                 self.saveNewAnswer(fetchedAnswer)
                 let answer = Answer(text: fetchedAnswer)
-                self.answer.accept(answer.text)
+                self.answer.accept(answer)
             case .error(let error):
                 let customAnswer = self.getCustomAnswer()
-                self.answer.accept(customAnswer.text)
+                self.answer.accept(customAnswer)
                 print(error.localizedDescription)
             }
         }

@@ -30,7 +30,7 @@ class MainViewModel {
                 guard let answer = answer else {
                     return "Custom Shake Answer"
                 }
-                return answer.uppercased() // PresentableAnswer(answer: answer).answer
+                return answer.toPresentableAnswer().text
         }
     }
 
