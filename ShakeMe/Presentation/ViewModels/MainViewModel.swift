@@ -9,13 +9,11 @@
 import Foundation
 import RxSwift
 import UIKit
-import RxRelay
 
 class MainViewModel {
 
     // MARK: - Properties
 
-    // RxSwift
     private let mainModel: MainModel
     let shakeAction = PublishSubject<Void>()
 
@@ -25,8 +23,8 @@ class MainViewModel {
 
     private let disposeBag = DisposeBag()
 
-    var text: Observable<String> {
-        return mainModel.text.asObservable()
+    var answer: Observable<String> {
+        return mainModel.answer.asObservable()
             .filter { $0 != nil }
             .map { answer -> String in
                 guard let answer = answer else {
@@ -42,30 +40,18 @@ class MainViewModel {
         setupBindings()
     }
 
+    // MARK: - Bindings
+
     private func setupBindings() {
         shakeAction.subscribe(onNext: { [weak self] in
             self?.requestData()
-        })
-    }
-
-    private func requestData() {
-//        mainModel.getShakedAnswer()
-    }
-
-    var shouldAnimateLoadingStateHandler: ((Bool) -> Void)? {
-        didSet {
-            mainModel.isLoadingDataStateHandler = shouldAnimateLoadingStateHandler
-        }
+        }).disposed(by: disposeBag)
     }
 
     // MARK: - Network Methods
 
-    func shakeDetected(completion: @escaping (PresentableAnswer) -> Void) {
-        mainModel.getShakedAnswer { fetchedAnswer in
-            var answer = fetchedAnswer.toPresentableAnswer()
-            answer.text = answer.text.uppercased()
-            completion(answer)
-        }
+    private func requestData() {
+        mainModel.getShakedAnswer()
     }
 
     // MARK: - Shakes Counter Methods
@@ -77,5 +63,4 @@ class MainViewModel {
     func loadShakesCounter() -> Int {
         return mainModel.loadShakesCounter()
     }
-
 }

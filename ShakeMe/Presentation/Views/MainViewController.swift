@@ -27,21 +27,19 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         setupMainUI()
         self.becomeFirstResponder()
-        mainViewModel.shouldAnimateLoadingStateHandler = { [weak self] shouldAnimate in
-            self?.setAnimationEnabled(shouldAnimate)
-            self?.shakeImageView.shakeAnimation(shouldAnimate)
-        }
         shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())
 
         setupBindigns()
     }
 
-    // MARK: - Bindings RxSwift
+    // MARK: - Bindings
+
     private func setupBindigns() {
-        mainViewModel.text.bind(to: answerLabel.rx.text).disposed(by: disposeBag)
-        mainViewModel.loadingState.subscribe(onNext: { [weak self] enabled in
-            self?.setAnimationEnabled(enabled)
-        })
+        mainViewModel.answer.bind(to: answerLabel.rx.text).disposed(by: disposeBag)
+        mainViewModel.loadingState.subscribe(onNext: { [weak self] shouldAnimate in
+            self?.setAnimationEnabled(shouldAnimate)
+            self?.shakeImageView.shakeAnimation(shouldAnimate)
+        }).disposed(by: disposeBag)
     }
 
     // MARK: - Setter and Init Methods
@@ -118,7 +116,7 @@ final class MainViewController: UIViewController {
         }
     }
 
-    // MARK: - Motions
+    // MARK: - Shake Motions
 
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
@@ -130,13 +128,8 @@ final class MainViewController: UIViewController {
         if motion == .motionShake { // Enable detection of shake motion
             let randomColor = self.randomColor()
 
-            mainViewModel.shakeDetected { fetchedAnswer in
-                self.answerLabel.text = fetchedAnswer.text
-                self.answerLabel.textColor = randomColor
-            }
-
-            // RxSwift
-//            self.mainViewModel.shakeAction.onNext()
+            mainViewModel.shakeAction.onNext(())
+            answerLabel.textColor = randomColor
 
             mainViewModel.incrementShakesCounter()
             shakesCounterLabel.text = L10n.shakes(mainViewModel.loadShakesCounter())
