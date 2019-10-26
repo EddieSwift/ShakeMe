@@ -56,69 +56,6 @@ final class MainViewController: UIViewController {
         super.init(coder: aDecoder)
     }
 
-    // MARK: - Setup UI Methods
-
-    private func setupMainUI() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.settings,
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(settingsTapped))
-        view.backgroundColor = Asset.Colors.white.color
-        title = L10n.shakeMe
-        setupAnswerUI()
-        setupImageUI()
-        setupCounterUI()
-        setupIndicatorUI()
-    }
-
-    private func setupAnswerUI() {
-        answerLabel = UILabel()
-        answerLabel.textAlignment = .center
-        answerLabel.numberOfLines = 4
-        answerLabel.font = UIFont.systemFont(ofSize: 30, weight: .medium)
-        answerLabel.textColor = Asset.Colors.green.color
-        answerLabel.text = L10n.shakingMe
-        view.addSubview(answerLabel)
-        answerLabel.translatesAutoresizingMaskIntoConstraints = false
-        answerLabel.snp.makeConstraints { make in
-            make.bottom.left.right.equalTo(view)
-            make.top.equalTo(view).offset(162)
-        }
-    }
-
-    private func setupImageUI() {
-        shakeImageView  = UIImageView(image: Asset.Images.shakeImage.image)
-        view.addSubview(shakeImageView)
-        shakeImageView.translatesAutoresizingMaskIntoConstraints = false
-        shakeImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(120)
-            make.centerX.equalTo(view)
-            make.centerY.equalTo(view).offset(-42)
-        }
-    }
-
-    private func setupCounterUI() {
-        shakesCounterLabel = UILabel()
-        shakesCounterLabel.textColor = Asset.Colors.green.color
-        shakesCounterLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        view.addSubview(shakesCounterLabel)
-        shakesCounterLabel.translatesAutoresizingMaskIntoConstraints = false
-        shakesCounterLabel.snp.makeConstraints { make in
-            make.top.left.equalTo(view.safeAreaLayoutGuide).offset(16)
-        }
-    }
-
-    private func setupIndicatorUI() {
-        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
-        self.activityIndicator.hidesWhenStopped = true
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.snp.makeConstraints { make in
-            make.bottom.left.right.equalTo(view)
-            make.top.equalTo(view).offset(162)
-        }
-    }
-
     // MARK: - Shake Motions
 
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -174,6 +111,65 @@ final class MainViewController: UIViewController {
             self.activityIndicator.stopAnimating()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.answerLabel.isHidden = false
+        }
+    }
+
+    // MARK: - Setup UI Methods
+
+    private func setupMainUI() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.settings,
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(settingsTapped))
+        view.backgroundColor = Asset.Colors.white.color
+        title = L10n.shakeMe
+        setupAnswerUI()
+        setupImageUI()
+        setupCounterUI()
+        setupIndicatorUI()
+    }
+
+    private func setupAnswerUI() {
+        answerLabel = UILabel()
+        answerLabel.textAlignment = .center
+        answerLabel.numberOfLines = 4
+        answerLabel.font = UIFont.systemFont(ofSize: 30, weight: .medium)
+        answerLabel.textColor = Asset.Colors.green.color
+        answerLabel.text = L10n.shakingMe
+        view.addSubview(answerLabel)
+        answerLabel.snp.makeConstraints { make in
+            make.bottom.left.right.equalTo(view)
+            make.top.equalTo(view).offset(162)
+        }
+    }
+
+    private func setupImageUI() {
+        shakeImageView  = UIImageView(image: Asset.Images.shakeImage.image)
+        view.addSubview(shakeImageView)
+        shakeImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(120)
+            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).offset(-42)
+        }
+    }
+
+    private func setupCounterUI() {
+        shakesCounterLabel = UILabel()
+        shakesCounterLabel.textColor = Asset.Colors.green.color
+        shakesCounterLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        view.addSubview(shakesCounterLabel)
+        shakesCounterLabel.snp.makeConstraints { make in
+            make.top.left.equalTo(view.safeAreaLayoutGuide).offset(16)
+        }
+    }
+
+    private func setupIndicatorUI() {
+        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        self.activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.bottom.left.right.equalTo(view)
+            make.top.equalTo(view).offset(162)
         }
     }
 

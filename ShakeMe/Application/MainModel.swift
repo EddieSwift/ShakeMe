@@ -40,9 +40,9 @@ final class MainModel {
     // MARK: - Bindings
 
     func setupBindings() {
-      shakeCounter.accept(secureStorageService.loadFromStorage())
-      shakeAction.subscribe(onNext: { [weak self] in
-        self?.loadShakesCounter()
+        shakeCounter.accept(secureStorageService.loadFromStorage())
+        shakeAction.subscribe(onNext: { [weak self] in
+            self?.loadShakesCounter()
         }).disposed(by: disposeBag)
     }
 
