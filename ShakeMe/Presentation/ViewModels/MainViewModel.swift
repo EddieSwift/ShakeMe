@@ -15,7 +15,10 @@ class MainViewModel {
     // MARK: - Properties
 
     private let mainModel: MainModel
-    let shakeAction = PublishSubject<Void>()
+
+    var shakeAction: PublishSubject<Void> {
+      return mainModel.shakeAction
+    }
 
     var loadingState: Observable<Bool> {
         return mainModel.loading.asObservable()
@@ -34,9 +37,14 @@ class MainViewModel {
         }
     }
 
+    var shakeCounter: Observable<String> {
+      return mainModel.shakeCounter.asObservable().map { count -> String in
+        return L10n.shakes(count)
+      }
+    }
+
     init(_ mainModel: MainModel) {
         self.mainModel = mainModel
-
         setupBindings()
     }
 
@@ -54,13 +62,4 @@ class MainViewModel {
         mainModel.getShakedAnswer()
     }
 
-    // MARK: - Shakes Counter Methods
-
-    func incrementShakesCounter() {
-        mainModel.incrementShakesCounter()
-    }
-
-    func loadShakesCounter() -> Int {
-        return mainModel.loadShakesCounter()
-    }
 }
