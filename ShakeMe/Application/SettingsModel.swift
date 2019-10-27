@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import RxSwift
-import RxRelay
 
 class SettingsModel {
 
@@ -16,7 +14,6 @@ class SettingsModel {
 
     private let coreDataService: CoreDataServiceProvider
     private var allSavedAnswers = [Answer]()
-    private let allReactiveAnswers = BehaviorRelay<[Answer]>(value: [Answer(text: "")])
 
     init(_ coreDataService: CoreDataServiceProvider) {
         self.coreDataService = coreDataService

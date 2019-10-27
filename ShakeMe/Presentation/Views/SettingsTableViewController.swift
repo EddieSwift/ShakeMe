@@ -23,24 +23,35 @@ final class SettingsTableViewController: UITableViewController {
         self.settingsViewModel = settingsViewModel
     }
 
+    // MARK: - Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = rowHeight
+
         setupUI()
+        setupBindigns()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         settingsViewModel.fetchAnswers {
             tableView.reloadData()
         }
     }
 
     // MARK: - Bindings
-    private func setupBindigns() {
 
+    private func setupBindigns() {
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { self.settingsViewModel.deleteAnswer(at: $0)
+                self.tableView.deleteRows(at: [$0], with: .fade)
+            })
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Setup UI Constraints
@@ -67,7 +78,8 @@ final class SettingsTableViewController: UITableViewController {
                     return
             }
 
-            if newAnswer.count < 1 {   // Show alert if try save empty string answer
+            // Show alert if try save empty string answer
+            if newAnswer.count < 1 {
                 self.emptyStringAlert()
                 return
             }
@@ -103,10 +115,6 @@ extension SettingsTableViewController {
 
     // MARK: - UITableViewDataSource
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingsViewModel.numberOfAnswers()
     }
@@ -120,14 +128,6 @@ extension SettingsTableViewController {
         let answer = settingsViewModel.answerAtIndexPath(indexPath: indexPath)
         cell.configure(with: answer)
         return cell
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
-                            forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            settingsViewModel.deleteAnswer(at: indexPath)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
     }
 
 }

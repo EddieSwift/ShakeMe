@@ -16,7 +16,7 @@ class MainViewModel {
 
     private let mainModel: MainModel
 
-    var shakeAction: PublishSubject<Void> {
+    var triggerShakeEvent: PublishSubject<Void> {
       return mainModel.shakeAction
     }
 
@@ -33,7 +33,7 @@ class MainViewModel {
                 guard let answer = answer else {
                     return "Custom Shake Answer"
                 }
-                return answer.toPresentableAnswer().text
+                return answer.toPresentableAnswer().text.uppercased()
         }
     }
 
@@ -51,7 +51,7 @@ class MainViewModel {
     // MARK: - Bindings
 
     private func setupBindings() {
-        shakeAction.subscribe(onNext: { [weak self] in
+        triggerShakeEvent.subscribe(onNext: { [weak self] in
             self?.requestData()
         }).disposed(by: disposeBag)
     }

@@ -22,7 +22,6 @@ final class MainViewController: UIViewController {
     private var shakesCounterLabel: UILabel!
 
     private let disposeBag = DisposeBag()
-    var shakeCounterRx = BehaviorRelay<Int>(value: 0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +67,7 @@ final class MainViewController: UIViewController {
         if motion == .motionShake { // Enable detection of shake motion
             let randomColor = self.randomColor()
 
-            mainViewModel.shakeAction.onNext(())
+            mainViewModel.triggerShakeEvent.onNext(())
             answerLabel.textColor = randomColor
 
             shakesCounterLabel.textColor = randomColor

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RxSwift
 import UIKit
 
 class SettingsViewModel {
@@ -15,8 +14,6 @@ class SettingsViewModel {
     // MARK: - Properties
 
     private let settingsModel: SettingsModel
-
-    private let disposeBag = DisposeBag()
 
     init(_ settingsModel: SettingsModel) {
         self.settingsModel = settingsModel
