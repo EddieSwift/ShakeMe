@@ -48,7 +48,8 @@ final class SettingsTableViewController: UITableViewController {
 
     private func setupBindigns() {
         tableView.rx.itemDeleted
-            .subscribe(onNext: { self.settingsViewModel.deleteAnswer(at: $0)
+            .subscribe(onNext: {
+                self.settingsViewModel.deleteAnswer(at: $0)
                 self.tableView.deleteRows(at: [$0], with: .fade)
             })
             .disposed(by: disposeBag)
