@@ -90,11 +90,10 @@ final class MainViewController: UIViewController {
     }
 
     private func presentSettings() {
-        let settingsViewController = SettingsTableViewController()
         let coreDataService = CoreDataService()
         let settingsModel = SettingsModel(coreDataService)
         let settingsViewModel = SettingsViewModel(settingsModel)
-        settingsViewController.setSettingsViewModel(settingsViewModel)
+        let settingsViewController = SettingsTableViewController(settingsViewModel)
         self.navigationController?.pushViewController(settingsViewController, animated: true)
     }
 

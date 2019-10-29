@@ -48,7 +48,7 @@ final class MainModel {
 
     // MARK: - Network Methods
 
-    func getShakedAnswer() {
+    func getShookAnswer() {
         self.loading.onNext(true)
         networkingService.getAnswer { [weak self] state in
             self?.loading.onNext(false)

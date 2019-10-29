@@ -31,7 +31,7 @@ class MainViewModel {
             .filter { $0 != nil }
             .map { answer -> String in
                 guard let answer = answer else {
-                    return "Custom Shake Answer"
+                    return L10n.shakeMe
                 }
                 return answer.toPresentableAnswer().text.uppercased()
         }
@@ -59,7 +59,7 @@ class MainViewModel {
     // MARK: - Network Methods
 
     private func requestData() {
-        mainModel.getShakedAnswer()
+        mainModel.getShookAnswer()
     }
 
 }
