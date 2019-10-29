@@ -16,7 +16,7 @@ final class SettingsTableViewController: UITableViewController {
 
     // MARK: - Outlets
 
-    private var settingsViewModel: SettingsViewModel
+    private let settingsViewModel: SettingsViewModel
     private let disposeBag = DisposeBag()
 
     // MARK: - Init Methods
