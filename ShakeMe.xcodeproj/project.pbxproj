@@ -210,10 +210,10 @@
 		2CBDE29B2341F5D30025F6D0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				2C647E1923687413009FA8DC /* CustomAnswer+CoreDataClass.swift */,
-				2C647E1B2368746D009FA8DC /* CustomAnswer+CoreDataProperties.swift */,
 				2CBDE2A6234200540025F6D0 /* PresentableAnswer.swift */,
 				2CBDE2A42342002D0025F6D0 /* Answer.swift */,
+				2C647E1B2368746D009FA8DC /* CustomAnswer+CoreDataProperties.swift */,
+				2C647E1923687413009FA8DC /* CustomAnswer+CoreDataClass.swift */,
 				2C4384D722FD94490029E28C /* DataModel.xcdatamodeld */,
 			);
 			path = Data;
