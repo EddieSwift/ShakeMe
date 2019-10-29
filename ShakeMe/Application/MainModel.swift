@@ -19,11 +19,11 @@ final class MainModel {
     private let internetReachability: InternetReachabilityProvider
     private let secureStorageService: SecureStorageServiceProvider
 
-    var shakeCounter   = BehaviorRelay<Int>(value: 0)
-    let shakeAction    = PublishSubject<Void>()
-    let answer         = BehaviorRelay<Answer?>(value: nil)
-    let loading        = PublishSubject<Bool>()
-    let disposeBag     = DisposeBag()
+    var shakeCounter = BehaviorRelay<Int>(value: 0)
+    let shakeAction = PublishSubject<Void>()
+    let answer = BehaviorRelay<Answer?>(value: nil)
+    let loading = PublishSubject<Bool>()
+    private let disposeBag = DisposeBag()
 
     init(coreDataService: CoreDataServiceProvider,
          networkService: NetworkingServiceProvider,
@@ -39,7 +39,7 @@ final class MainModel {
 
     // MARK: - Bindings
 
-    func setupBindings() {
+    private func setupBindings() {
         shakeCounter.accept(secureStorageService.loadFromStorage())
         shakeAction.subscribe(onNext: { [weak self] in
             self?.loadShakesCounter()
