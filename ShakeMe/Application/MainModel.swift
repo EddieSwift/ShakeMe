@@ -7,20 +7,23 @@
 //
 
 import Foundation
+import RxSwift
+import RxRelay
 
 final class MainModel {
+
     // MARK: - Properties
+
     private let coreDataService: CoreDataServiceProvider
     private let networkingService: NetworkingServiceProvider
     private let internetReachability: InternetReachabilityProvider
     private let secureStorageService: SecureStorageServiceProvider
-    private var shakesCounter: Int!
-    var isLoadingDataStateHandler: ((Bool) -> Void)?
-    private var isLoadingData = false {
-        didSet {
-            isLoadingDataStateHandler?(isLoadingData)
-        }
-    }
+
+    var shakeCounter = BehaviorRelay<Int>(value: 0)
+    let shakeAction = PublishSubject<Void>()
+    let answer = BehaviorRelay<Answer?>(value: nil)
+    let loading = PublishSubject<Bool>()
+    private let disposeBag = DisposeBag()
 
     init(coreDataService: CoreDataServiceProvider,
          networkService: NetworkingServiceProvider,
@@ -30,26 +33,40 @@ final class MainModel {
         self.networkingService = networkService
         self.internetReachability = internetReachability
         self.secureStorageService = secureStorageService
+
+        setupBindings()
     }
+
+    // MARK: - Bindings
+
+    private func setupBindings() {
+        shakeCounter.accept(secureStorageService.loadFromStorage())
+        shakeAction.subscribe(onNext: { [weak self] in
+            self?.loadShakesCounter()
+        }).disposed(by: disposeBag)
+    }
+
     // MARK: - Network Methods
-    func getShakedAnswer(completion: @escaping (Answer) -> Void) {
-        isLoadingData = true
+
+    func getShookAnswer() {
+        self.loading.onNext(true)
         networkingService.getAnswer { [weak self] state in
+            self?.loading.onNext(false)
             guard let `self` = self else { return }
             switch state {
             case .success(let fetchedAnswer):
                 self.saveNewAnswer(fetchedAnswer)
-                let answer = Answer(text: fetchedAnswer)
-                completion(answer)
+                self.answer.accept(Answer(text: fetchedAnswer))
             case .error(let error):
                 let customAnswer = self.getCustomAnswer()
-                completion(customAnswer)
+                self.answer.accept(customAnswer)
                 print(error.localizedDescription)
             }
-            self.isLoadingData = false
         }
     }
+
     // MARK: - Data Methods
+
     private func getCustomAnswer() -> Answer {
         let randomAnswer = coreDataService.fetchAllAnswers().randomElement() ?? Answer(text: L10n.turnOnInternet)
         return randomAnswer
@@ -58,16 +75,12 @@ final class MainModel {
     private func saveNewAnswer(_ newAnswer: String) {
         coreDataService.save(newAnswer)
     }
+
     // MARK: - Shakes Counter Methods
-    func incrementShakesCounter() {
-        secureStorageService.updateInStorage(counter: shakesCounter + 1)
+
+    func loadShakesCounter() {
+        secureStorageService.updateInStorage(counter: secureStorageService.loadFromStorage() + 1)
+        shakeCounter.accept(secureStorageService.loadFromStorage())
     }
 
-    func loadShakesCounter() -> Int {
-        shakesCounter = secureStorageService.loadFromStorage()
-        if shakesCounter == 0 {
-            secureStorageService.saveToStorage(counter: shakesCounter)
-        }
-        return shakesCounter
-    }
 }

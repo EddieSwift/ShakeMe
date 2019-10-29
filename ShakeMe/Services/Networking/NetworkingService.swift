@@ -21,6 +21,7 @@ protocol NetworkingServiceProvider {
 }
 
 final public class NetworkingService: NetworkingServiceProvider {
+
     func getAnswer(completion: @escaping (NetworkResponse) -> Void) {
         Alamofire.request(apiUrl).responseJSON { response in
             if response.result.value != nil {
@@ -36,4 +37,5 @@ final public class NetworkingService: NetworkingServiceProvider {
             }
         }
     }
+
 }

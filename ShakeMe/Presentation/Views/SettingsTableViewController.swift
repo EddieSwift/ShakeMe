@@ -7,32 +7,63 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 let rowHeight: CGFloat = 80.0
 
 final class SettingsTableViewController: UITableViewController {
-    // MARK: - Outlets and Setter
-    private var settingsViewModel: SettingsViewModel!
 
-    func setSettingsViewModel(_ settingsViewModel: SettingsViewModel) {
+    // MARK: - Outlets
+
+    private let settingsViewModel: SettingsViewModel
+    private let disposeBag = DisposeBag()
+
+    // MARK: - Init Methods
+
+    init(_ settingsViewModel: SettingsViewModel) {
         self.settingsViewModel = settingsViewModel
+        super.init(nibName: nil, bundle: nil)
     }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = rowHeight
+
         setupUI()
+        setupBindigns()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         settingsViewModel.fetchAnswers {
             tableView.reloadData()
         }
     }
+
+    // MARK: - Bindings
+
+    private func setupBindigns() {
+        tableView.rx.itemDeleted
+            .subscribe(onNext: {
+                self.settingsViewModel.deleteAnswer(at: $0)
+                self.tableView.deleteRows(at: [$0], with: .fade)
+            })
+            .disposed(by: disposeBag)
+    }
+
     // MARK: - Setup UI Constraints
+
     private func setupUI() {
         title = L10n.settings
         tableView.allowsSelection = false
@@ -41,7 +72,9 @@ final class SettingsTableViewController: UITableViewController {
                                                             target: self,
                                                             action: #selector(addTapped))
     }
+
     // MARK: - Bar Button Action Methods
+
     @objc private func addTapped() {
         let alert = UIAlertController(title: L10n.newAnswer,
                                       message: L10n.addCustomAnswer,
@@ -53,7 +86,8 @@ final class SettingsTableViewController: UITableViewController {
                     return
             }
 
-            if newAnswer.count < 1 {   // Show alert if try save empty string answer
+            // Show alert if try save empty string answer
+            if newAnswer.count < 1 {
                 self.emptyStringAlert()
                 return
             }
@@ -71,7 +105,9 @@ final class SettingsTableViewController: UITableViewController {
         alert.addAction(cancleAction)
         present(alert, animated: true)
     }
+
     // MARK: - Alert metod
+
     private func emptyStringAlert() {
         let alert = UIAlertController(title: L10n.warning,
                                       message: L10n.answerLength,
@@ -82,11 +118,10 @@ final class SettingsTableViewController: UITableViewController {
         present(alert, animated: true)
     }
 }
+
 extension SettingsTableViewController {
+
     // MARK: - UITableViewDataSource
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingsViewModel.numberOfAnswers()
@@ -103,11 +138,4 @@ extension SettingsTableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
-                            forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            settingsViewModel.deleteAnswer(at: indexPath)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
 }

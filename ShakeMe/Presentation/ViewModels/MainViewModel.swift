@@ -7,35 +7,59 @@
 //
 
 import Foundation
+import RxSwift
 import UIKit
 
 class MainViewModel {
+
     // MARK: - Properties
+
     private let mainModel: MainModel
+
+    var triggerShakeEvent: PublishSubject<Void> {
+      return mainModel.shakeAction
+    }
+
+    var loadingState: Observable<Bool> {
+        return mainModel.loading.asObservable()
+    }
+
+    private let disposeBag = DisposeBag()
+
+    var answer: Observable<String> {
+        return mainModel.answer.asObservable()
+            .filter { $0 != nil }
+            .map { answer -> String in
+                guard let answer = answer else {
+                    return L10n.shakeMe
+                }
+                return answer.toPresentableAnswer().text.uppercased()
+        }
+    }
+
+    var shakeCounter: Observable<String> {
+      return mainModel.shakeCounter.asObservable().map { count -> String in
+        return L10n.shakes(count)
+      }
+    }
 
     init(_ mainModel: MainModel) {
         self.mainModel = mainModel
+        setupBindings()
     }
 
-    var shouldAnimateLoadingStateHandler: ((Bool) -> Void)? {
-        didSet {
-            mainModel.isLoadingDataStateHandler = shouldAnimateLoadingStateHandler
-        }
+    // MARK: - Bindings
+
+    private func setupBindings() {
+        triggerShakeEvent.subscribe(onNext: { [weak self] in
+            self?.requestData()
+        }).disposed(by: disposeBag)
     }
+
     // MARK: - Network Methods
-    func shakeDetected(completion: @escaping (PresentableAnswer) -> Void) {
-        mainModel.getShakedAnswer { fetchedAnswer in
-            var answer = fetchedAnswer.toPresentableAnswer()
-            answer.text = answer.text.uppercased()
-            completion(answer)
-        }
-    }
-    // MARK: - Shakes Counter Methods
-    func incrementShakesCounter() {
-        mainModel.incrementShakesCounter()
+
+    private func requestData() {
+        mainModel.getShookAnswer()
     }
 
-    func loadShakesCounter() -> Int {
-        return mainModel.loadShakesCounter()
-    }
 }

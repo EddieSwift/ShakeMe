@@ -9,6 +9,7 @@
 import Locksmith
 
 protocol SecureStorageServiceProvider {
+
     func saveToStorage(counter: Int)
     func updateInStorage(counter: Int)
     func loadFromStorage() -> Int
@@ -38,4 +39,5 @@ final public class SecureStorageService: SecureStorageServiceProvider {
         }
         return counter
     }
+
 }

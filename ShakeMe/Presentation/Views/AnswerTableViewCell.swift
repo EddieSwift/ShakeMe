@@ -10,7 +10,9 @@ import UIKit
 import SnapKit
 
 class AnswerTableViewCell: UITableViewCell {
+
     // MARK: - Outlets
+
     private var answerLabel: UILabel!
     private var dateLabel: UILabel!
 
@@ -18,7 +20,9 @@ class AnswerTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
+
     // MARK: - Init Methods
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -27,7 +31,9 @@ class AnswerTableViewCell: UITableViewCell {
         self.answerLabel?.text = answer.text
         self.dateLabel.text = answer.date
     }
+
     // MARK: - Setup UI Methods
+
     private func setupUI() {
         setupAnswerUI()
         setupDateUI()
@@ -37,7 +43,6 @@ class AnswerTableViewCell: UITableViewCell {
         answerLabel = UILabel()
         answerLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         contentView.addSubview(answerLabel)
-        answerLabel.translatesAutoresizingMaskIntoConstraints = false
         answerLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(30)
             make.left.equalTo(contentView).offset(20)
@@ -49,10 +54,10 @@ class AnswerTableViewCell: UITableViewCell {
         dateLabel = UILabel()
         dateLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         contentView.addSubview(dateLabel)
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(8)
             make.right.equalTo(contentView).offset(-20)
         }
     }
+
 }

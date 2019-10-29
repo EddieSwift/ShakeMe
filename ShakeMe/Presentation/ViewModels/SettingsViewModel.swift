@@ -10,13 +10,17 @@ import Foundation
 import UIKit
 
 class SettingsViewModel {
+
     // MARK: - Properties
+
     private let settingsModel: SettingsModel
 
     init(_ settingsModel: SettingsModel) {
         self.settingsModel = settingsModel
     }
+
     // MARK: - Methods
+
     func fetchAnswers(completion: () -> Void) {
         settingsModel.fetchAnswers { _ in
             completion()
@@ -38,4 +42,5 @@ class SettingsViewModel {
     func deleteAnswer(at indexPath: IndexPath) {
         return settingsModel.deleteAnswer(at: indexPath)
     }
+
 }

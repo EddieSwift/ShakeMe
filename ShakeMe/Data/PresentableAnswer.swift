@@ -15,6 +15,7 @@ private let dateFormatter: DateFormatter = {
 }()
 
 struct PresentableAnswer {
+
     var text: String
     var date: String
 
@@ -22,4 +23,5 @@ struct PresentableAnswer {
         self.date = dateFormatter.string(from: date)
         self.text = text
     }
+
 }
