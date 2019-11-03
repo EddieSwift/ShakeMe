@@ -13,7 +13,8 @@ target 'ShakeMe' do
   pod 'SwiftGen',   '~>6.1.0'
   pod 'SnapKit',    '~> 5.0.1'
   pod 'Locksmith',  '~> 4.0.0'
-  pod 'RxSwift',    '~> 5'
-  pod 'RxCocoa',    '~> 5'
+  pod 'RxSwift',    '~> 5.0.1'
+  pod 'RxCocoa',    '~> 5.0.1'
+  pod 'RxRelay',    '~> 5.0.1'
   
 end

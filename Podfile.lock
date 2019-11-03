@@ -1,12 +1,12 @@
 PODS:
   - Alamofire (4.8.2)
   - Locksmith (4.0.0)
-  - RxCocoa (5.0.0):
+  - RxCocoa (5.0.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxRelay (5.0.0):
+  - RxRelay (5.0.1):
     - RxSwift (~> 5)
-  - RxSwift (5.0.0)
+  - RxSwift (5.0.1)
   - SnapKit (5.0.1)
   - SwiftGen (6.1.0)
   - SwiftLint (0.35.0)
@@ -15,8 +15,9 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.8.2)
   - Locksmith (~> 4.0.0)
-  - RxCocoa (~> 5)
-  - RxSwift (~> 5)
+  - RxCocoa (~> 5.0.1)
+  - RxRelay (~> 5.0.1)
+  - RxSwift (~> 5.0.1)
   - SnapKit (~> 5.0.1)
   - SwiftGen (~> 6.1.0)
   - SwiftLint (~> 0.35.0)
@@ -37,14 +38,14 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
-  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
-  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
-  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 65527eda23d25399374b7f7ad5b29a76dae7565d
+PODFILE CHECKSUM: 64f664ada34f2da943f3605d80dc4df5d96d929a
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
